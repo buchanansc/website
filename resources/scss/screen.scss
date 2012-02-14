@@ -1,0 +1,83 @@
+$font_family: "Open Sans", "Lucida Sans", sans-serif;
+$color_body_bg: rgba(235,235,235,.9);
+
+@import "compass/reset";
+@import "compass/css3";
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+body {
+    background-color: #969696;
+	@include background-image(
+		linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
+		image-url("noise.png")
+	);
+    background-position: left top;
+	font-family: $font_family;
+	font-size: 12px;
+}
+
+a {
+	color: #6cf;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+#layout {
+    background-color: #eaeaea;
+	@include background-image(
+		radial-gradient(center 20%, rgba(0,0,0,0) 20%, rgba(0,0,0,.15) 90%),
+		linear-gradient(left,
+			rgba(0,0,0,.15) 0%,
+			rgba(0,0,0,.05) 2px,
+			rgba(0,0,0,.05) 28px,
+			rgba(0,0,0,.15) 30px,
+			rgba(0,0,0,0) 30px,
+			rgba(0,0,0,0) 100%),
+		linear-gradient(top, rgba(108,217,108,.9), rgba(129,227,129,.9)),
+		image-url("noise.png")
+	);
+    background-position: center, left top;
+    background-repeat: no-repeat, repeat, repeat, repeat;
+    @include background-size(cover, 60px 100%, cover, auto auto);
+	min-height: 70%;
+	
+	#west {
+		max-width: 30%;
+		padding: 100px 20px 20px;
+		width: 300px;
+	}
+}
+
+#south {
+	border-top: 1px solid #999;
+	border-top: 1px solid rgba(0,0,0,.4);
+	@include box-shadow(0 3px 2px -3px rgba(0,0,0,.3) inset, 0 35px 35px -35px rgba(0,0,0,.3) inset);
+	min-height: 40px;
+}
+
+.navigation {
+	box-sizing: border-box;
+	margin: 0 0 20px;
+	li {
+		a {
+			background-color: #f3f3f3;
+			@include box-shadow(0 -25px 25px -25px rgba(0,0,0,.15) inset);
+			color: #000;
+			display: block;
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 18px;
+			padding: 6px 10px 7px;
+			text-decoration: none;
+			text-shadow: 0 1px 0 #fff;
+		}
+	}
+}
