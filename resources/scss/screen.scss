@@ -1,25 +1,32 @@
 $font_family: "Open Sans", "Lucida Sans", sans-serif;
-$color_body_bg: rgba(235,235,235,.9);
 
-@import "compass/reset";
+//@import "compass/reset";
 @import "compass/css3";
 
 html, body {
-	height: 100%;
 	margin: 0;
 	padding: 0;
-	width: 100%;
+	min-height: 100%;
 }
-
 body {
-    background-color: #969696;
+    background-color: #eaeaea;
 	@include background-image(
-		linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
+		radial-gradient(center 20%, rgba(0,0,0,0) 20%, rgba(0,0,0,.15)),
+		linear-gradient(left,
+			rgba(0,0,0,.15) 0%,
+			rgba(0,0,0,.05) 2px,
+			rgba(0,0,0,.05) 28px,
+			rgba(0,0,0,.15) 30px,
+			rgba(0,0,0,0) 30px,
+			rgba(0,0,0,0) 100%),
+		linear-gradient(top, rgba(129,227,129,.9), rgba(108,217,108,.9)),
 		image-url("noise.png")
 	);
-    background-position: left top;
+    background-position: center, left top;
+    background-repeat: no-repeat, repeat, repeat, repeat;
+    @include background-size(cover, 60px 100%, cover, auto auto);
 	font-family: $font_family;
-	font-size: 12px;
+	font-size: 13px;
 }
 
 a {
@@ -30,42 +37,52 @@ a:hover {
 	text-decoration: underline;
 }
 
-#layout {
-    background-color: #eaeaea;
+.page {
+	padding: 30px;
+	text-align: center;
+}
+.layout {
+    background-color: #969696;
 	@include background-image(
-		radial-gradient(center 20%, rgba(0,0,0,0) 20%, rgba(0,0,0,.15) 90%),
-		linear-gradient(left,
-			rgba(0,0,0,.15) 0%,
-			rgba(0,0,0,.05) 2px,
-			rgba(0,0,0,.05) 28px,
-			rgba(0,0,0,.15) 30px,
-			rgba(0,0,0,0) 30px,
-			rgba(0,0,0,0) 100%),
-		linear-gradient(top, rgba(108,217,108,.9), rgba(129,227,129,.9)),
+		linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
 		image-url("noise.png")
 	);
-    background-position: center, left top;
-    background-repeat: no-repeat, repeat, repeat, repeat;
-    @include background-size(cover, 60px 100%, cover, auto auto);
+    background-position: left top;
+	border-radius: 8px;
+	@include box-shadow(
+		0 1px 0px 0 rgba(255, 255, 255, 0.75) inset,
+		0 1px 4px 0 rgba(0, 0, 0, 0.35)
+	);
+	margin: 0 auto;
+	max-width: 800px;
 	min-height: 70%;
-	
-	#west {
-		max-width: 30%;
-		padding: 100px 20px 20px;
-		width: 300px;
-	}
+	text-align: left;
+}
+
+#west {
+	float: left;
+	width: 270px;
+}
+
+#center {
+	min-width: 270px;
+	margin-left: 270px;
 }
 
 #south {
-	border-top: 1px solid #999;
-	border-top: 1px solid rgba(0,0,0,.4);
-	@include box-shadow(0 3px 2px -3px rgba(0,0,0,.3) inset, 0 35px 35px -35px rgba(0,0,0,.3) inset);
-	min-height: 40px;
+	clear: both;
+}
+
+.content {
+	background: #fff;
+	margin: 20px;
 }
 
 .navigation {
-	box-sizing: border-box;
-	margin: 0 0 20px;
+	@include box-sizing(border-box);
+	list-style: none;
+	margin: 20px;
+	padding: 0;
 	li {
 		a {
 			background-color: #f3f3f3;
