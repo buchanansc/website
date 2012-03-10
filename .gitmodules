@@ -1,0 +1,3 @@
+[submodule "RegexTool"]
+	path = RegexTool
+	url = git://github.com/wafflesnatcha/RegexTool.git
