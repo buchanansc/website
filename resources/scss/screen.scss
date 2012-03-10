@@ -1,6 +1,7 @@
 $font_family: "Open Sans", "Lucida Sans", sans-serif;
+$body_bg: #81e381;
 
-//@import "compass/reset";
+@import "compass/reset";
 @import "compass/css3";
 
 html, body {
@@ -9,7 +10,6 @@ html, body {
 	min-height: 100%;
 }
 body {
-    background-color: #eaeaea;
 	@include background-image(
 		radial-gradient(center 20%, rgba(0,0,0,0) 20%, rgba(0,0,0,.15)),
 		linear-gradient(left,
@@ -19,36 +19,37 @@ body {
 			rgba(0,0,0,.15) 30px,
 			rgba(0,0,0,0) 30px,
 			rgba(0,0,0,0) 100%),
-		linear-gradient(top, rgba(129,227,129,.9), rgba(108,217,108,.9)),
+		linear-gradient(top, transparentize($body_bg, 0.1), transparentize(desaturate(darken($body_bg, 7%), 13%), .1)),
 		image-url("noise.png")
 	);
-    background-position: center, left top;
-    background-repeat: no-repeat, repeat, repeat, repeat;
-    @include background-size(cover, 60px 100%, cover, auto auto);
-	font-family: $font_family;
-	font-size: 13px;
+	@include background-size(cover, 60px 100%, cover, auto auto);
+	background: {
+		color: $body_bg;
+		position: center, left top;
+		repeat: no-repeat, repeat, repeat, repeat;
+	}
+	font: {
+		family: $font_family;
+		size: 13px;
+	}
 }
 
 a {
 	color: #6cf;
 	text-decoration: none;
-}
-a:hover {
-	text-decoration: underline;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
-.page {
-	padding: 30px;
-	text-align: center;
-}
 .layout {
-    background-color: #969696;
+	background-color: #969696;
 	@include background-image(
 		linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
 		image-url("noise.png")
 	);
-    background-position: left top;
-	border-radius: 8px;
+	background-position: left top;
+	@include border-radius(8px);
 	@include box-shadow(
 		0 1px 0px 0 rgba(255, 255, 255, 0.75) inset,
 		0 1px 4px 0 rgba(0, 0, 0, 0.35)
