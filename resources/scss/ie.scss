@@ -1,8 +1,0 @@
-@import "compass/css3";
-
-body {
-	@include background-image(image-url("background.png"));
-    @include background-size(auto auto);
-    background-position: left top;
-    background-repeat: repeat;
-}
