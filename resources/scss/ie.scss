@@ -1,0 +1,19 @@
+@import "compass/css3";
+
+body {
+	background: {
+		image: image-url("body-bg.png");
+		position: left top;
+		repeat: repeat;
+		size: auto;
+	}	
+}
+
+.layout {
+	background: {
+		image: image-url("layout-bg.png");
+		repeat: repeat;
+		size: auto;
+	}
+}
+
