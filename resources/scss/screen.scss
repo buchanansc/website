@@ -1,21 +1,24 @@
 @import "compass/reset";
 @import "compass/css3";
 
-$font_family: "Open Sans", "Lucida Sans", sans-serif;
-$font_family_monospace: Menlo, Consolas, "Droid Sans Mono", "Courier New", monospace;
+$font_body: "Open Sans", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+$font_headings: Corbel, Calibri, 'Century Gothic', sans-serif;
+// $font_headings: "Bookman Old Style", Cambria, Georgia, serif;
+// $font_headings: "Georgia", "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+$font_code: Menlo, Consolas, "Andale Mono", monospace;
 $font_size: 13px;
 
 $default: #000;
-
-$link: #6cf;
-$link_visited: #680094;
-
+$default_bg: #fff;
 $body_bg: #81e381;
+$nav_bg: #e5e5e5;
+
+$nav_width: 330px;
+$content_width: 570px;
 
 html, body {
 	margin: 0;
 	padding: 0;
-	height: 100%;
 }
 
 body {
@@ -32,92 +35,298 @@ body {
 			rgba(0,0,0,.05) 28px,
 			rgba(0,0,0,.15) 30px,
 			rgba(0,0,0,0) 30px,
-			rgba(0,0,0,0) 100%),
+			rgba(0,0,0,0) 100%
+		),
 		linear-gradient(top, transparentize($body_bg, 0.1), transparentize(desaturate(darken($body_bg, 7%), 13%), .1)),
 		image-url("noise.png")
 	);
-	@include background-size(cover, 60px 100%, cover, auto auto);
+	@include background-size(100%, 60px 100%, cover, auto auto);
 	color: $default;
 	font: {
-		family: $font_family;
+		family: $font_body;
 		size: $font_size;
+	}
+	line-height: normal;
+}
+
+#{headings()} {
+	color: $default;
+	font: {
+		family: $font_headings;
+		style: normal;
+		weight: 500;
+	}
+	margin: .5em 0;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 {}
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.67em; }
+
+dl, dt, dd {
+	margin: {
+		left: 0;
+		right: 0;
 	}
 }
 
 a {
-	color: $link;
+	@include border-radius(3px);
+	color: #680094;
+	margin: -2px -3px;
+	padding: 2px 3px;
 	text-decoration: none;
 
-	&:visited {
-		color: $link_visited;
-	}
-
 	&:hover {
-		text-decoration: underline;
+		background: #680094;
+		color: #fff;
+	}
+}
+
+blockquote {
+	color: #444;
+}
+
+dl, dt, dd {
+	margin: {
+		left: 0;
+		right: 0;
+	}
+}
+
+hr {
+	background-color: #e0e0e0;
+	border: none;
+	height: 1px;
+	margin: 1em 0;
+	padding: 0;
+}
+
+p {
+	margin: 0 0 1em;
+}
+
+pre, code {
+	font: {
+		family: $font_code;
+		size: inherit;
 	}
 }
 
 .layout {
-	height: 100%;
-	margin: 0 auto;
-	min-height: 300px;
-	position: relative;
-	text-align: left;
-	width: 800px;
-
-	#north {
-		height: 40px;
-	}
-
-	#west {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 270px;
-		background: {
-			color: #969696;
-			position: left top;
-		}
-		@include background-image(
-			linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
-			image-url("noise.png")
-		);
-		@include box-shadow(
-			0 1px 0 0 rgba(255,255,255, .4),
-			0 1px 4px 0 rgba(0,0,0, .35) inset
-		);
-	}
-
-	#center {
-		margin-left: 280px;
-	}
-
-	#south {
-		clear: both;
+	position: relative; /* IE7 */
+	clear: both;
+	float: left;
+	width: $nav_width + $content_width;
+	overflow: hidden;
+	@include background-image(
+		linear-gradient(left,
+			rgba(0,0,0,0) 0%,
+			rgba(0,0,0,0) $nav_width - 2px,
+			rgba(0,0,0,.15) $nav_width
+		),		
+		linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
+		linear-gradient(left, transparentize(lighten($nav_bg, 8%), .1), transparentize(darken($nav_bg, 8%), .1)),
+		image-url("noise.png")
+	);
+	@include background-size($nav_width 100%, cover, $nav_width 100%, auto auto);
+	background: {
+		color: $nav_bg;
+		position: left top;
+		repeat: no-repeat, no-repeat, no-repeat, repeat;
 	}
 }
 
+.layout .wrap {
+	// background: #fff;
+	float: left;
+	left: $nav_width;
+	position: relative;
+	width: 200%;
+}
+
+#west {
+	float: left;
+	width: $nav_width;
+	position: relative;
+	right: $nav_width;
+}
+
+#center {
+	float: right;
+	width: 50%;
+	position: relative;
+	right: $nav_width;
+
+	.page {
+		margin: 0 0 0 $nav_width;
+		position: relative;
+		right: 100%;
+		overflow: hidden;	
+	}
+
+}
 
 .navigation {
 	@include box-sizing(border-box);
 	list-style: none;
-	margin: 20px;
+	margin: 15px 0px;
 	padding: 0;
-	li {
-		a {
-			color: #000;
+	text-align: right;
+	@include text-shadow(0 1px 0 rgba(50,50,50,.3));
+	
+	header {
+		height: 64px;
+		margin: 0 20px 0 10px;
+		min-height: 64px;
+		padding: 0;
+		
+		.icon {
+			background: {
+				color: transparent;
+				image: image-url("icon-64.png");
+				position: left top;
+				repeat: no-repeat;
+			}
 			display: block;
-			font-size: $font_size + 1;
-			font-weight: 600;
-			line-height: $font_size * 1.5;
-			padding: 0 10px;
-			text-decoration: none;
-			text-shadow: 0 1px 0 #fff;
+			float: left;
+			height: 64px;
+			margin: 0;
+			padding: 0;
+			@include transition(transform 1s);
+			width: 64px;
+			
+			&:hover {
+				@include transform(scale(.9));
+			}
+		}
+
+		h1 {
+			font: {
+				size: 2.5em;
+				style: italic;
+				weight: bold;
+			}
+			margin: 0;
+			padding: 0;
+			@include text-shadow(0 1px 0 rgba(70,70,70,.1));
+		}
+		
+		.my-links {
+			a {
+				font-weight: 300;
+							
+				&:hover {
+					// font-weight: 500;
+				}
+				
+				.sprite {
+					&.link-github {
+					}
+					&.link-last-fm {
+					}
+				}
+				
+			}
+			ul {
+				white-space: nowrap;
+				li {
+					display: inline;
+					padding: 0 2px;
+				}
+			}
+
+			.left {
+				float: left;
+				margin-left: 20px;
+			}
+
+			.right {
+				float: right;
+			}
+		}
+	}
+
+	div.projects {
+		padding: 80px 0 0;
+		text-align: right;
+
+		h2 {
+			display: none;
+			padding: 0 0px;
+		}
+		
+		ul {
+			li {
+				a {
+					@include border-radius(3px 0 0 3px);
+					color: #000;
+					display: block;
+					font: {
+						size: $font_size + 3;
+						weight: 600;
+					}
+					line-height: 200%;
+					margin: 3px 0 3px 50px;
+					padding: 0 20px 0 10px;
+					text-decoration: none;
+					
+					&:hover {
+						@include box-shadow(-1px 0 1px 0 rgba(0,0,0,.5) inset);
+						color: #fff;
+					}
+				}
+			}
 		}
 	}
 }
 
+
 .content {
-	background: #fff;
+	background: $default_bg;
+	@include background-image(linear-gradient(left, rgba(200,200,200,0), rgba(200,200,200,.1)));
+	border-right: 1px solid #969696;
+	padding: 8px;
+
+	pre {
+		background: #eee;
+		@include border-radius(4px);
+		@include box-sizing(border-box);
+		margin: 1em 0;
+		overflow: auto;
+		padding: .6em .8em;
+		position: relative;
+		white-space: pre;
+		word-wrap: normal;
+	}
+
+	table {
+		border-bottom: 2px solid #eaeaea;
+		font-size: inherit;
+
+		th, td {
+			padding: 4px 8px;
+		}
+
+		thead th {
+			@include background-image(linear-gradient(top, rgba(255,255,255,0), rgba(150,150,150,.15)));
+			@include background-origin(content-box);
+			border-bottom: 1px solid #bbb;
+			@include box-shadow(0 -3px 4px -3px rgba(0,0,0,.2) inset);
+			font-weight: bold;
+			text-align: left;
+		}
+
+		td {
+			vertical-align: top;
+		}
+
+		& > tbody > tr:nth-child(even) > td {
+			background-color: #f3f6fa;
+		}
+	}
 }
+

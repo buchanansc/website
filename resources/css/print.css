@@ -1,4 +1,34 @@
-/* Welcome to Compass. Use this file to define print styles.
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
- */
+/* line 6, ../scss/print.scss */
+body {
+  background: white;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 13, ../scss/print.scss */
+a, a:hover, a:visited {
+  color: #1525ab;
+  text-decoration: underline;
+}
+
+/* line 18, ../scss/print.scss */
+pre {
+  background: none;
+  border-radius: 0;
+  border: none;
+  color: black;
+  padding: 0;
+  position: static;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* line 29, ../scss/print.scss */
+hr {
+  background: #999;
+  border: 1px solid #999;
+  height: auto;
+  margin: auto;
+  padding: 0;
+}
