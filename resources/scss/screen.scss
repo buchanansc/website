@@ -2,45 +2,40 @@
 @import "compass/css3";
 
 $font_body: "Open Sans", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-$font_headings: Corbel, Calibri, 'Century Gothic', sans-serif;
+// $font_headings: Corbel, Calibri, 'Century Gothic', sans-serif;
 // $font_headings: "Bookman Old Style", Cambria, Georgia, serif;
 // $font_headings: "Georgia", "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
 $font_code: Menlo, Consolas, "Andale Mono", monospace;
 $font_size: 13px;
 
-$default: #000;
+$default: #222;
 $default_bg: #fff;
+$default_loading: #999;
+
 $body_bg: #81e381;
 $nav_bg: #e5e5e5;
+
+$link: #680094;
+$link_hover: #fff;
+$link_hover_bg: $link;
 
 $nav_width: 330px;
 $content_width: 570px;
 
 html, body {
 	margin: 0;
+	height: 100%;
 	padding: 0;
 }
 
 body {
 	background: {
 		color: $body_bg;
-		position: center, left top;
-		repeat: no-repeat, repeat, repeat, repeat;
+		image: image-url("body-bg.png");
+		position: left top;
+		repeat: repeat;
+		size: auto;
 	}
-	@include background-image(
-		radial-gradient(center 20%, rgba(0,0,0,0) 20%, rgba(0,0,0,.15)),
-		linear-gradient(left,
-			rgba(0,0,0,.15) 0%,
-			rgba(0,0,0,.05) 2px,
-			rgba(0,0,0,.05) 28px,
-			rgba(0,0,0,.15) 30px,
-			rgba(0,0,0,0) 30px,
-			rgba(0,0,0,0) 100%
-		),
-		linear-gradient(top, transparentize($body_bg, 0.1), transparentize(desaturate(darken($body_bg, 7%), 13%), .1)),
-		image-url("noise.png")
-	);
-	@include background-size(100%, 60px 100%, cover, auto auto);
 	color: $default;
 	font: {
 		family: $font_body;
@@ -49,51 +44,26 @@ body {
 	line-height: normal;
 }
 
-#{headings()} {
-	color: $default;
-	font: {
-		family: $font_headings;
-		style: normal;
-		weight: 500;
-	}
-	margin: .5em 0;
-}
-
-h1 { font-size: 2em; }
-h2 { font-size: 1.5em; }
-h3 { font-size: 1.17em; }
-h4 {}
-h5 { font-size: 0.83em; }
-h6 { font-size: 0.67em; }
-
-dl, dt, dd {
-	margin: {
-		left: 0;
-		right: 0;
-	}
-}
-
 a {
 	@include border-radius(3px);
-	color: #680094;
-	margin: -2px -3px;
-	padding: 2px 3px;
+	display: inline-block;
+	color: $link;
+	position: relative;
 	text-decoration: none;
+	@include transition(all .06s);
 
-	&:hover {
-		background: #680094;
-		color: #fff;
+	& img {
+		padding: 5px 0 4px;
+		vertical-align: text-bottom;
 	}
-}
 
-blockquote {
-	color: #444;
-}
-
-dl, dt, dd {
-	margin: {
-		left: 0;
-		right: 0;
+	&:hover, &:active, &:focus {
+		@include box-shadow(0 1px 0px 0 rgba(0, 0, 0, 0.2), 0 -20px 20px -20px rgba(0,0,0, 0.3) inset);
+		background: $link_hover_bg;
+		color: $link_hover;
+		margin: -2px -7px -3px;
+		padding: 2px 7px 3px;
+		z-index: 2;
 	}
 }
 
@@ -105,10 +75,6 @@ hr {
 	padding: 0;
 }
 
-p {
-	margin: 0 0 1em;
-}
-
 pre, code {
 	font: {
 		family: $font_code;
@@ -116,191 +82,237 @@ pre, code {
 	}
 }
 
-.layout {
-	position: relative; /* IE7 */
-	clear: both;
-	float: left;
-	width: $nav_width + $content_width;
-	overflow: hidden;
-	@include background-image(
-		linear-gradient(left,
-			rgba(0,0,0,0) 0%,
-			rgba(0,0,0,0) $nav_width - 2px,
-			rgba(0,0,0,.15) $nav_width
-		),		
-		linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
-		linear-gradient(left, transparentize(lighten($nav_bg, 8%), .1), transparentize(darken($nav_bg, 8%), .1)),
-		image-url("noise.png")
-	);
-	@include background-size($nav_width 100%, cover, $nav_width 100%, auto auto);
+#layout {
 	background: {
 		color: $nav_bg;
-		position: left top;
-		repeat: no-repeat, no-repeat, no-repeat, repeat;
+		image: image-url("layout-bg.png");
+		repeat: repeat;
+		size: auto;
 	}
-}
 
-.layout .wrap {
-	// background: #fff;
+	clear: both;
 	float: left;
-	left: $nav_width;
+	min-height: 100%;
+	overflow: hidden;
 	position: relative;
-	width: 200%;
-}
-
-#west {
-	float: left;
 	width: $nav_width;
-	position: relative;
-	right: $nav_width;
-}
 
-#center {
-	float: right;
-	width: 50%;
-	position: relative;
-	right: $nav_width;
-
-	.page {
-		margin: 0 0 0 $nav_width;
+	.layout-inner {
+		// background: #fff;
+		float: left;
+		left: $nav_width;
 		position: relative;
-		right: 100%;
-		overflow: hidden;	
+		width: 200%;
+
+		.layout-center {
+			float: right;
+			width: 50%;
+			position: relative;
+			right: $nav_width;
+
+			.layout-page {
+				margin: 0 0 0 $nav_width;
+				position: relative;
+				right: 100%;
+				// overflow: hidden;
+			}
+		}
+
+		.layout-west {
+			float: left;
+			width: $nav_width;
+			position: relative;
+			right: $nav_width;
+		}
 	}
 
+	&.content {
+		// @include box-shadow(-1px 0 0 rgba(0,0,0,.2) inset);
+		// width: $nav_width + $content_width;
+	}
 }
+
+@import "my-links/*.png";
 
 .navigation {
 	@include box-sizing(border-box);
 	list-style: none;
-	margin: 15px 0px;
+	margin: 10px 0px;
 	padding: 0;
+	position: relative;
 	text-align: right;
 	@include text-shadow(0 1px 0 rgba(50,50,50,.3));
-	
+
 	header {
-		height: 64px;
+		height: 70px;
 		margin: 0 20px 0 10px;
-		min-height: 64px;
+		min-height: 70px;
 		padding: 0;
-		
-		.icon {
-			background: {
-				color: transparent;
-				image: image-url("icon-64.png");
-				position: left top;
-				repeat: no-repeat;
-			}
-			display: block;
+	}
+	.page-icon {
+		background: {
+			color: transparent;
+			image: image-url("page-icon.png");
+			position: center;
+			repeat: no-repeat;
+		}
+		@include box-shadow(none);
+		display: block;
+		height: 70px;
+		left: 7px;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		top: 2px;
+		width: 70px;
+
+		&:hover {
+		}
+	}
+
+	h1 {
+		font: {
+			size: 30px;
+			style: italic;
+			weight: 700;
+		}
+		margin: 0;
+		padding: 0;
+	}
+
+	.my-links {
+		margin: -4px 0 0 85px;
+		text-align: left;
+
+		a {
 			float: left;
-			height: 64px;
-			margin: 0;
-			padding: 0;
-			@include transition(transform 1s);
-			width: 64px;
-			
-			&:hover {
-				@include transform(scale(.9));
-			}
 		}
 
-		h1 {
-			font: {
-				size: 2.5em;
-				style: italic;
-				weight: bold;
+		ul.my-links-icons {
+			float: right;
+			white-space: nowrap;
+
+			li {
+				display: inline;
 			}
-			margin: 0;
-			padding: 0;
-			@include text-shadow(0 1px 0 rgba(70,70,70,.1));
-		}
-		
-		.my-links {
+
 			a {
-				font-weight: 300;
-							
-				&:hover {
-					// font-weight: 500;
+				background: {
+					color: transparent;
+					position: center;
+					repeat: no-repeat;
 				}
-				
-				.sprite {
-					&.link-github {
-					}
-					&.link-last-fm {
-					}
-				}
-				
-			}
-			ul {
-				white-space: nowrap;
-				li {
-					display: inline;
-					padding: 0 2px;
-				}
+				@include box-shadow(none);
+				display: block;
+				height: 20px;
+				margin: 0;
+				opacity: .8;
+				overflow: hidden;
+				padding: 0;
+				text-indent: -200px;
+				@include transition(none);
+				width: 20px;
 			}
 
-			.left {
-				float: left;
-				margin-left: 20px;
+			.github {
+				@include my-links-sprite(github);
+				&:hover, &:active, &:focus {
+					@include my-links-sprite(github-over);
+				}
 			}
-
-			.right {
-				float: right;
+			.lastfm {
+				@include my-links-sprite(lastfm);
+				&:hover, &:active, &:focus {
+					@include my-links-sprite(lastfm-over);
+				}
 			}
 		}
 	}
 
 	div.projects {
-		padding: 80px 0 0;
+		margin: 80px 0 0;
 		text-align: right;
 
-		h2 {
-			display: none;
-			padding: 0 0px;
-		}
-		
-		ul {
-			li {
-				a {
-					@include border-radius(3px 0 0 3px);
-					color: #000;
-					display: block;
-					font: {
-						size: $font_size + 3;
-						weight: 600;
-					}
-					line-height: 200%;
-					margin: 3px 0 3px 50px;
-					padding: 0 20px 0 10px;
-					text-decoration: none;
-					
-					&:hover {
-						@include box-shadow(-1px 0 1px 0 rgba(0,0,0,.5) inset);
-						color: #fff;
-					}
-				}
+		a {
+			@include border-radius(3px 0 0 3px);
+			color: #000;
+			display: block;
+			font: {
+				size: $font_size + 3;
+				weight: 400;
+			}
+			line-height: 200%;
+			margin: 3px 0 3px 50px;
+			padding: 0 20px 0 10px;
+			text-decoration: none;
+			@include transition(none);
+
+			&:hover, &:active, &:focus {
+				background: $link_hover_bg;
+				@include box-shadow(-2px 0 2px -2px rgba(0,0,0,.3) inset);
+				color: $link_hover;
 			}
 		}
+
 	}
 }
 
+#content {
+	color: $default;
+	padding: 10px 20px;
 
-.content {
-	background: $default_bg;
-	@include background-image(linear-gradient(left, rgba(200,200,200,0), rgba(200,200,200,.1)));
-	border-right: 1px solid #969696;
-	padding: 8px;
+	&.loading {
+		color: $default_loading;
+	}
+
+	#{headings()} {
+		color: $default;
+		font: {
+			family: inherit;
+			style: normal;
+			weight: 500;
+		}
+	}
+
+	h1 { font-size: 2em; }
+	h2 { font-size: 1.5em; }
+	h3 { font-size: 1.17em; }
+	h4 {}
+	h5 { font-size: 0.83em; }
+	h6 { font-size: 0.67em; }
+
+	blockquote {
+		color: #444;
+		font-style: italic;
+		margin: 1em 40px;
+	}
+
+	#{headings()}, p, pre {
+		margin-bottom: 15px;
+		margin-top: 15px;
+	}
+
+	dl, dt, dd {
+		margin: {
+			left: 0;
+			right: 0;
+		}
+	}
 
 	pre {
 		background: #eee;
 		@include border-radius(4px);
 		@include box-sizing(border-box);
-		margin: 1em 0;
 		overflow: auto;
 		padding: .6em .8em;
 		position: relative;
 		white-space: pre;
 		word-wrap: normal;
+	}
+
+	ul {
+		list-style-type: disc;
+		padding-left: 40px;
 	}
 
 	table {
@@ -316,7 +328,7 @@ pre, code {
 			@include background-origin(content-box);
 			border-bottom: 1px solid #bbb;
 			@include box-shadow(0 -3px 4px -3px rgba(0,0,0,.2) inset);
-			font-weight: bold;
+			font-weight: 700;
 			text-align: left;
 		}
 
@@ -328,5 +340,60 @@ pre, code {
 			background-color: #f3f6fa;
 		}
 	}
+	
+	& h1,
+	& > :first-child,
+	& > :first-child > :first-child,
+	& > :first-child > :first-child > :first-child {
+		margin-top: 0;
+	}
 }
 
+html.cssgradients {
+	body {
+		background: {
+			position: left top;
+			repeat: repeat, repeat, repeat;
+		}
+		@include background-image(
+			linear-gradient(right,
+				rgba(0,0,0,0) 0%,
+				rgba(0,0,0,0) 30px,
+				rgba(0,0,0,.15) 30px,
+				rgba(0,0,0,.05) 32px,
+				rgba(0,0,0,.05) 58px,
+				rgba(0,0,0,.15) 100%
+			),
+			// linear-gradient(top, transparentize($body_bg, 0.1), transparentize(desaturate(darken($body_bg, 7%), 13%), .1)),
+			linear-gradient(top, transparentize($body_bg, 0.1), transparentize($body_bg, 0.1)),
+			image-url("noise.png")
+		);
+		@include background-size(60px 100%, 100% 100%, auto auto);
+	}
+
+	#layout {
+		@include background-image(
+			linear-gradient(left, $default_bg, darken($default_bg, 2%)),
+			linear-gradient(left,
+				rgba(0,0,0,0) 0%,
+				rgba(0,0,0,0) $nav_width - 2px,
+				rgba(0,0,0,.05) $nav_width - 1px,
+				rgba(0,0,0,.15) $nav_width
+			),
+			linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
+			linear-gradient(left, transparentize(lighten($nav_bg, 8%), .1), transparentize(darken($nav_bg, 8%), .1)),
+			image-url("noise.png")
+		);
+		@include background-size(
+			$content_width 100%,
+			$nav_width 100%,
+			cover,
+			$nav_width 100%,
+			auto
+		);
+		background: {
+			position: $nav_width top, 0 0, 0 0, 0 0, 0 0;
+			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+		}
+	}
+}

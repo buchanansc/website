@@ -32,3 +32,8 @@ hr {
   margin: auto;
   padding: 0;
 }
+
+/* line 37, ../scss/print.scss */
+.navigation {
+  display: none;
+}
