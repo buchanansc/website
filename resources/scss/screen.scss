@@ -51,9 +51,9 @@ a {
 	position: relative;
 	text-decoration: none;
 	@include transition(all .06s);
-
+	
 	& img {
-		padding: 5px 0 4px;
+		padding: 4px 0 3px;
 		vertical-align: text-bottom;
 	}
 
@@ -61,8 +61,8 @@ a {
 		@include box-shadow(0 1px 0px 0 rgba(0, 0, 0, 0.2), 0 -20px 20px -20px rgba(0,0,0, 0.3) inset);
 		background: $link_hover_bg;
 		color: $link_hover;
-		margin: -2px -7px -3px;
-		padding: 2px 7px 3px;
+		margin: -1px -5px -2px;
+		padding: 1px 5px 2px;
 		z-index: 2;
 	}
 }
@@ -284,10 +284,13 @@ pre, code {
 	blockquote {
 		color: #444;
 		font-style: italic;
-		margin: 1em 40px;
+		margin: {
+			left: 40px;
+			right: 0;
+		}
 	}
 
-	#{headings()}, p, pre {
+	#{headings()}, p, pre, blockquote {
 		margin-bottom: 15px;
 		margin-top: 15px;
 	}
@@ -301,7 +304,7 @@ pre, code {
 
 	pre {
 		background: #eee;
-		@include border-radius(4px);
+		@include border-radius(3px);
 		@include box-sizing(border-box);
 		overflow: auto;
 		padding: .6em .8em;
@@ -341,7 +344,7 @@ pre, code {
 		}
 	}
 	
-	& h1,
+	& > h1,
 	& > :first-child,
 	& > :first-child > :first-child,
 	& > :first-child > :first-child > :first-child {
