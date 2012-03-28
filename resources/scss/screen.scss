@@ -9,17 +9,17 @@ $font_code: Menlo, Consolas, "Andale Mono", monospace;
 $font_size: 13px;
 
 $default: #222;
-$default_bg: #fff;
 $default_loading: #999;
+$default__bg: #fff;
 
-$body_bg: #81e381;
-$nav_bg: #e5e5e5;
+$body__bg: #81e381;
+$navigation__bg: #e5e5e5;
 
 $link: #680094;
 $link_hover: #fff;
-$link_hover_bg: $link;
+$link_hover__bg: $link;
 
-$nav_width: 330px;
+$navigation_width: 330px;
 $content_width: 570px;
 
 html, body {
@@ -30,7 +30,7 @@ html, body {
 
 body {
 	background: {
-		color: $body_bg;
+		color: $body__bg;
 		image: image-url("body-bg.png");
 		position: left top;
 		repeat: repeat;
@@ -42,6 +42,7 @@ body {
 		size: $font_size;
 	}
 	line-height: normal;
+	-webkit-text-size-adjust: none;
 }
 
 a {
@@ -50,7 +51,7 @@ a {
 	color: $link;
 	position: relative;
 	text-decoration: none;
-	@include transition(all .06s);
+	@include transition(all .08s);
 	
 	& img {
 		padding: 4px 0 3px;
@@ -59,7 +60,7 @@ a {
 
 	&:hover, &:active, &:focus {
 		@include box-shadow(0 1px 0px 0 rgba(0, 0, 0, 0.2), 0 -20px 20px -20px rgba(0,0,0, 0.3) inset);
-		background: $link_hover_bg;
+		background: $link_hover__bg;
 		color: $link_hover;
 		margin: -1px -5px -2px;
 		padding: 1px 5px 2px;
@@ -75,6 +76,14 @@ hr {
 	padding: 0;
 }
 
+b, strong {
+	font-weight: 600;
+}
+
+i, em {
+	font-style: italic;
+}
+
 pre, code {
 	font: {
 		family: $font_code;
@@ -84,7 +93,7 @@ pre, code {
 
 #layout {
 	background: {
-		color: $nav_bg;
+		color: $navigation__bg;
 		image: image-url("layout-bg.png");
 		repeat: repeat;
 		size: auto;
@@ -95,12 +104,12 @@ pre, code {
 	min-height: 100%;
 	overflow: hidden;
 	position: relative;
-	width: $nav_width;
+	width: $navigation_width;
 
 	.layout-inner {
 		// background: #fff;
 		float: left;
-		left: $nav_width;
+		left: $navigation_width;
 		position: relative;
 		width: 200%;
 
@@ -108,10 +117,10 @@ pre, code {
 			float: right;
 			width: 50%;
 			position: relative;
-			right: $nav_width;
+			right: $navigation_width;
 
 			.layout-page {
-				margin: 0 0 0 $nav_width;
+				margin: 0 0 0 $navigation_width;
 				position: relative;
 				right: 100%;
 				// overflow: hidden;
@@ -120,15 +129,24 @@ pre, code {
 
 		.layout-west {
 			float: left;
-			width: $nav_width;
+			width: $navigation_width;
 			position: relative;
-			right: $nav_width;
+			right: $navigation_width;
 		}
 	}
 
-	&.content {
+	#back-button {
+		cursor: hand;
+		cursor: pointer;
+		display: none;
+		position: absolute;
+		right: 5px;
+		top: 5px;
+	}
+	
+	&.expanded {
 		// @include box-shadow(-1px 0 0 rgba(0,0,0,.2) inset);
-		// width: $nav_width + $content_width;
+		width: $navigation_width + $content_width;
 	}
 }
 
@@ -143,7 +161,7 @@ pre, code {
 	text-align: right;
 	@include text-shadow(0 1px 0 rgba(50,50,50,.3));
 
-	header {
+	.header {
 		height: 70px;
 		margin: 0 20px 0 10px;
 		min-height: 70px;
@@ -159,11 +177,11 @@ pre, code {
 		@include box-shadow(none);
 		display: block;
 		height: 70px;
-		left: 7px;
+		left: 8px;
 		margin: 0;
 		padding: 0;
 		position: absolute;
-		top: 2px;
+		top: 1px;
 		width: 70px;
 
 		&:hover {
@@ -204,26 +222,26 @@ pre, code {
 				}
 				@include box-shadow(none);
 				display: block;
-				height: 20px;
+				height: 28px;
 				margin: 0;
 				opacity: .8;
 				overflow: hidden;
 				padding: 0;
 				text-indent: -200px;
 				@include transition(none);
-				width: 20px;
+				width: 28px;
 			}
 
 			.github {
-				@include my-links-sprite(github);
+				@include my-links-sprite(github-24);
 				&:hover, &:active, &:focus {
-					@include my-links-sprite(github-over);
+					@include my-links-sprite(github-over-24);
 				}
 			}
 			.lastfm {
-				@include my-links-sprite(lastfm);
+				@include my-links-sprite(lastfm-24);
 				&:hover, &:active, &:focus {
-					@include my-links-sprite(lastfm-over);
+					@include my-links-sprite(lastfm-over-24);
 				}
 			}
 		}
@@ -248,7 +266,7 @@ pre, code {
 			@include transition(none);
 
 			&:hover, &:active, &:focus {
-				background: $link_hover_bg;
+				background: $link_hover__bg;
 				@include box-shadow(-2px 0 2px -2px rgba(0,0,0,.3) inset);
 				color: $link_hover;
 			}
@@ -367,8 +385,8 @@ html.cssgradients {
 				rgba(0,0,0,.05) 58px,
 				rgba(0,0,0,.15) 100%
 			),
-			// linear-gradient(top, transparentize($body_bg, 0.1), transparentize(desaturate(darken($body_bg, 7%), 13%), .1)),
-			linear-gradient(top, transparentize($body_bg, 0.1), transparentize($body_bg, 0.1)),
+			// linear-gradient(top, transparentize($body__bg, 0.1), transparentize(desaturate(darken($body__bg, 7%), 13%), .1)),
+			linear-gradient(top, transparentize($body__bg, 0.1), transparentize($body__bg, 0.1)),
 			image-url("noise.png")
 		);
 		@include background-size(60px 100%, 100% 100%, auto auto);
@@ -376,26 +394,26 @@ html.cssgradients {
 
 	#layout {
 		@include background-image(
-			linear-gradient(left, $default_bg, darken($default_bg, 2%)),
+			linear-gradient(left, $default__bg, darken($default__bg, 2%)),
 			linear-gradient(left,
 				rgba(0,0,0,0) 0%,
-				rgba(0,0,0,0) $nav_width - 2px,
-				rgba(0,0,0,.05) $nav_width - 1px,
-				rgba(0,0,0,.15) $nav_width
+				rgba(0,0,0,0) $navigation_width - 2px,
+				rgba(0,0,0,.05) $navigation_width - 1px,
+				rgba(0,0,0,.15) $navigation_width
 			),
 			linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
-			linear-gradient(left, transparentize(lighten($nav_bg, 8%), .1), transparentize(darken($nav_bg, 8%), .1)),
+			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
 			image-url("noise.png")
 		);
 		@include background-size(
 			$content_width 100%,
-			$nav_width 100%,
+			$navigation_width 100%,
 			cover,
-			$nav_width 100%,
+			$navigation_width 100%,
 			auto
 		);
 		background: {
-			position: $nav_width top, 0 0, 0 0, 0 0, 0 0;
+			position: $navigation_width top, 0 0, 0 0, 0 0, 0 0;
 			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
 		}
 	}
