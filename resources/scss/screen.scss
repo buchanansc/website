@@ -1,5 +1,5 @@
-@import "compass/reset";
 @import "compass/css3";
+@import "compass/reset";
 
 @import "_base.scss";
 
@@ -29,7 +29,7 @@ body {
 
 a {
 	@include border-radius(3px);
-	@include transition-property('background, box-shadow, margin, padding');
+	@include transition-property('background, box-shadow, color, margin, padding');
 	@include transition-duration(.08s);
 	color: $link;
 	display: inline-block;
@@ -45,18 +45,17 @@ a {
 		vertical-align: text-bottom;
 	}
 
-	&:hover, &:active, &:focus {
-		@include box-shadow(0 1px 0px 0 rgba(0, 0, 0, 0.2), 0 -20px 20px -20px rgba(0,0,0, 0.3) inset);
+	&:hover, &:focus {
+		@include box-shadow(0 1px 0px 0 rgba(0, 0, 0, 0.2), 0 -30px 30px -30px rgba(0,0,0, 0.35) inset);
 		background-color: $link_hover__bg;
 		color: $link_hover;
-		margin: -1px -5px -2px;
-		padding: 1px 5px 2px;
+		margin: -3px -6px -3px;
+		padding: 3px 6px 3px;
 		z-index: 2;
 	}
 
 	&.image-link {
 		@include border-radius(0);
-		// @include transition-property('border-color');
 		background: #e6e6e6;
 		margin: 0;
 		padding: 4px;
@@ -66,7 +65,7 @@ a {
 			padding: 0;
 		}
 
-		&:hover, &:active, &:focus {
+		&:hover, &:focus {
 			background: $link_hover__bg;
 		}
 	}
@@ -125,7 +124,6 @@ pre, code {
 			z-index: 10;
 			
 			.layout-page {
-				display: none;
 				position: relative;
 			}
 		}
@@ -134,17 +132,22 @@ pre, code {
 			clear: both;
 		}
 	}
+	
+	#content {
+		display: none;
+	}
+	
+	&.expanded,
+	html.no-js & {
+		width: $navigation_width + $content_width;
 
-	&.expanded {
-		// width: $navigation_width + $content_width;
-
-		.layout-inner .layout-center .layout-page {
+		#content {
 			display: block;
-		}
+		}	
 	}
 }
 
-@import "my-links/*.png";
+@import "mylinks-24/*.png";
 
 #navigation {
 	@include box-sizing(border-box);
@@ -173,7 +176,7 @@ pre, code {
 		top: 8px;
 		white-space: nowrap;
 		width: 70px;
-		z-index: 1;
+		z-index: 10;
 
 		&:hover {
 		}
@@ -181,9 +184,8 @@ pre, code {
 
 	.header {
 		height: 70px;
-		// margin-left: 80px;
 		min-height: 70px;
-		padding: 10px 20px 0 0;
+		padding: 10px 20px;
 
 
 		h1 {
@@ -193,25 +195,25 @@ pre, code {
 				style: italic;
 				weight: 700;
 			}
+			line-height: 32px;
 			margin: 0;
 			padding: 0;
 			position: relative;
-			z-index: 2;
 		}
 	}
 
-	.my-links {
+	.mylinks {
 		float: right;
 		font-size: $font_size + 1;
-		margin-top: -2px;
+		padding-top: 2px;
 		text-align: left;
-		width: 220px;
+		width: 210px;
 
 		a {
 			float: left;
 		}
 
-		ul.my-links-icons {
+		.mylinks-icons {
 			float: right;
 			margin-top: -2px;
 			white-space: nowrap;
@@ -221,33 +223,29 @@ pre, code {
 			}
 
 			a {
-				@include box-shadow(none);
-				@include transition(none);
-				background: {
-					color: transparent;
-					position: center;
-					repeat: no-repeat;
-				}
 				display: block;
-				height: 28px;
-				margin: 0;
-				opacity: .8;
-				overflow: hidden;
-				padding: 0;
-				text-indent: 1000px;
-				width: 28px;
-			}
-
-			.github {
-				@include my-links-sprite(github-24);
-				&:hover, &:active, &:focus {
-					@include my-links-sprite(github-over-24);
+				float: left;
+				
+				span {
+					display: block;
+					height: 24px;
+					margin: 2px;
+					overflow: hidden;
+					text-indent: 1000px;
+					width: 24px;
 				}
 			}
-			.lastfm {
-				@include my-links-sprite(lastfm-24);
-				&:hover, &:active, &:focus {
-					@include my-links-sprite(lastfm-over-24);
+			
+			.link-github {
+				span { @include mylinks-24-sprite(github); }
+				&:hover span, &:focus span{
+					@include mylinks-24-sprite(github-over);
+				}
+			}
+			.link-lastfm {
+				span { @include mylinks-24-sprite(lastfm); }
+				&:hover span, &:focus span {
+					@include mylinks-24-sprite(lastfm-over);
 				}
 			}
 		}
@@ -261,7 +259,7 @@ pre, code {
 		a {
 			@include border-radius(3px 0 0 3px);
 			@include box-shadow(none);
-			@include transition(none);
+			@include transition-duration(.1s);
 			color: $default;
 			display: block;
 			font: {
@@ -271,12 +269,12 @@ pre, code {
 			line-height: 200%;
 			margin: 0 0 0 50px;
 			overflow: hidden;
-			padding: 0 20px 0 10px;
+			padding: 0 20px;
 			text-decoration: none;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 
-			&:hover, &:active, &:focus {
+			&:hover, &:focus {
 				background: $link_hover__bg;
 				color: $link_hover;
 			}
@@ -387,19 +385,15 @@ pre, code {
 	}
 }
 
+
 /*
 html.csstransitions {
-	#layout .layout-inner .layout-center {
+	#layout {
 		@include transition(all .3s);
-		display: block;
-		margin-left: -$content_width;
-	}
-
-	#layout.expanded .layout-inner .layout-center {
-		margin-left: 0;
 	}
 }
 */
+
 
 html.cssgradients {
 	body {
@@ -415,29 +409,30 @@ html.cssgradients {
 			linear-gradient(top, transparentize($body__bg, 0.1), transparentize($body__bg, 0.1)),
 			image-url("noise.png")
 		);
-		@include background-size(60px 100%, 100% 100%, auto auto);
+		@include background-size(60px 100%, auto, auto);
 		background: {
-			position: left top;
-			repeat: repeat, repeat, repeat;
+			position: 0 0;
+			repeat: repeat;
 		}
 	}
 
 	#layout {
 		@include background-image(
 			linear-gradient(left, $default__bg, darken($default__bg, 2%)),
-			linear-gradient(left,
-				rgba(0,0,0,0) 0%,
-				rgba(0,0,0,0) $navigation_width - 2px,
-				rgba(0,0,0,.05) $navigation_width - 1px,
-				rgba(0,0,0,.15) $navigation_width
-			),
-			linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
+			linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.15)),
+			linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.1) $navigation_width * 2, rgba(0,0,0,.1) 100%),
 			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
 			image-url("noise.png")
 		);
-		@include background-size($content_width 100%, $navigation_width 100%, cover, $navigation_width 100%, auto);
+		@include background-size(
+			$content_width 100%,
+			2px 100%,
+			$navigation_width 100%,
+			$navigation_width 100%,
+			auto
+		);
 		background: {
-			position: $navigation_width top, 0 0, 0 0, 0 0, 0 0;
+			position: $navigation_width top, $navigation_width - 2px 0, 0 0, 0 0, 0 0;
 			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
 		}
 	}
