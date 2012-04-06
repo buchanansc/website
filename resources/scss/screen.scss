@@ -1,5 +1,7 @@
-@import "compass/css3";
 @import "compass/reset";
+
+@import "compass/css3";
+@import "compass/utilities";
 
 @import "_base.scss";
 
@@ -9,6 +11,7 @@ html, body {
 	padding: 0;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: subpixel-antialiased;
 }
 
 body {
@@ -94,6 +97,22 @@ pre, code {
 	}
 }
 
+
+//
+// Sprites
+//
+
+$sprites-spacing: 4px;
+$sprites-sprite-base-class: ".sprite";
+@import "sprites/*.png";
+
+.sprite-github { @include sprites-sprite("github_white_24"); }
+.sprite-lastfm { @include sprites-sprite("lastfm_white_24"); }
+
+//
+// Layout
+//
+
 #layout {
 	background: {
 		color: $navigation__bg;
@@ -106,23 +125,31 @@ pre, code {
 	min-height: 100%;
 	overflow: hidden;
 	position: relative;
-	width: $navigation_width;
 
+	&.collapsed {
+		width: $width_west;
+	}
+
+	&.expanded,
+	html.no-js & {
+		width: $width_west + $width_center;
+	}
+	
 	.layout-inner {
 		position: relative;
 
 		.layout-west {
 			float: left;
-			width: $navigation_width;
+			width: $width_west;
 			position: relative;
 		}
 
 		.layout-center {
-			margin-left: $navigation_width;
+			margin-left: $width_west;
 			position: relative;
-			width: $content_width;
+			width: $width_center;
 			z-index: 10;
-			
+
 			.layout-page {
 				position: relative;
 			}
@@ -132,22 +159,7 @@ pre, code {
 			clear: both;
 		}
 	}
-	
-	#content {
-		display: none;
-	}
-	
-	&.expanded,
-	html.no-js & {
-		width: $navigation_width + $content_width;
-
-		#content {
-			display: block;
-		}	
-	}
 }
-
-@import "mylinks-24/*.png";
 
 #navigation {
 	@include box-sizing(border-box);
@@ -157,11 +169,11 @@ pre, code {
 	position: relative;
 	text-align: right;
 
-	.page-icon {
+	.site-icon {
 		@include box-shadow(none);
 		background: {
 			color: transparent;
-			image: image-url("page-icon.png");
+			image: image-url("site-icon/64.png");
 			position: center;
 			repeat: no-repeat;
 		}
@@ -177,16 +189,12 @@ pre, code {
 		white-space: nowrap;
 		width: 70px;
 		z-index: 10;
-
-		&:hover {
-		}
 	}
 
 	.header {
 		height: 70px;
 		min-height: 70px;
 		padding: 10px 20px;
-
 
 		h1 {
 			@include text-shadow(0 1px 0 rgba(255,255,255,.5));
@@ -195,10 +203,21 @@ pre, code {
 				style: italic;
 				weight: 700;
 			}
-			line-height: 32px;
+			line-height: 30px;
+			height: 30px;
 			margin: 0;
 			padding: 0;
 			position: relative;
+
+			html.no-fontface & {
+				background: {
+					image: image-url("site-title.png");
+					position: right bottom;
+					repeat: no-repeat;
+				}
+				overflow: hidden;
+				text-indent: 1000px;
+			}
 		}
 	}
 
@@ -207,45 +226,46 @@ pre, code {
 		font-size: $font_size + 1;
 		padding-top: 2px;
 		text-align: left;
-		width: 210px;
+		width: 220px;
 
 		a {
 			float: left;
 		}
+	}
 
-		.mylinks-icons {
-			float: right;
-			margin-top: -2px;
-			white-space: nowrap;
+	.mylinks-icons {
+		float: right;
+		// margin-top: -2px;
+		white-space: nowrap;
 
-			li {
-				display: inline;
-			}
+		li {
+			// display: inline;
+			float: left;
+			margin: 0 2px;
+		}
 
-			a {
+		a {
+			background-color: #2a2a2a;
+			display: block;
+			float: left;
+
+			span {
+				@include border-radius(3px);
 				display: block;
-				float: left;
-				
+				height: 24px;
+				// margin: 2px;
+				overflow: hidden;
+				text-indent: 1000px;
+				width: 24px;
+			}
+
+			&:hover, &:focus {
+				@extend a:hover;
+				margin: -3px;
+				padding: 3px;
+
 				span {
-					display: block;
-					height: 24px;
-					margin: 2px;
-					overflow: hidden;
-					text-indent: 1000px;
-					width: 24px;
-				}
-			}
-			
-			.link-github {
-				span { @include mylinks-24-sprite(github); }
-				&:hover span, &:focus span{
-					@include mylinks-24-sprite(github-over);
-				}
-			}
-			.link-lastfm {
-				span { @include mylinks-24-sprite(lastfm); }
-				&:hover span, &:focus span {
-					@include mylinks-24-sprite(lastfm-over);
+					background-color: transparent;
 				}
 			}
 		}
@@ -284,7 +304,20 @@ pre, code {
 
 #content {
 	color: $default;
+	display: none;
 	padding: 10px 20px 30px;
+
+	#layout.expanded &,
+	html.no-js & {
+		display: block;
+	}
+	
+	#{headings()}, p, pre, blockquote {
+		margin: {
+			bottom: .6em;
+			top: .6em;
+		}
+	}
 
 	#{headings()} {
 		color: $default;
@@ -308,13 +341,6 @@ pre, code {
 		margin: {
 			left: 40px;
 			right: 0;
-		}
-	}
-
-	#{headings()}, p, pre, blockquote {
-		margin: {
-			bottom: .6em;
-			top: .6em;
 		}
 	}
 
@@ -344,18 +370,19 @@ pre, code {
 
 	table {
 		border-bottom: 2px solid #eaeaea;
+		border-collapse: inherit;
+		border-spacing: 0;
 		font-size: inherit;
+		margin: 0;
+		padding: 0;
 
 		th, td {
+			margin: 0;
 			padding: 4px 8px;
 		}
 
-		thead th {
-			@include background-image(linear-gradient(top, rgba(255,255,255,0), rgba(150,150,150,.15)));
-			@include background-origin(content-box);
-			@include box-shadow(0 -3px 4px -3px rgba(0,0,0,.2) inset);
-			border-bottom: 1px solid #bbb;
-			font-weight: 700;
+		th {
+			font-weight: bold;
 			text-align: left;
 		}
 
@@ -363,8 +390,14 @@ pre, code {
 			vertical-align: top;
 		}
 
+		thead th {
+			@include box-shadow(0 -3px 4px -3px rgba(0, 0, 0, 0.2) inset, 0 -35px 35px -35px rgba(50, 50, 50, 0.1) inset);
+			border-bottom: 1px solid #bbb;
+		}
+
 		& > tbody > tr:nth-child(even) > td {
-			background-color: #f3f6fa;
+			background-color: #f2f5fa;
+			background-color: rgba(200,220,250,.15);
 		}
 	}
 
@@ -386,16 +419,7 @@ pre, code {
 }
 
 
-/*
-html.csstransitions {
-	#layout {
-		@include transition(all .3s);
-	}
-}
-*/
-
-
-html.cssgradients {
+html.cssgradients.multiplebgs {
 	body {
 		@include background-image(
 			linear-gradient(right,
@@ -420,44 +444,160 @@ html.cssgradients {
 		@include background-image(
 			linear-gradient(left, $default__bg, darken($default__bg, 2%)),
 			linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.15)),
-			linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.1) $navigation_width * 2, rgba(0,0,0,.1) 100%),
+			linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.1) $width_west * 2, rgba(0,0,0,.1) 100%),
 			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
 			image-url("noise.png")
 		);
-		@include background-size(
-			$content_width 100%,
-			2px 100%,
-			$navigation_width 100%,
-			$navigation_width 100%,
-			auto
+		@include background-size($width_center 100%, 2px 100%, $width_west 100%, $width_west 100%, auto);
+		background: {
+			position: $width_west top, $width_west - 2px 0, 0 0, 0 0, 0 0;
+			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+		}
+	}
+}
+
+//
+// Width smaller than 640px
+//
+
+@media screen and (max-device-width: 640px) {
+	a {
+		@include transition(none);
+	}
+
+	#layout,
+	#layout.expanded,
+	#layout .layout-inner,
+	#layout .layout-inner .layout-center,
+	#layout .layout-inner .layout-center .layout-page,
+	#layout .layout-inner .layout-west {
+		background: transparent none;
+		bottom: auto;
+		float: none;
+		left: auto;
+		margin: 0;
+		max-width: 100%;
+		min-height: 0;
+		overflow: visible;
+		right: auto;
+		top: auto;
+		width: auto;
+	}
+
+	#layout .layout-inner .layout-west {
+		padding: 10px 10px 15px;
+		overflow: visible;
+	}
+
+	#navigation {
+		@include border-radius(5px);
+		@include box-shadow(
+			0 -1px 0 0 rgba(0,0,0,.1) inset,
+			0 1px 2px 0 rgba(0,0,0,.5) inset,
+			0 1px 1px 0 rgba(255,255,255,.45)
 		);
 		background: {
-			position: $navigation_width top, $navigation_width - 2px 0, 0 0, 0 0, 0 0;
-			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+			color: $navigation__bg;
+			image: image-url("navigation-bg.png");
+			position: right top;
+			repeat: repeat-y;
+			size: auto;
+		}
+		margin: 0 auto;
+		max-width: $width_west - 10;
+		padding: 0;
+		text-align: left;
+
+		.site-icon {
+			top: -13px;
+			left: auto;
+			right: -10px;
+		}
+
+		.header {
+			h1 {
+				margin-left: -2px;
+			}
+		}
+
+		.mylinks {
+			float: left;
+
+			a {
+				float: right;
+			}
+
+			.mylinks-icons {
+				float: left;
+			}
+		}
+
+		div.projects {
+			padding: 10px;
+			text-align: left;
+
+			a {
+				@include border-radius(3px);
+				margin: 3px 0;
+				padding: 0 10px;
+			}
 		}
 	}
 
 	#content {
-		table {
-			thead th {
-				@include background-image(linear-gradient(top, rgba(255,255,255,0), rgba(150,150,150,.15)));
-				@include background-origin(content-box);
-				@include box-shadow(0 -3px 4px -3px rgba(0,0,0,.2) inset);
-				border-bottom: 1px solid #bbb;
-				font-weight: 700;
-				text-align: left;
+		@include box-shadow(0 0px 4px -1px rgba(0,0,0,.3));
+		background: {
+			color: $default__bg;
+			image: image-url("content-bg.png");
+			position: right 0;
+			repeat: repeat-y;
+			size: auto;
+		}
+		padding: {
+			left: 15px;
+			right: 15px;
+		}
+	}
+
+	html.cssgradients.multiplebgs {
+		#layout {
+			background: transparent none;
+		}
+
+		#navigation {
+			@include background-image(
+				linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
+				linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
+				image-url("noise.png")
+			);
+			@include background-size(cover, cover, auto);
+			background: {
+				position: 0 0, 0 0, 0 0;
+				repeat: no-repeat, no-repeat, repeat;
+			}
+		}
+
+		#content {
+			@include background-image(linear-gradient(left, $default__bg, darken($default__bg, 2%)));
+			@include background-size(cover);
+			background: {
+				position: 0 0;
+				repeat: no-repeat;
 			}
 		}
 	}
 }
 
+//
+// IE Settings
+//
 html.lt-ie7 {
 	#layout {
 		height: 100%;
 	}
 
 	#navigation {
-		.page-icon {
+		.site-icon {
 
 		}
 	}
