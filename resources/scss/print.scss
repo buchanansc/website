@@ -1,0 +1,39 @@
+@import "compass/css3";
+
+$default: #000;
+$default_bg: #fff;
+
+body {
+	background: $default_bg;
+	color: $default;
+	margin: 0;
+	padding: 0;
+}
+
+a, a:hover, a:visited {
+	color: #1525ab;
+	text-decoration: underline;
+}
+
+pre {
+	background: none;
+	border-radius: 0;
+	border: none;
+	color: $default;
+	padding: 0;
+	position: static;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+hr {
+	background: #999;
+	border: 1px solid #999;
+	height: auto;
+	margin: auto;
+	padding: 0;
+}
+
+#navigation {
+	display: none;
+}

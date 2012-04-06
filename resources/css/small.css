@@ -1,0 +1,143 @@
+@media screen and (max-device-width: 640px) {
+  /* line 7, ../scss/small.scss */
+  a {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+
+  /* line 16, ../scss/small.scss */
+  #layout,
+  #layout.expanded,
+  #layout .layout-inner,
+  #layout .layout-inner .layout-center,
+  #layout .layout-inner .layout-center .layout-page,
+  #layout .layout-inner .layout-west {
+    background: transparent none;
+    bottom: auto;
+    float: none;
+    left: auto;
+    margin: 0;
+    max-width: 100%;
+    min-height: 0;
+    overflow: visible;
+    right: auto;
+    top: auto;
+    width: auto;
+  }
+
+  /* line 30, ../scss/small.scss */
+  #layout .layout-inner .layout-west {
+    padding: 10px 10px 15px;
+    overflow: visible;
+  }
+
+  /* line 35, ../scss/small.scss */
+  #navigation {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.5) inset, 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+    -moz-box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.5) inset, 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.5) inset, 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+    background-color: #e5e5e5;
+    background-image: url('../images/navigation-bg.png?1333181683');
+    background-position: right top;
+    background-repeat: repeat-y;
+    background-size: auto;
+    margin: 0 auto;
+    max-width: 320px;
+    padding: 0;
+    text-align: left;
+  }
+  /* line 54, ../scss/small.scss */
+  #navigation .page-icon {
+    top: -13px;
+    left: auto;
+    right: -10px;
+  }
+  /* line 61, ../scss/small.scss */
+  #navigation .header h1 {
+    margin-left: -2px;
+  }
+  /* line 66, ../scss/small.scss */
+  #navigation .mylinks {
+    float: left;
+  }
+  /* line 69, ../scss/small.scss */
+  #navigation .mylinks a {
+    float: right;
+  }
+  /* line 73, ../scss/small.scss */
+  #navigation .mylinks .mylinks-icons {
+    float: left;
+  }
+  /* line 78, ../scss/small.scss */
+  #navigation div.projects {
+    padding: 10px;
+    text-align: left;
+  }
+  /* line 82, ../scss/small.scss */
+  #navigation div.projects a {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    margin: 3px 0;
+    padding: 0 10px;
+  }
+
+  /* line 90, ../scss/small.scss */
+  #content {
+    -webkit-box-shadow: 0 0px 4px -1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0px 4px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0px 4px -1px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    background-image: url('../images/content-bg.png?1333181683');
+    background-position: right 0;
+    background-repeat: repeat-y;
+    background-size: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* line 106, ../scss/small.scss */
+  html.cssgradients #layout {
+    background: transparent none;
+  }
+  /* line 110, ../scss/small.scss */
+  html.cssgradients #navigation {
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.1))), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(249, 249, 249, 0.9)), color-stop(100%, rgba(209, 209, 209, 0.9))), url('../images/noise.png?1332243540');
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -webkit-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -moz-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -o-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -ms-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
+    -webkit-background-size: cover, cover, auto;
+    -moz-background-size: cover, cover, auto;
+    -o-background-size: cover, cover, auto;
+    background-size: cover, cover, auto;
+    background-position: 0 0, 0 0, 0 0;
+    background-repeat: no-repeat, no-repeat, repeat;
+  }
+  /* line 123, ../scss/small.scss */
+  html.cssgradients #content {
+    background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #ffffff), color-stop(100%, #fafafa));
+    background-image: -webkit-linear-gradient(left, #ffffff, #fafafa);
+    background-image: -moz-linear-gradient(left, #ffffff, #fafafa);
+    background-image: -o-linear-gradient(left, #ffffff, #fafafa);
+    background-image: -ms-linear-gradient(left, #ffffff, #fafafa);
+    background-image: linear-gradient(left, #ffffff, #fafafa);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+  }
+}

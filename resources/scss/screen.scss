@@ -1,0 +1,464 @@
+@import "compass/css3";
+@import "compass/reset";
+
+@import "_base.scss";
+
+html, body {
+	margin: 0;
+	height: 100%;
+	padding: 0;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	background: {
+		color: $body__bg;
+		image: image-url("body-bg.png");
+		position: left top;
+		repeat: repeat;
+		size: auto;
+	}
+	color: $default;
+	font: {
+		family: $font_body;
+		size: $font_size;
+	}
+	line-height: normal;
+}
+
+a {
+	@include border-radius(3px);
+	@include transition-property('background, box-shadow, color, margin, padding');
+	@include transition-duration(.08s);
+	color: $link;
+	display: inline-block;
+	margin: 0;
+	outline: none;
+	padding: 0;
+	position: relative;
+	text-decoration: none;
+
+	& img {
+		border: 0;
+		padding: 4px 0 3px;
+		vertical-align: text-bottom;
+	}
+
+	&:hover, &:focus {
+		@include box-shadow(0 1px 0px 0 rgba(0, 0, 0, 0.2), 0 -30px 30px -30px rgba(0,0,0, 0.35) inset);
+		background-color: $link_hover__bg;
+		color: $link_hover;
+		margin: -3px -6px -3px;
+		padding: 3px 6px 3px;
+		z-index: 2;
+	}
+
+	&.image-link {
+		@include border-radius(0);
+		background: #e6e6e6;
+		margin: 0;
+		padding: 4px;
+
+		& img {
+			margin: 0;
+			padding: 0;
+		}
+
+		&:hover, &:focus {
+			background: $link_hover__bg;
+		}
+	}
+}
+
+b, strong {
+	font-weight: 600;
+}
+
+i, em {
+	font-style: italic;
+}
+
+hr {
+	@include box-shadow(0 -1px 0 rgba(0,0,0,.2));
+	background-color: rgba(255,255,255,.5);
+	border: 0;
+	height: 1px;
+	margin: 4px 0;
+}
+
+pre, code {
+	font: {
+		family: $font_code;
+		size: inherit;
+	}
+}
+
+#layout {
+	background: {
+		color: $navigation__bg;
+		image: image-url("layout-bg.png");
+		repeat: repeat;
+		size: auto;
+	}
+	clear: both;
+	float: left;
+	min-height: 100%;
+	overflow: hidden;
+	position: relative;
+	width: $navigation_width;
+
+	.layout-inner {
+		position: relative;
+
+		.layout-west {
+			float: left;
+			width: $navigation_width;
+			position: relative;
+		}
+
+		.layout-center {
+			margin-left: $navigation_width;
+			position: relative;
+			width: $content_width;
+			z-index: 10;
+			
+			.layout-page {
+				position: relative;
+			}
+		}
+
+		.layout-south {
+			clear: both;
+		}
+	}
+	
+	#content {
+		display: none;
+	}
+	
+	&.expanded,
+	html.no-js & {
+		width: $navigation_width + $content_width;
+
+		#content {
+			display: block;
+		}	
+	}
+}
+
+@import "mylinks-24/*.png";
+
+#navigation {
+	@include box-sizing(border-box);
+	@include text-shadow(0 1px 0 rgba(0,0,0,.2));
+	margin: 0;
+	padding: 0 0 10px;
+	position: relative;
+	text-align: right;
+
+	.page-icon {
+		@include box-shadow(none);
+		background: {
+			color: transparent;
+			image: image-url("page-icon.png");
+			position: center;
+			repeat: no-repeat;
+		}
+		display: block;
+		height: 70px;
+		left: 8px;
+		margin: 0;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		text-indent: 1000px;
+		top: 8px;
+		white-space: nowrap;
+		width: 70px;
+		z-index: 10;
+
+		&:hover {
+		}
+	}
+
+	.header {
+		height: 70px;
+		min-height: 70px;
+		padding: 10px 20px;
+
+
+		h1 {
+			@include text-shadow(0 1px 0 rgba(255,255,255,.5));
+			font: {
+				size: 30px;
+				style: italic;
+				weight: 700;
+			}
+			line-height: 32px;
+			margin: 0;
+			padding: 0;
+			position: relative;
+		}
+	}
+
+	.mylinks {
+		float: right;
+		font-size: $font_size + 1;
+		padding-top: 2px;
+		text-align: left;
+		width: 210px;
+
+		a {
+			float: left;
+		}
+
+		.mylinks-icons {
+			float: right;
+			margin-top: -2px;
+			white-space: nowrap;
+
+			li {
+				display: inline;
+			}
+
+			a {
+				display: block;
+				float: left;
+				
+				span {
+					display: block;
+					height: 24px;
+					margin: 2px;
+					overflow: hidden;
+					text-indent: 1000px;
+					width: 24px;
+				}
+			}
+			
+			.link-github {
+				span { @include mylinks-24-sprite(github); }
+				&:hover span, &:focus span{
+					@include mylinks-24-sprite(github-over);
+				}
+			}
+			.link-lastfm {
+				span { @include mylinks-24-sprite(lastfm); }
+				&:hover span, &:focus span {
+					@include mylinks-24-sprite(lastfm-over);
+				}
+			}
+		}
+	}
+
+	div.projects {
+		clear: both;
+		padding: 80px 0 10px;
+		text-align: right;
+
+		a {
+			@include border-radius(3px 0 0 3px);
+			@include box-shadow(none);
+			@include transition-duration(.1s);
+			color: $default;
+			display: block;
+			font: {
+				size: $font_size + 3;
+				weight: 400;
+			}
+			line-height: 200%;
+			margin: 0 0 0 50px;
+			overflow: hidden;
+			padding: 0 20px;
+			text-decoration: none;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+
+			&:hover, &:focus {
+				background: $link_hover__bg;
+				color: $link_hover;
+			}
+		}
+	}
+}
+
+#content {
+	color: $default;
+	padding: 10px 20px 30px;
+
+	#{headings()} {
+		color: $default;
+		font: {
+			family: inherit;
+			style: normal;
+			weight: 500;
+		}
+	}
+
+	h1 { font-size: 2em; }
+	h2 { font-size: 1.5em; }
+	h3 { font-size: 1.17em; }
+	h4 { font-size: 1em; }
+	h5 { font-size: 0.83em; }
+	h6 { font-size: 0.67em; }
+
+	blockquote {
+		color: #444;
+		font-style: italic;
+		margin: {
+			left: 40px;
+			right: 0;
+		}
+	}
+
+	#{headings()}, p, pre, blockquote {
+		margin: {
+			bottom: .6em;
+			top: .6em;
+		}
+	}
+
+	dl, dt, dd {
+		margin: {
+			left: 0;
+			right: 0;
+		}
+	}
+
+	pre {
+		@include border-radius(3px);
+		@include box-sizing(border-box);
+		background: #eee;
+		overflow: auto;
+		padding: .1em .2em;
+		padding: .6em .8em;
+		position: relative;
+		white-space: pre;
+		word-wrap: normal;
+	}
+
+	ul {
+		list-style-type: disc;
+		padding-left: 40px;
+	}
+
+	table {
+		border-bottom: 2px solid #eaeaea;
+		font-size: inherit;
+
+		th, td {
+			padding: 4px 8px;
+		}
+
+		thead th {
+			@include background-image(linear-gradient(top, rgba(255,255,255,0), rgba(150,150,150,.15)));
+			@include background-origin(content-box);
+			@include box-shadow(0 -3px 4px -3px rgba(0,0,0,.2) inset);
+			border-bottom: 1px solid #bbb;
+			font-weight: 700;
+			text-align: left;
+		}
+
+		td {
+			vertical-align: top;
+		}
+
+		& > tbody > tr:nth-child(even) > td {
+			background-color: #f3f6fa;
+		}
+	}
+
+	& > h1,
+	& > :first-child,
+	& > :first-child > :first-child,
+	& > :first-child > :first-child > :first-child {
+		margin-top: 0;
+	}
+
+	&.loading, &.loading * {
+		color: $default_loading;
+	}
+
+	&.loading img {
+		// -webkit-filter: saturate(0%);
+		opacity: .7;
+	}
+}
+
+
+/*
+html.csstransitions {
+	#layout {
+		@include transition(all .3s);
+	}
+}
+*/
+
+
+html.cssgradients {
+	body {
+		@include background-image(
+			linear-gradient(right,
+				rgba(0,0,0,0) 0%,
+				rgba(0,0,0,0) 30px,
+				rgba(0,0,0,.15) 30px,
+				rgba(0,0,0,.05) 32px,
+				rgba(0,0,0,.05) 58px,
+				rgba(0,0,0,.15) 100%
+			),
+			linear-gradient(top, transparentize($body__bg, 0.1), transparentize($body__bg, 0.1)),
+			image-url("noise.png")
+		);
+		@include background-size(60px 100%, auto, auto);
+		background: {
+			position: 0 0;
+			repeat: repeat;
+		}
+	}
+
+	#layout {
+		@include background-image(
+			linear-gradient(left, $default__bg, darken($default__bg, 2%)),
+			linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.15)),
+			linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.1) $navigation_width * 2, rgba(0,0,0,.1) 100%),
+			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
+			image-url("noise.png")
+		);
+		@include background-size(
+			$content_width 100%,
+			2px 100%,
+			$navigation_width 100%,
+			$navigation_width 100%,
+			auto
+		);
+		background: {
+			position: $navigation_width top, $navigation_width - 2px 0, 0 0, 0 0, 0 0;
+			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+		}
+	}
+
+	#content {
+		table {
+			thead th {
+				@include background-image(linear-gradient(top, rgba(255,255,255,0), rgba(150,150,150,.15)));
+				@include background-origin(content-box);
+				@include box-shadow(0 -3px 4px -3px rgba(0,0,0,.2) inset);
+				border-bottom: 1px solid #bbb;
+				font-weight: 700;
+				text-align: left;
+			}
+		}
+	}
+}
+
+html.lt-ie7 {
+	#layout {
+		height: 100%;
+	}
+
+	#navigation {
+		.page-icon {
+
+		}
+	}
+}
