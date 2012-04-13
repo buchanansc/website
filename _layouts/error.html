@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<div class="layout-error">
+	<div class="layout-inner">
+		<a href="/" class="site-icon"><span>Home</span></a>
+		<h1 class="page-title">{{ page.title }}</h1>
+		{% unless page.collapsed %}
+		<section id="content">
+			{{ content }}
+		</section>
+		{% endunless %}
+	</div>
+</div>

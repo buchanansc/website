@@ -1,9 +1,29 @@
 @import "compass/reset";
-
 @import "compass/css3";
 @import "compass/utilities";
 
-@import "_base.scss";
+$font_body: "Open Sans", Arial, Helvetica, sans-serif;
+$font_code: Menlo, Consolas, "Andale Mono", monospace;
+$font_size: 13px;
+
+$default: #2a2a2a;
+$default_loading: #999;
+$default__bg: #fff;
+
+$body__bg: #81e381;
+$navigation__bg: #e5e5e5;
+
+$link: #680094;
+$link_hover: #fff;
+$link_hover__bg: $link;
+
+$width_west: 330px;
+$width_center: 570px;
+
+
+//
+// Global
+//
 
 html, body {
 	margin: 0;
@@ -11,7 +31,7 @@ html, body {
 	padding: 0;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
-	-webkit-font-smoothing: subpixel-antialiased;
+	// -webkit-font-smoothing: subpixel-antialiased;
 }
 
 body {
@@ -60,7 +80,7 @@ a {
 	&.image-link {
 		@include border-radius(0);
 		background: #e6e6e6;
-		margin: 0;
+		margin: 2px;
 		padding: 4px;
 
 		& img {
@@ -97,18 +117,6 @@ pre, code {
 	}
 }
 
-
-//
-// Sprites
-//
-
-$sprites-spacing: 4px;
-$sprites-sprite-base-class: ".sprite";
-@import "sprites/*.png";
-
-.sprite-github { @include sprites-sprite("github_white_24"); }
-.sprite-lastfm { @include sprites-sprite("lastfm_white_24"); }
-
 //
 // Layout
 //
@@ -134,32 +142,71 @@ $sprites-sprite-base-class: ".sprite";
 	html.no-js & {
 		width: $width_west + $width_center;
 	}
-	
-	.layout-inner {
+}
+
+.layout-inner {
+	position: relative;
+
+	.layout-west {
+		float: left;
+		width: $width_west;
 		position: relative;
+	}
 
-		.layout-west {
-			float: left;
-			width: $width_west;
+	.layout-center {
+		margin-left: $width_west;
+		position: relative;
+		width: $width_center;
+		z-index: 10;
+
+		.layout-page {
 			position: relative;
-		}
-
-		.layout-center {
-			margin-left: $width_west;
-			position: relative;
-			width: $width_center;
-			z-index: 10;
-
-			.layout-page {
-				position: relative;
-			}
-		}
-
-		.layout-south {
-			clear: both;
 		}
 	}
+
+	.layout-south {
+		clear: both;
+	}
 }
+
+
+//
+// Sprites
+//
+
+$sprites-spacing: 6px;
+$sprites-sprite-base-class: ".sprite";
+@import "sprites/*.png";
+
+.sprite-github { @include sprites-sprite("github_white_24"); }
+.sprite-lastfm { @include sprites-sprite("lastfm_white_24"); }
+
+.site-icon, .site-icon:hover, .site-icon:focus {
+	@include box-shadow(none);
+	@include sprites-sprite("site-icon_64");
+	background: {
+		color: transparent;
+		// image: image-url("site-icon/64.png");
+		// position: center;
+		// repeat: no-repeat;
+	}
+	display: block;
+	height: 64px;
+	left: 11px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	text-indent: 1000px;
+	top: 11px;
+	white-space: nowrap;
+	width: 64px;
+	z-index: 10;
+}
+
+//
+// West
+//
 
 #navigation {
 	@include box-sizing(border-box);
@@ -169,34 +216,12 @@ $sprites-sprite-base-class: ".sprite";
 	position: relative;
 	text-align: right;
 
-	.site-icon {
-		@include box-shadow(none);
-		background: {
-			color: transparent;
-			image: image-url("site-icon/64.png");
-			position: center;
-			repeat: no-repeat;
-		}
-		display: block;
-		height: 70px;
-		left: 8px;
-		margin: 0;
-		overflow: hidden;
-		padding: 0;
-		position: absolute;
-		text-indent: 1000px;
-		top: 8px;
-		white-space: nowrap;
-		width: 70px;
-		z-index: 10;
-	}
-
 	.header {
 		height: 70px;
 		min-height: 70px;
 		padding: 10px 20px;
 
-		h1 {
+		.site-title {
 			@include text-shadow(0 1px 0 rgba(255,255,255,.5));
 			font: {
 				size: 30px;
@@ -224,7 +249,6 @@ $sprites-sprite-base-class: ".sprite";
 	.mylinks {
 		float: right;
 		font-size: $font_size + 1;
-		padding-top: 2px;
 		text-align: left;
 		width: 220px;
 
@@ -235,11 +259,9 @@ $sprites-sprite-base-class: ".sprite";
 
 	.mylinks-icons {
 		float: right;
-		// margin-top: -2px;
 		white-space: nowrap;
 
 		li {
-			// display: inline;
 			float: left;
 			margin: 0 2px;
 		}
@@ -247,7 +269,6 @@ $sprites-sprite-base-class: ".sprite";
 		a {
 			background-color: #2a2a2a;
 			display: block;
-			float: left;
 
 			span {
 				@include border-radius(3px);
@@ -271,7 +292,7 @@ $sprites-sprite-base-class: ".sprite";
 		}
 	}
 
-	div.projects {
+	.projects {
 		clear: both;
 		padding: 80px 0 10px;
 		text-align: right;
@@ -283,7 +304,7 @@ $sprites-sprite-base-class: ".sprite";
 			color: $default;
 			display: block;
 			font: {
-				size: $font_size + 3;
+				size: $font_size + 4;
 				weight: 400;
 			}
 			line-height: 200%;
@@ -302,21 +323,31 @@ $sprites-sprite-base-class: ".sprite";
 	}
 }
 
+//
+// Center
+//
+
 #content {
 	color: $default;
-	display: none;
 	padding: 10px 20px 30px;
+	text-align: left;
+
+	#layout.collapsed & {
+		display: none;
+	}
 
 	#layout.expanded &,
 	html.no-js & {
 		display: block;
 	}
-	
+
+	&:empty {
+		padding: 0;
+	}
+
 	#{headings()}, p, pre, blockquote {
-		margin: {
-			bottom: .6em;
-			top: .6em;
-		}
+		margin-bottom: .6em;
+		margin-top: .6em;
 	}
 
 	#{headings()} {
@@ -379,11 +410,11 @@ $sprites-sprite-base-class: ".sprite";
 		th, td {
 			margin: 0;
 			padding: 4px 8px;
+			text-align: left;
 		}
 
 		th {
-			font-weight: bold;
-			text-align: left;
+			font-weight: 700;
 		}
 
 		td {
@@ -402,6 +433,7 @@ $sprites-sprite-base-class: ".sprite";
 	}
 
 	& > h1,
+	h1.page-title,
 	& > :first-child,
 	& > :first-child > :first-child,
 	& > :first-child > :first-child > :first-child {
@@ -417,7 +449,6 @@ $sprites-sprite-base-class: ".sprite";
 		opacity: .7;
 	}
 }
-
 
 html.cssgradients.multiplebgs {
 	body {
@@ -457,148 +488,48 @@ html.cssgradients.multiplebgs {
 }
 
 //
-// Width smaller than 640px
+// Error Pages
 //
 
-@media screen and (max-device-width: 640px) {
-	a {
-		@include transition(none);
-	}
-
-	#layout,
-	#layout.expanded,
-	#layout .layout-inner,
-	#layout .layout-inner .layout-center,
-	#layout .layout-inner .layout-center .layout-page,
-	#layout .layout-inner .layout-west {
-		background: transparent none;
-		bottom: auto;
-		float: none;
+.layout-error {
+	margin: 30px auto 0;
+	max-width: 300px;
+	padding: 20px;
+	position: relative;
+	
+	.site-icon {
+		top: -10px;
 		left: auto;
-		margin: 0;
-		max-width: 100%;
-		min-height: 0;
-		overflow: visible;
-		right: auto;
-		top: auto;
-		width: auto;
+		right: -7px;
 	}
-
-	#layout .layout-inner .layout-west {
-		padding: 10px 10px 15px;
-		overflow: visible;
-	}
-
-	#navigation {
-		@include border-radius(5px);
+	
+	.layout-inner {
+		@include background-image(
+			linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
+			image-url("noise.png")
+		);
+		@include border-radius(8px);
 		@include box-shadow(
-			0 -1px 0 0 rgba(0,0,0,.1) inset,
-			0 1px 2px 0 rgba(0,0,0,.5) inset,
-			0 1px 1px 0 rgba(255,255,255,.45)
+			0 1px 0px 0 rgba(255,255,255,.75) inset,
+			0 1px 4px 0 rgba(0, 0, 0, 0.35)
 		);
 		background: {
-			color: $navigation__bg;
-			image: image-url("navigation-bg.png");
-			position: right top;
-			repeat: repeat-y;
-			size: auto;
+			color: #969696;
+			position: left top;
 		}
-		margin: 0 auto;
-		max-width: $width_west - 10;
-		padding: 0;
-		text-align: left;
+		text-align: center;
+		width: 100%;
 
-		.site-icon {
-			top: -13px;
-			left: auto;
-			right: -10px;
-		}
-
-		.header {
-			h1 {
-				margin-left: -2px;
-			}
-		}
-
-		.mylinks {
-			float: left;
-
-			a {
-				float: right;
-			}
-
-			.mylinks-icons {
-				float: left;
-			}
-		}
-
-		div.projects {
-			padding: 10px;
-			text-align: left;
-
-			a {
-				@include border-radius(3px);
-				margin: 3px 0;
-				padding: 0 10px;
-			}
-		}
-	}
-
-	#content {
-		@include box-shadow(0 0px 4px -1px rgba(0,0,0,.3));
-		background: {
-			color: $default__bg;
-			image: image-url("content-bg.png");
-			position: right 0;
-			repeat: repeat-y;
-			size: auto;
-		}
-		padding: {
-			left: 15px;
-			right: 15px;
-		}
-	}
-
-	html.cssgradients.multiplebgs {
-		#layout {
-			background: transparent none;
-		}
-
-		#navigation {
-			@include background-image(
-				linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
-				linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
-				image-url("noise.png")
-			);
-			@include background-size(cover, cover, auto);
-			background: {
-				position: 0 0, 0 0, 0 0;
-				repeat: no-repeat, no-repeat, repeat;
-			}
-		}
-
-		#content {
-			@include background-image(linear-gradient(left, $default__bg, darken($default__bg, 2%)));
-			@include background-size(cover);
-			background: {
-				position: 0 0;
-				repeat: no-repeat;
-			}
+		h1.page-title {
+			@include text-shadow(0 3px 20px transparentize($body__bg, .6), 0 0 0 darken($body__bg, 60%), 1px 1px 0 rgba(255,255,255,.2), -1px 1px 0 rgba(255,255,255,.2));
+			color: transparent;
+			font-size: 72px;
+			font-weight: 800;
+			margin: 0;
+			padding: 30px 0;
 		}
 	}
 }
 
-//
-// IE Settings
-//
-html.lt-ie7 {
-	#layout {
-		height: 100%;
-	}
-
-	#navigation {
-		.site-icon {
-
-		}
-	}
-}
+@import "_930";
+@import "_lt_ie7";
