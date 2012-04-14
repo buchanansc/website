@@ -50,6 +50,10 @@ body {
 	line-height: normal;
 }
 
+// ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
+// ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
+
+
 a {
 	@include border-radius(3px);
 	@include transition-property('background, box-shadow, color, margin, padding');
@@ -64,8 +68,8 @@ a {
 
 	& img {
 		border: 0;
-		padding: 4px 0 3px;
-		vertical-align: text-bottom;
+		padding: 0;
+		vertical-align: text-top;
 	}
 
 	&:hover, &:focus {
@@ -76,21 +80,16 @@ a {
 		padding: 3px 6px 3px;
 		z-index: 2;
 	}
+}
 
-	&.image-link {
-		@include border-radius(0);
-		background: #e6e6e6;
-		margin: 2px;
-		padding: 4px;
+a.image-link {
+	@include border-radius(0);
+	background-color: #e6e6e6;
+	margin: 2px;
+	padding: 4px;
 
-		& img {
-			margin: 0;
-			padding: 0;
-		}
-
-		&:hover, &:focus {
-			background: $link_hover__bg;
-		}
+	&:hover, &:focus {
+		background-color: $link_hover__bg;
 	}
 }
 
@@ -110,12 +109,11 @@ hr {
 	margin: 4px 0;
 }
 
-pre, code {
-	font: {
-		family: $font_code;
-		size: inherit;
-	}
+pre, code, kbd, samp {
+	font-family: $font_code;
+	font-size: inherit;
 }
+
 
 //
 // Layout
@@ -184,12 +182,8 @@ $sprites-sprite-base-class: ".sprite";
 .site-icon, .site-icon:hover, .site-icon:focus {
 	@include box-shadow(none);
 	@include sprites-sprite("site-icon_64");
-	background: {
-		color: transparent;
-		// image: image-url("site-icon/64.png");
-		// position: center;
-		// repeat: no-repeat;
-	}
+	@include transition(none);
+	background-color: transparent;
 	display: block;
 	height: 64px;
 	left: 11px;
@@ -274,7 +268,6 @@ $sprites-sprite-base-class: ".sprite";
 				@include border-radius(3px);
 				display: block;
 				height: 24px;
-				// margin: 2px;
 				overflow: hidden;
 				text-indent: 1000px;
 				width: 24px;
@@ -385,9 +378,8 @@ $sprites-sprite-base-class: ".sprite";
 	pre {
 		@include border-radius(3px);
 		@include box-sizing(border-box);
-		background: #eee;
+		background-color: #eee;
 		overflow: auto;
-		padding: .1em .2em;
 		padding: .6em .8em;
 		position: relative;
 		white-space: pre;
@@ -432,23 +424,101 @@ $sprites-sprite-base-class: ".sprite";
 		}
 	}
 
-	& > h1,
-	h1.page-title,
+	.page-title,
 	& > :first-child,
 	& > :first-child > :first-child,
 	& > :first-child > :first-child > :first-child {
 		margin-top: 0;
 	}
 
-	&.loading, &.loading * {
-		color: $default_loading;
-	}
+	//
+	// Content Loading
+	//
+	
+	&.loading {
+		&, & * {
+			color: $default_loading;
+		}
+		
+		a {
+			@include box-shadow(none);
+			@include transition(none);
+			background-color: transparent;
+			color: inherit;
+			cursor: default;
+			margin: 0;
+			padding: 0;
+			text-decoration: none;
+		}
+		
+		a.image-link, a.image-link:hover, a.image-link:focus {
+			// @extend a.image-link;
+		}
 
-	&.loading img {
-		// -webkit-filter: saturate(0%);
-		opacity: .7;
+		img {
+			-webkit-filter: #{'saturate(0%)'};
+			opacity: .7;
+		}
 	}
 }
+
+//
+// Error Pages
+//
+
+#layout-error {
+	margin: 30px auto 0;
+	max-width: 300px;
+	padding: 20px;
+	position: relative;
+
+	.site-icon {
+		top: -10px;
+		left: auto;
+		right: -7px;
+	}
+
+	.layout-inner {
+		@include background-image(
+			linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
+			image-url("noise.png")
+		);
+		@include border-radius(8px);
+		@include box-shadow(
+			0 1px 0px 0 rgba(255,255,255,.75) inset,
+			0 1px 4px 0 rgba(0, 0, 0, 0.35)
+		);
+		background: {
+			color: #969696;
+			position: left top;
+		}
+		text-align: center;
+		width: 100%;
+
+		.page-title {
+			@include text-shadow(
+				0 3px 20px transparentize(desaturate($body__bg, 100%), .6),
+				0 0 0 #333,
+				1px 1px 0 rgba(255,255,255,.2),
+				-1px 1px 0 rgba(255,255,255,.2)
+			);
+			color: #888;
+			font-size: 72px;
+			font-weight: 800;
+			margin: 0;
+			padding: 30px 0;
+			
+			html.textshadow & {
+				color: transparent;
+			}
+		}
+	}
+}
+
+
+//
+// CSS3 gradient support
+//
 
 html.cssgradients.multiplebgs {
 	body {
@@ -488,48 +558,150 @@ html.cssgradients.multiplebgs {
 }
 
 //
-// Error Pages
+// Width smaller than 930px
 //
 
-.layout-error {
-	margin: 30px auto 0;
-	max-width: 300px;
-	padding: 20px;
-	position: relative;
-	
+@media screen and (max-device-width: 930px) {
+	a {
+		@include transition(none);
+	}
+
+	#layout,
+	#layout.collapsed,
+	#layout.expanded,
+	#layout .layout-inner,
+	#layout .layout-inner .layout-center,
+	#layout .layout-inner .layout-center .layout-page,
+	#layout .layout-inner .layout-west {
+		background: transparent none;
+		bottom: auto;
+		float: none;
+		left: auto;
+		margin: 0;
+		max-width: 100%;
+		min-height: 0;
+		overflow: visible;
+		right: auto;
+		top: auto;
+		width: auto;
+	}
+
+	#layout .layout-inner .layout-west {
+		padding: 10px 10px 15px;
+		overflow: visible;
+	}
+
 	.site-icon {
 		top: -10px;
 		left: auto;
 		right: -7px;
 	}
-	
-	.layout-inner {
-		@include background-image(
-			linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
-			image-url("noise.png")
-		);
-		@include border-radius(8px);
+
+	#navigation {
+		@include border-radius(5px);
 		@include box-shadow(
-			0 1px 0px 0 rgba(255,255,255,.75) inset,
-			0 1px 4px 0 rgba(0, 0, 0, 0.35)
+			0 -1px 0 0 rgba(0,0,0,.1) inset,
+			0 1px 2px 0 rgba(0,0,0,.5) inset,
+			0 1px 1px 0 rgba(255,255,255,.45)
 		);
 		background: {
-			color: #969696;
-			position: left top;
+			color: $navigation__bg;
+			image: image-url("navigation-bg.png");
+			position: right top;
+			repeat: repeat-y;
+			size: auto;
 		}
-		text-align: center;
-		width: 100%;
+		margin: 0 auto;
+		max-width: $width_west - 10;
+		padding: 0;
+		text-align: left;
 
-		h1.page-title {
-			@include text-shadow(0 3px 20px transparentize($body__bg, .6), 0 0 0 darken($body__bg, 60%), 1px 1px 0 rgba(255,255,255,.2), -1px 1px 0 rgba(255,255,255,.2));
-			color: transparent;
-			font-size: 72px;
-			font-weight: 800;
-			margin: 0;
-			padding: 30px 0;
+		.header {
+			.site-title {
+				margin-bottom: 2px;
+			}
+		}
+
+		.mylinks {
+			float: left;
+
+			a {
+				float: right;
+			}
+
+			.mylinks-icons {
+				float: left;
+			}
+		}
+
+		.projects {
+			padding: 10px;
+			text-align: left;
+
+			a {
+				@include border-radius(3px);
+				margin: 3px 0;
+				padding: 0 10px;
+			}
+		}
+	}
+
+	#content {
+		@include box-shadow(0 0px 4px -1px rgba(0,0,0,.3));
+		background: {
+			color: $default__bg;
+			image: image-url("content-bg.png");
+			position: right 0;
+			repeat: repeat-y;
+			size: auto;
+		}
+		padding: {
+			left: 15px;
+			right: 15px;
+		}
+	}
+
+	html.cssgradients.multiplebgs {
+		#layout {
+			background: transparent none;
+		}
+
+		#navigation {
+			@include background-image(
+				linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
+				linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
+				image-url("noise.png")
+			);
+			@include background-size(cover, cover, auto);
+			background: {
+				position: 0 0, 0 0, 0 0;
+				repeat: no-repeat, no-repeat, repeat;
+			}
+		}
+
+		#content {
+			@include background-image(linear-gradient(left, $default__bg, darken($default__bg, 2%)));
+			@include background-size(cover);
+			background: {
+				position: 0 0;
+				repeat: no-repeat;
+			}
 		}
 	}
 }
 
-@import "_930";
-@import "_lt_ie7";
+//
+// IE Settings
+//
+
+html.lt-ie7 {
+	#layout {
+		height: 100%;
+	}
+
+	#navigation {
+		.site-icon {
+
+		}
+	}
+}
