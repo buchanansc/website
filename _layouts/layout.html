@@ -1,0 +1,43 @@
+---
+layout: default
+---
+{% if page.collapsed %}
+<div id="layout" class="collapsed">
+{% else %}
+<div id="layout" class="expanded">
+{% endif %}
+	<div class="layout-inner">
+		<div class="layout-west">
+			<div id="navigation">
+				<a href="/#" class="site-icon"><span>Home</span></a>
+				<header class="header">
+					<h1 class="site-title">{{ site.title }}</h1>
+					<div class="mylinks">
+						<a href="/#resume" class="link-resume">r&eacute;sum&eacute;</a>
+						<ul class="mylinks-icons">
+							<li><a href="http://github.com/wafflesnatcha" title="github.com" target="_blank"><span class="sprite-github">github</span></a></li>
+							<li><a href="http://www.last.fm/user/wafflesnatcha" title="Last.fm" class="link-lastfm" target="_blank"><span class="sprite-lastfm">last.fm</span></a></li>
+						</ul>
+					</div>
+				</header>
+				<nav class="projects">
+					<ul>
+						<li><a href="/#projects/RegexTool/">RegexTool</a></li>
+						<li><a href="/#projects/scott.textmate/">scott.textmate</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="layout-center">
+			<div class="layout-page">
+				<section id="content">
+					<div id="page">
+
+						{{ content }}
+
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

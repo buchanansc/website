@@ -1,7 +1,8 @@
 ---
 layout: post
-title: RegexTool
 ---
+<div class="page-icon"><img src="/projects/RegexTool/icon-48.png" width="48" height="48" alt="RegexTool Icon"></div>
+<h1 class="page-title">RegexTool</h1>
 
 **RegexTool is a regular expression tester based entirely within the browser.**
 

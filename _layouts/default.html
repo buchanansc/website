@@ -25,13 +25,23 @@
 <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
 <![endif]-->
 
+	<script type="text/javascript">
+	window.log = function f(){ log.history = log.history || []; log.history.push(arguments); if(this.console) { var args = arguments, newarr; try { args.callee = f.caller } catch(e) {}; newarr = [].slice.call(args); if (typeof console.log === 'object') log.apply.call(console.log, console, newarr); else console.log.apply(console, newarr);}};
+	(function(a){function b(){}for(var c="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),d;!!(d=c.pop());){a[d]=a[d]||b;}})
+	(function(){try{console.log();return window.console;}catch(a){return (window.console={});}}());
+	</script>
+
 	<script src="/lib/modernizr-custom.js" type="text/javascript"></script>
 	<script src="/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
 	<script src="/lib/site.js" type="text/javascript"></script>
 
-	{% include google_analytics.html %}
+	<script type="text/javascript">
+	var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-12612599-1']); _gaq.push(['_trackPageview']);
+	(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();
+	</script>
+
 </head>
 <body>
-	{{ content }}
+{{ content }}
 </body>
 </html>
