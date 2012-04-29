@@ -1,22 +1,22 @@
 ---
 layout: post
+title: RegexTool
+# icon: /projects/RegexTool/icon_32.png
 ---
-<div class="page-icon"><img src="/projects/RegexTool/icon-48.png" width="48" height="48" alt="RegexTool Icon"></div>
-<h1 class="page-title">RegexTool</h1>
 
 **RegexTool is a regular expression tester based entirely within the browser.**
 
-Leveraging the power of the [XRegExp][] JavaScript regular expression library, RegexTool
-delivers an efficient and helpful interface to create, diagnose, and test your regular
-expressions.
+Leveraging the power of the [XRegExp][] JavaScript regular expression library,
+RegexTool delivers an efficient and helpful interface to create, diagnose, and
+test your regular expressions.
 
 ### [See it in action!][demo]
 ### [source @ github.com][source]
 
 ## Features
 
-* The [XRegExp][] library adds new syntax and flags to the JavaScript regular expression
-  library.
+* The [XRegExp][] library adds new syntax and flags to the JavaScript regular
+  expression library.
 * Offline access via browser application cache.
 * localStorage to save your data in between sessions.
 

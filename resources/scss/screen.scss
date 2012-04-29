@@ -163,34 +163,7 @@ pre, code, kbd, samp {
 	}
 }
 
-
-/** Sprites */
-
-$sprites-spacing: 6px;
-$sprites-sprite-base-class: ".sprite";
-@import "sprites/*.png";
-
-.sprite-github { @include sprites-sprite("github_white_24"); }
-.sprite-lastfm { @include sprites-sprite("lastfm_white_24"); }
-
-.site-icon, .site-icon:hover, .site-icon:focus {
-	@include box-shadow(none);
-	@include sprites-sprite("site-icon_64");
-	@include transition(none);
-	background-color: transparent;
-	display: block;
-	height: 64px;
-	left: 11px;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	text-indent: 1000px;
-	top: 11px;
-	white-space: nowrap;
-	width: 64px;
-	z-index: 10;
-}
+@import "_sprites";
 
 /** West */
 
@@ -219,9 +192,9 @@ $sprites-sprite-base-class: ".sprite";
 			margin: 0;
 			padding: 0;
 			position: relative;
-			
+
 			// No font-face support
-			
+
 			html.no-fontface & {
 				background: {
 					image: image-url("site-title.png");
@@ -378,9 +351,13 @@ $sprites-sprite-base-class: ".sprite";
 		word-wrap: normal;
 	}
 
-	ul {
+	ul, ol {
 		list-style-type: disc;
 		padding-left: 40px;
+	}
+
+	ol {
+		list-style-type: decimal;
 	}
 
 	table {
@@ -416,26 +393,33 @@ $sprites-sprite-base-class: ".sprite";
 		}
 	}
 
+	.page-icon {
+		float: right;
+	}
+
 	.page-title,
 	& > :first-child,
 	& > :first-child > :first-child,
-	& > :first-child > :first-child > :first-child {
+	& > :first-child > :first-child > :first-child,
+	& > :first-child > :first-child > :first-child > :first-child {
 		margin-top: 0;
 	}
 
-	//
-	// Content Loading
-	//
-	
+	.page-body {
+		clear: right;
+	}
+
+	/** Content Loading */
+
 	&.loading {
 		&, & * {
 			color: $default_loading;
 		}
-		
+
 		pre {
 			overflow: hidden;
 		}
-		
+
 		a {
 			@include box-shadow(none);
 			@include transition(none);
@@ -446,10 +430,10 @@ $sprites-sprite-base-class: ".sprite";
 			padding: 0;
 			text-decoration: none;
 		}
-		
+
 		a.image-link {
 			@extend a.image-link;
-			
+
 			&:hover, &:focus {
 				background-color: $link_image__bg;
 			}
@@ -462,238 +446,8 @@ $sprites-sprite-base-class: ".sprite";
 	}
 }
 
-/** Error Pages */
 
-#layout-error {
-	margin: 30px auto 0;
-	max-width: 300px;
-	padding: 20px;
-	position: relative;
-
-	.site-icon {
-		top: -10px;
-		left: auto;
-		right: -7px;
-	}
-
-	.layout-inner {
-		@include background-image(
-			linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
-			image-url("noise_100.png")
-		);
-		@include border-radius(8px);
-		@include box-shadow(
-			0 1px 0px 0 rgba(255,255,255,.75) inset,
-			0 1px 4px 0 rgba(0, 0, 0, 0.35)
-		);
-		background: {
-			color: #969696;
-			position: left top;
-		}
-		text-align: center;
-		width: 100%;
-
-		.page-title {
-			@include text-shadow(
-				0 3px 20px transparentize(desaturate($body__bg, 100%), .6),
-				0 0 0 #333,
-				1px 1px 0 rgba(255,255,255,.2),
-				-1px 1px 0 rgba(255,255,255,.2)
-			);
-			color: #888;
-			font-size: 72px;
-			font-weight: 800;
-			margin: 0;
-			padding: 30px 0;
-			
-			html.textshadow & {
-				color: transparent;
-			}
-		}
-	}
-}
-
-
-/** CSS3 gradient support */
-
-html.cssgradients.multiplebgs {
-	body {
-		@include background-image(
-			linear-gradient(right,
-				rgba(0,0,0,0) 0%,
-				rgba(0,0,0,0) 30px,
-				rgba(0,0,0,.15) 30px,
-				rgba(0,0,0,.05) 32px,
-				rgba(0,0,0,.05) 58px,
-				rgba(0,0,0,.15) 100%
-			),
-			linear-gradient(top, transparentize($body__bg, 0.1), transparentize($body__bg, 0.1)),
-			image-url("noise_100.png")
-		);
-		@include background-size(60px 100%, auto, auto);
-		background: {
-			position: 0 0;
-			repeat: repeat;
-		}
-	}
-
-	#layout {
-		@include background-image(
-			linear-gradient(left, $default__bg, darken($default__bg, 2%)),
-			linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.15)),
-			linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.1) $width_west * 2, rgba(0,0,0,.1) 100%),
-			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
-			image-url("noise_100.png")
-		);
-		@include background-size($width_center 100%, 2px 100%, $width_west 100%, $width_west 100%, auto);
-		background: {
-			position: $width_west top, $width_west - 2px 0, 0 0, 0 0, 0 0;
-			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
-		}
-	}
-}
-
-/** Width smaller than 930px */
-
-@media screen and (max-device-width: 930px) {
-	a {
-		@include transition(none);
-	}
-
-	#layout,
-	#layout.collapsed,
-	#layout.expanded,
-	#layout .layout-inner,
-	#layout .layout-inner .layout-center,
-	#layout .layout-inner .layout-center .layout-page,
-	#layout .layout-inner .layout-west {
-		background: transparent none;
-		bottom: auto;
-		float: none;
-		left: auto;
-		margin: 0;
-		max-width: 100%;
-		min-height: 0;
-		overflow: visible;
-		right: auto;
-		top: auto;
-		width: auto;
-	}
-
-	#layout .layout-inner .layout-west {
-		padding: 10px 10px 15px;
-		overflow: visible;
-	}
-
-	.site-icon {
-		top: -10px;
-		left: auto;
-		right: -7px;
-	}
-
-	#navigation {
-		@include border-radius(5px);
-		@include box-shadow(
-			0 -1px 0 0 rgba(0,0,0,.1) inset,
-			0 1px 2px 0 rgba(0,0,0,.5) inset,
-			0 1px 1px 0 rgba(255,255,255,.45)
-		);
-		background: {
-			color: $navigation__bg;
-			image: image-url("background/navigation.png");
-			position: right top;
-			repeat: repeat-y;
-			size: auto;
-		}
-		margin: 0 auto;
-		max-width: $width_west - 10;
-		padding: 0;
-		text-align: left;
-
-		.header {
-			.site-title {
-				margin-bottom: 2px;
-			}
-		}
-
-		.mylinks {
-			float: left;
-
-			a {
-				float: right;
-			}
-
-			.mylinks-icons {
-				float: left;
-			}
-		}
-
-		.projects {
-			padding: 10px;
-			text-align: left;
-
-			a {
-				@include border-radius(3px);
-				margin: 3px 0;
-				padding: 0 10px;
-			}
-		}
-	}
-
-	#content {
-		@include box-shadow(0 0px 4px -1px rgba(0,0,0,.3));
-		background: {
-			color: $default__bg;
-			image: image-url("background/content.png");
-			position: right 0;
-			repeat: repeat-y;
-			size: auto;
-		}
-		padding: {
-			left: 15px;
-			right: 15px;
-		}
-	}
-
-	html.cssgradients.multiplebgs {
-		#layout {
-			background: transparent none;
-		}
-
-		#navigation {
-			@include background-image(
-				linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
-				linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
-				image-url("noise_100.png")
-			);
-			@include background-size(cover, cover, auto);
-			background: {
-				position: 0 0, 0 0, 0 0;
-				repeat: no-repeat, no-repeat, repeat;
-			}
-		}
-
-		#content {
-			@include background-image(linear-gradient(left, $default__bg, darken($default__bg, 2%)));
-			@include background-size(cover);
-			background: {
-				position: 0 0;
-				repeat: no-repeat;
-			}
-		}
-	}
-}
-
-/** IE Settings */
-
-html.lt-ie7 {
-	#layout {
-		height: 100%;
-	}
-
-	#navigation {
-		.site-icon {
-
-		}
-	}
-}
+@import "_error";
+@import "_cssgradients";
+@import "_930";
+@import "_ie";
