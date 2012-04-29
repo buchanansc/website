@@ -76,7 +76,7 @@ html, body {
 /* line 36, ../scss/screen.scss */
 body {
   background-color: #81e381;
-  background-image: url('../images/body-bg.png?1333181683');
+  background-image: url('../images/background/body.png?1333681869');
   background-position: left top;
   background-repeat: repeat;
   background-size: auto;
@@ -131,31 +131,26 @@ a:hover, a:focus {
 
 /* line 84, ../scss/screen.scss */
 a.image-link, #content.loading a.image-link {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
-  border-radius: 0;
   background-color: #e6e6e6;
   margin: 2px;
   padding: 4px;
 }
-/* line 90, ../scss/screen.scss */
+/* line 89, ../scss/screen.scss */
 a.image-link:hover, #content.loading a.image-link:hover, a.image-link:focus, #content.loading a.image-link:focus {
   background-color: #680094;
 }
 
-/* line 95, ../scss/screen.scss */
+/* line 94, ../scss/screen.scss */
 b, strong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
-/* line 99, ../scss/screen.scss */
+/* line 98, ../scss/screen.scss */
 i, em {
   font-style: italic;
 }
 
-/* line 103, ../scss/screen.scss */
+/* line 102, ../scss/screen.scss */
 hr {
   -webkit-box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
@@ -166,17 +161,17 @@ hr {
   margin: 4px 0;
 }
 
-/* line 111, ../scss/screen.scss */
+/* line 110, ../scss/screen.scss */
 pre, code, kbd, samp {
   font-family: Menlo, Consolas, "Andale Mono", monospace;
   font-size: inherit;
 }
 
 /** Layout */
-/* line 119, ../scss/screen.scss */
+/* line 118, ../scss/screen.scss */
 #layout {
   background-color: #e5e5e5;
-  background-image: url('../images/layout-bg.png?1333181683');
+  background-image: url('../images/background/layout.png?1333681869');
   background-repeat: repeat;
   background-size: auto;
   clear: both;
@@ -185,37 +180,37 @@ pre, code, kbd, samp {
   overflow: hidden;
   position: relative;
 }
-/* line 132, ../scss/screen.scss */
+/* line 131, ../scss/screen.scss */
 #layout.collapsed {
   width: 330px;
 }
-/* line 137, ../scss/screen.scss */
+/* line 136, ../scss/screen.scss */
 #layout.expanded, html.no-js #layout {
   width: 900px;
 }
 
-/* line 142, ../scss/screen.scss */
+/* line 141, ../scss/screen.scss */
 .layout-inner {
   position: relative;
 }
-/* line 145, ../scss/screen.scss */
+/* line 144, ../scss/screen.scss */
 .layout-inner .layout-west {
   float: left;
   width: 330px;
   position: relative;
 }
-/* line 151, ../scss/screen.scss */
+/* line 150, ../scss/screen.scss */
 .layout-inner .layout-center {
   margin-left: 330px;
   position: relative;
   width: 570px;
   z-index: 10;
 }
-/* line 157, ../scss/screen.scss */
+/* line 156, ../scss/screen.scss */
 .layout-inner .layout-center .layout-page {
   position: relative;
 }
-/* line 162, ../scss/screen.scss */
+/* line 161, ../scss/screen.scss */
 .layout-inner .layout-south {
   clear: both;
 }
@@ -226,17 +221,17 @@ pre, code, kbd, samp {
   background: url('../images/sprites-se99fdf83b9.png') no-repeat;
 }
 
-/* line 174, ../scss/screen.scss */
+/* line 173, ../scss/screen.scss */
 .sprite-github {
   background-position: 0 -70px;
 }
 
-/* line 175, ../scss/screen.scss */
+/* line 174, ../scss/screen.scss */
 .sprite-lastfm {
   background-position: 0 -100px;
 }
 
-/* line 177, ../scss/screen.scss */
+/* line 176, ../scss/screen.scss */
 .site-icon, .site-icon:hover, .site-icon:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -263,7 +258,7 @@ pre, code, kbd, samp {
 }
 
 /** West */
-/* line 198, ../scss/screen.scss */
+/* line 197, ../scss/screen.scss */
 #navigation {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -274,13 +269,13 @@ pre, code, kbd, samp {
   position: relative;
   text-align: right;
 }
-/* line 206, ../scss/screen.scss */
+/* line 205, ../scss/screen.scss */
 #navigation .header {
   height: 70px;
   min-height: 70px;
   padding: 10px 20px;
 }
-/* line 211, ../scss/screen.scss */
+/* line 210, ../scss/screen.scss */
 #navigation .header .site-title {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   font-size: 30px;
@@ -292,41 +287,41 @@ pre, code, kbd, samp {
   padding: 0;
   position: relative;
 }
-/* line 226, ../scss/screen.scss */
+/* line 225, ../scss/screen.scss */
 html.no-fontface #navigation .header .site-title {
-  background-image: url('../images/site-title.png?1333668251');
+  background-image: url('../images/site-title.png?1333681869');
   background-position: right bottom;
   background-repeat: no-repeat;
   overflow: hidden;
   text-indent: 1000px;
 }
-/* line 238, ../scss/screen.scss */
+/* line 237, ../scss/screen.scss */
 #navigation .mylinks {
   float: right;
   font-size: 14px;
   text-align: left;
   width: 220px;
 }
-/* line 244, ../scss/screen.scss */
+/* line 243, ../scss/screen.scss */
 #navigation .mylinks a {
   float: left;
 }
-/* line 249, ../scss/screen.scss */
+/* line 248, ../scss/screen.scss */
 #navigation .mylinks-icons {
   float: right;
   white-space: nowrap;
 }
-/* line 253, ../scss/screen.scss */
+/* line 252, ../scss/screen.scss */
 #navigation .mylinks-icons li {
   float: left;
   margin: 0 2px;
 }
-/* line 258, ../scss/screen.scss */
+/* line 257, ../scss/screen.scss */
 #navigation .mylinks-icons a {
   background-color: #2a2a2a;
   display: block;
 }
-/* line 262, ../scss/screen.scss */
+/* line 261, ../scss/screen.scss */
 #navigation .mylinks-icons a span {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -339,23 +334,23 @@ html.no-fontface #navigation .header .site-title {
   text-indent: 1000px;
   width: 24px;
 }
-/* line 271, ../scss/screen.scss */
+/* line 270, ../scss/screen.scss */
 #navigation .mylinks-icons a:hover, #navigation .mylinks-icons a:focus {
   background-color: #680094;
   margin: -3px;
   padding: 3px;
 }
-/* line 276, ../scss/screen.scss */
+/* line 275, ../scss/screen.scss */
 #navigation .mylinks-icons a:hover span, #navigation .mylinks-icons a:focus span {
   background-color: transparent;
 }
-/* line 283, ../scss/screen.scss */
+/* line 282, ../scss/screen.scss */
 #navigation .projects {
   clear: both;
   padding: 80px 0 10px;
   text-align: right;
 }
-/* line 288, ../scss/screen.scss */
+/* line 287, ../scss/screen.scss */
 #navigation .projects a {
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
@@ -382,80 +377,80 @@ html.no-fontface #navigation .header .site-title {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 306, ../scss/screen.scss */
+/* line 305, ../scss/screen.scss */
 #navigation .projects a:hover, #navigation .projects a:focus {
   background: #680094;
   color: white;
 }
 
 /** Center */
-/* line 316, ../scss/screen.scss */
+/* line 315, ../scss/screen.scss */
 #content {
   color: #2a2a2a;
   padding: 10px 20px 30px;
   text-align: left;
 }
-/* line 321, ../scss/screen.scss */
+/* line 320, ../scss/screen.scss */
 #layout.collapsed #content {
   display: none;
 }
-/* line 326, ../scss/screen.scss */
+/* line 325, ../scss/screen.scss */
 #layout.expanded #content, html.no-js #content {
   display: block;
 }
-/* line 330, ../scss/screen.scss */
+/* line 329, ../scss/screen.scss */
 #content:empty {
   padding: 0;
 }
-/* line 334, ../scss/screen.scss */
+/* line 333, ../scss/screen.scss */
 #content h1, #content h2, #content h3, #content h4, #content h5, #content h6, #content p, #content pre, #content blockquote {
   margin-bottom: .6em;
   margin-top: .6em;
 }
-/* line 339, ../scss/screen.scss */
+/* line 338, ../scss/screen.scss */
 #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
   color: #2a2a2a;
   font-family: inherit;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
 }
-/* line 348, ../scss/screen.scss */
+/* line 347, ../scss/screen.scss */
 #content h1 {
   font-size: 2em;
 }
-/* line 349, ../scss/screen.scss */
+/* line 348, ../scss/screen.scss */
 #content h2 {
   font-size: 1.5em;
 }
-/* line 350, ../scss/screen.scss */
+/* line 349, ../scss/screen.scss */
 #content h3 {
   font-size: 1.17em;
 }
-/* line 351, ../scss/screen.scss */
+/* line 350, ../scss/screen.scss */
 #content h4 {
   font-size: 1em;
 }
-/* line 352, ../scss/screen.scss */
+/* line 351, ../scss/screen.scss */
 #content h5 {
   font-size: 0.83em;
 }
-/* line 353, ../scss/screen.scss */
+/* line 352, ../scss/screen.scss */
 #content h6 {
   font-size: 0.67em;
 }
-/* line 355, ../scss/screen.scss */
+/* line 354, ../scss/screen.scss */
 #content blockquote {
   color: #444;
   font-style: italic;
   margin-left: 40px;
   margin-right: 0;
 }
-/* line 364, ../scss/screen.scss */
+/* line 363, ../scss/screen.scss */
 #content dl, #content dt, #content dd {
   margin-left: 0;
   margin-right: 0;
 }
-/* line 371, ../scss/screen.scss */
+/* line 370, ../scss/screen.scss */
 #content pre {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -472,12 +467,12 @@ html.no-fontface #navigation .header .site-title {
   white-space: pre;
   word-wrap: normal;
 }
-/* line 382, ../scss/screen.scss */
+/* line 381, ../scss/screen.scss */
 #content ul {
   list-style-type: disc;
   padding-left: 40px;
 }
-/* line 387, ../scss/screen.scss */
+/* line 386, ../scss/screen.scss */
 #content table {
   border-bottom: 2px solid #eaeaea;
   border-collapse: inherit;
@@ -486,45 +481,45 @@ html.no-fontface #navigation .header .site-title {
   margin: 0;
   padding: 0;
 }
-/* line 395, ../scss/screen.scss */
+/* line 394, ../scss/screen.scss */
 #content table th, #content table td {
   margin: 0;
   padding: 4px 8px;
   text-align: left;
 }
-/* line 401, ../scss/screen.scss */
+/* line 400, ../scss/screen.scss */
 #content table th {
   font-weight: 700;
 }
-/* line 405, ../scss/screen.scss */
+/* line 404, ../scss/screen.scss */
 #content table td {
   vertical-align: top;
 }
-/* line 409, ../scss/screen.scss */
+/* line 408, ../scss/screen.scss */
 #content table thead th {
   -webkit-box-shadow: 0 -3px 4px -3px rgba(0, 0, 0, 0.2) inset, 0 -35px 35px -35px rgba(50, 50, 50, 0.1) inset;
   -moz-box-shadow: 0 -3px 4px -3px rgba(0, 0, 0, 0.2) inset, 0 -35px 35px -35px rgba(50, 50, 50, 0.1) inset;
   box-shadow: 0 -3px 4px -3px rgba(0, 0, 0, 0.2) inset, 0 -35px 35px -35px rgba(50, 50, 50, 0.1) inset;
   border-bottom: 1px solid #bbb;
 }
-/* line 414, ../scss/screen.scss */
+/* line 413, ../scss/screen.scss */
 #content table > tbody > tr:nth-child(even) > td {
   background-color: #f2f5fa;
   background-color: rgba(200, 220, 250, 0.15);
 }
-/* line 423, ../scss/screen.scss */
+/* line 422, ../scss/screen.scss */
 #content .page-title, #content > :first-child, #content > :first-child > :first-child, #content > :first-child > :first-child > :first-child {
   margin-top: 0;
 }
-/* line 432, ../scss/screen.scss */
+/* line 431, ../scss/screen.scss */
 #content.loading, #content.loading * {
   color: #999999;
 }
-/* line 436, ../scss/screen.scss */
+/* line 435, ../scss/screen.scss */
 #content.loading pre {
   overflow: hidden;
 }
-/* line 440, ../scss/screen.scss */
+/* line 439, ../scss/screen.scss */
 #content.loading a {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -541,38 +536,38 @@ html.no-fontface #navigation .header .site-title {
   padding: 0;
   text-decoration: none;
 }
-/* line 454, ../scss/screen.scss */
+/* line 453, ../scss/screen.scss */
 #content.loading a.image-link:hover, #content.loading a.image-link:hover, #content.loading a.image-link:focus, #content.loading a.image-link:focus {
   background-color: #e6e6e6;
 }
-/* line 459, ../scss/screen.scss */
+/* line 458, ../scss/screen.scss */
 #content.loading img {
   -webkit-filter: saturate(0%);
   opacity: .7;
 }
 
 /** Error Pages */
-/* line 468, ../scss/screen.scss */
+/* line 467, ../scss/screen.scss */
 #layout-error {
   margin: 30px auto 0;
   max-width: 300px;
   padding: 20px;
   position: relative;
 }
-/* line 474, ../scss/screen.scss */
+/* line 473, ../scss/screen.scss */
 #layout-error .site-icon {
   top: -10px;
   left: auto;
   right: -7px;
 }
-/* line 480, ../scss/screen.scss */
+/* line 479, ../scss/screen.scss */
 #layout-error .layout-inner {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(245, 245, 245, 0.9)), color-stop(100%, rgba(225, 225, 225, 0.9))), url('../images/noise.png?1332243540');
-  background-image: -webkit-linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise.png?1332243540');
-  background-image: -moz-linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise.png?1332243540');
-  background-image: -o-linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise.png?1332243540');
-  background-image: -ms-linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise.png?1332243540');
-  background-image: linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise.png?1332243540');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(245, 245, 245, 0.9)), color-stop(100%, rgba(225, 225, 225, 0.9))), url('../images/noise_100.png?1335672853');
+  background-image: -webkit-linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: -moz-linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: -o-linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: -ms-linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: linear-gradient(top, rgba(245, 245, 245, 0.9), rgba(225, 225, 225, 0.9)), url('../images/noise_100.png?1335672853');
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
@@ -586,7 +581,7 @@ html.no-fontface #navigation .header .site-title {
   text-align: center;
   width: 100%;
 }
-/* line 497, ../scss/screen.scss */
+/* line 496, ../scss/screen.scss */
 #layout-error .layout-inner .page-title {
   text-shadow: 0 3px 20px rgba(178, 178, 178, 0.4), 0 0 0 #333333, 1px 1px 0 rgba(255, 255, 255, 0.2), -1px 1px 0 rgba(255, 255, 255, 0.2);
   color: #888;
@@ -595,20 +590,20 @@ html.no-fontface #navigation .header .site-title {
   margin: 0;
   padding: 30px 0;
 }
-/* line 510, ../scss/screen.scss */
+/* line 509, ../scss/screen.scss */
 html.textshadow #layout-error .layout-inner .page-title {
   color: transparent;
 }
 
 /** CSS3 gradient support */
-/* line 521, ../scss/screen.scss */
+/* line 520, ../scss/screen.scss */
 html.cssgradients.multiplebgs body {
-  background-image: -webkit-gradient(linear, 100% 50%, 0% 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(30px, rgba(0, 0, 0, 0)), color-stop(30px, rgba(0, 0, 0, 0.15)), color-stop(32px, rgba(0, 0, 0, 0.05)), color-stop(58px, rgba(0, 0, 0, 0.05)), color-stop(100%, rgba(0, 0, 0, 0.15))), -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(129, 227, 129, 0.9)), color-stop(100%, rgba(129, 227, 129, 0.9))), url('../images/noise.png?1332243540');
-  background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), -webkit-linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise.png?1332243540');
-  background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), -moz-linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise.png?1332243540');
-  background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), -o-linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise.png?1332243540');
-  background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), -ms-linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise.png?1332243540');
-  background-image: linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise.png?1332243540');
+  background-image: -webkit-gradient(linear, 100% 50%, 0% 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(30px, rgba(0, 0, 0, 0)), color-stop(30px, rgba(0, 0, 0, 0.15)), color-stop(32px, rgba(0, 0, 0, 0.05)), color-stop(58px, rgba(0, 0, 0, 0.05)), color-stop(100%, rgba(0, 0, 0, 0.15))), -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(129, 227, 129, 0.9)), color-stop(100%, rgba(129, 227, 129, 0.9))), url('../images/noise_100.png?1335672853');
+  background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), -webkit-linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), -moz-linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), -o-linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), -ms-linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0.15) 30px, rgba(0, 0, 0, 0.05) 32px, rgba(0, 0, 0, 0.05) 58px, rgba(0, 0, 0, 0.15) 100%), linear-gradient(top, rgba(129, 227, 129, 0.9), rgba(129, 227, 129, 0.9)), url('../images/noise_100.png?1335672853');
   -webkit-background-size: 60px 100%, auto, auto;
   -moz-background-size: 60px 100%, auto, auto;
   -o-background-size: 60px 100%, auto, auto;
@@ -616,14 +611,14 @@ html.cssgradients.multiplebgs body {
   background-position: 0 0;
   background-repeat: repeat;
 }
-/* line 541, ../scss/screen.scss */
+/* line 540, ../scss/screen.scss */
 html.cssgradients.multiplebgs #layout {
-  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #ffffff), color-stop(100%, #fafafa)), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.15))), -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(660px, rgba(0, 0, 0, 0.1)), color-stop(100%, rgba(0, 0, 0, 0.1))), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(249, 249, 249, 0.9)), color-stop(100%, rgba(209, 209, 209, 0.9))), url('../images/noise.png?1332243540');
-  background-image: -webkit-linear-gradient(left, #ffffff, #fafafa), -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), -webkit-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
-  background-image: -moz-linear-gradient(left, #ffffff, #fafafa), -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), -moz-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
-  background-image: -o-linear-gradient(left, #ffffff, #fafafa), -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), -o-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
-  background-image: -ms-linear-gradient(left, #ffffff, #fafafa), -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), -ms-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
-  background-image: linear-gradient(left, #ffffff, #fafafa), linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #ffffff), color-stop(100%, #fafafa)), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.15))), -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(660px, rgba(0, 0, 0, 0.1)), color-stop(100%, rgba(0, 0, 0, 0.1))), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(249, 249, 249, 0.9)), color-stop(100%, rgba(209, 209, 209, 0.9))), url('../images/noise_100.png?1335672853');
+  background-image: -webkit-linear-gradient(left, #ffffff, #fafafa), -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), -webkit-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: -moz-linear-gradient(left, #ffffff, #fafafa), -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), -moz-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: -o-linear-gradient(left, #ffffff, #fafafa), -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), -o-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: -ms-linear-gradient(left, #ffffff, #fafafa), -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), -ms-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
+  background-image: linear-gradient(left, #ffffff, #fafafa), linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 660px, rgba(0, 0, 0, 0.1) 100%), linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
   -webkit-background-size: 570px 100%, 2px 100%, 330px 100%, 330px 100%, auto;
   -moz-background-size: 570px 100%, 2px 100%, 330px 100%, 330px 100%, auto;
   -o-background-size: 570px 100%, 2px 100%, 330px 100%, 330px 100%, auto;
@@ -634,7 +629,7 @@ html.cssgradients.multiplebgs #layout {
 
 /** Width smaller than 930px */
 @media screen and (max-device-width: 930px) {
-  /* line 560, ../scss/screen.scss */
+  /* line 559, ../scss/screen.scss */
   a {
     -webkit-transition: none;
     -moz-transition: none;
@@ -643,7 +638,7 @@ html.cssgradients.multiplebgs #layout {
     transition: none;
   }
 
-  /* line 570, ../scss/screen.scss */
+  /* line 569, ../scss/screen.scss */
   #layout,
   #layout.collapsed,
   #layout.expanded,
@@ -664,20 +659,20 @@ html.cssgradients.multiplebgs #layout {
     width: auto;
   }
 
-  /* line 584, ../scss/screen.scss */
+  /* line 583, ../scss/screen.scss */
   #layout .layout-inner .layout-west {
     padding: 10px 10px 15px;
     overflow: visible;
   }
 
-  /* line 589, ../scss/screen.scss */
+  /* line 588, ../scss/screen.scss */
   .site-icon {
     top: -10px;
     left: auto;
     right: -7px;
   }
 
-  /* line 595, ../scss/screen.scss */
+  /* line 594, ../scss/screen.scss */
   #navigation {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -688,7 +683,7 @@ html.cssgradients.multiplebgs #layout {
     -moz-box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.5) inset, 0 1px 1px 0 rgba(255, 255, 255, 0.45);
     box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.5) inset, 0 1px 1px 0 rgba(255, 255, 255, 0.45);
     background-color: #e5e5e5;
-    background-image: url('../images/navigation-bg.png?1333181683');
+    background-image: url('../images/background/navigation.png?1333681869');
     background-position: right top;
     background-repeat: repeat-y;
     background-size: auto;
@@ -697,28 +692,28 @@ html.cssgradients.multiplebgs #layout {
     padding: 0;
     text-align: left;
   }
-  /* line 615, ../scss/screen.scss */
+  /* line 614, ../scss/screen.scss */
   #navigation .header .site-title {
     margin-bottom: 2px;
   }
-  /* line 620, ../scss/screen.scss */
+  /* line 619, ../scss/screen.scss */
   #navigation .mylinks {
     float: left;
   }
-  /* line 623, ../scss/screen.scss */
+  /* line 622, ../scss/screen.scss */
   #navigation .mylinks a {
     float: right;
   }
-  /* line 627, ../scss/screen.scss */
+  /* line 626, ../scss/screen.scss */
   #navigation .mylinks .mylinks-icons {
     float: left;
   }
-  /* line 632, ../scss/screen.scss */
+  /* line 631, ../scss/screen.scss */
   #navigation .projects {
     padding: 10px;
     text-align: left;
   }
-  /* line 636, ../scss/screen.scss */
+  /* line 635, ../scss/screen.scss */
   #navigation .projects a {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -729,13 +724,13 @@ html.cssgradients.multiplebgs #layout {
     padding: 0 10px;
   }
 
-  /* line 644, ../scss/screen.scss */
+  /* line 643, ../scss/screen.scss */
   #content {
     -webkit-box-shadow: 0 0px 4px -1px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 0px 4px -1px rgba(0, 0, 0, 0.3);
     box-shadow: 0 0px 4px -1px rgba(0, 0, 0, 0.3);
     background-color: white;
-    background-image: url('../images/content-bg.png?1333181683');
+    background-image: url('../images/background/content.png?1333681869');
     background-position: right 0;
     background-repeat: repeat-y;
     background-size: auto;
@@ -743,18 +738,18 @@ html.cssgradients.multiplebgs #layout {
     padding-right: 15px;
   }
 
-  /* line 660, ../scss/screen.scss */
+  /* line 659, ../scss/screen.scss */
   html.cssgradients.multiplebgs #layout {
     background: transparent none;
   }
-  /* line 664, ../scss/screen.scss */
+  /* line 663, ../scss/screen.scss */
   html.cssgradients.multiplebgs #navigation {
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.1))), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(249, 249, 249, 0.9)), color-stop(100%, rgba(209, 209, 209, 0.9))), url('../images/noise.png?1332243540');
-    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -webkit-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
-    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -moz-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
-    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -o-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
-    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -ms-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
-    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise.png?1332243540');
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.1))), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(249, 249, 249, 0.9)), color-stop(100%, rgba(209, 209, 209, 0.9))), url('../images/noise_100.png?1335672853');
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -webkit-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -moz-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -o-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), -ms-linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), linear-gradient(left, rgba(249, 249, 249, 0.9), rgba(209, 209, 209, 0.9)), url('../images/noise_100.png?1335672853');
     -webkit-background-size: cover, cover, auto;
     -moz-background-size: cover, cover, auto;
     -o-background-size: cover, cover, auto;
@@ -762,7 +757,7 @@ html.cssgradients.multiplebgs #layout {
     background-position: 0 0, 0 0, 0 0;
     background-repeat: no-repeat, no-repeat, repeat;
   }
-  /* line 677, ../scss/screen.scss */
+  /* line 676, ../scss/screen.scss */
   html.cssgradients.multiplebgs #content {
     background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #ffffff), color-stop(100%, #fafafa));
     background-image: -webkit-linear-gradient(left, #ffffff, #fafafa);
@@ -779,7 +774,7 @@ html.cssgradients.multiplebgs #layout {
   }
 }
 /** IE Settings */
-/* line 691, ../scss/screen.scss */
+/* line 690, ../scss/screen.scss */
 html.lt-ie7 #layout {
   height: 100%;
 }

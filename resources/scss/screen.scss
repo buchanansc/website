@@ -36,7 +36,7 @@ html, body {
 body {
 	background: {
 		color: $body__bg;
-		image: image-url("body-bg.png");
+		image: image-url("background/body.png");
 		position: left top;
 		repeat: repeat;
 		size: auto;
@@ -82,7 +82,6 @@ a {
 }
 
 a.image-link {
-	@include border-radius(0);
 	background-color: $link_image__bg;
 	margin: 2px;
 	padding: 4px;
@@ -93,7 +92,7 @@ a.image-link {
 }
 
 b, strong {
-	font-weight: 600;
+	font-weight: 700;
 }
 
 i, em {
@@ -119,7 +118,7 @@ pre, code, kbd, samp {
 #layout {
 	background: {
 		color: $navigation__bg;
-		image: image-url("layout-bg.png");
+		image: image-url("background/layout.png");
 		repeat: repeat;
 		size: auto;
 	}
@@ -341,7 +340,7 @@ $sprites-sprite-base-class: ".sprite";
 		font: {
 			family: inherit;
 			style: normal;
-			weight: 500;
+			weight: 400;
 		}
 	}
 
@@ -480,7 +479,7 @@ $sprites-sprite-base-class: ".sprite";
 	.layout-inner {
 		@include background-image(
 			linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
-			image-url("noise.png")
+			image-url("noise_100.png")
 		);
 		@include border-radius(8px);
 		@include box-shadow(
@@ -529,7 +528,7 @@ html.cssgradients.multiplebgs {
 				rgba(0,0,0,.15) 100%
 			),
 			linear-gradient(top, transparentize($body__bg, 0.1), transparentize($body__bg, 0.1)),
-			image-url("noise.png")
+			image-url("noise_100.png")
 		);
 		@include background-size(60px 100%, auto, auto);
 		background: {
@@ -544,7 +543,7 @@ html.cssgradients.multiplebgs {
 			linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.15)),
 			linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.1) $width_west * 2, rgba(0,0,0,.1) 100%),
 			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
-			image-url("noise.png")
+			image-url("noise_100.png")
 		);
 		@include background-size($width_center 100%, 2px 100%, $width_west 100%, $width_west 100%, auto);
 		background: {
@@ -601,7 +600,7 @@ html.cssgradients.multiplebgs {
 		);
 		background: {
 			color: $navigation__bg;
-			image: image-url("navigation-bg.png");
+			image: image-url("background/navigation.png");
 			position: right top;
 			repeat: repeat-y;
 			size: auto;
@@ -645,7 +644,7 @@ html.cssgradients.multiplebgs {
 		@include box-shadow(0 0px 4px -1px rgba(0,0,0,.3));
 		background: {
 			color: $default__bg;
-			image: image-url("content-bg.png");
+			image: image-url("background/content.png");
 			position: right 0;
 			repeat: repeat-y;
 			size: auto;
@@ -665,7 +664,7 @@ html.cssgradients.multiplebgs {
 			@include background-image(
 				linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,.1)),
 				linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
-				image-url("noise.png")
+				image-url("noise_100.png")
 			);
 			@include background-size(cover, cover, auto);
 			background: {
