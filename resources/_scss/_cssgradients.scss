@@ -11,7 +11,7 @@ html.cssgradients.multiplebgs {
 				rgba(0,0,0,.05) 58px,
 				rgba(0,0,0,.15) 100%
 			),
-			linear-gradient(top, transparentize($body__bg, 0.1), transparentize($body__bg, 0.1)),
+			linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
 			image-url("noise_100.png")
 		);
 		@include background-size(60px 100%, auto, auto);
@@ -29,7 +29,13 @@ html.cssgradients.multiplebgs {
 			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
 			image-url("noise_100.png")
 		);
-		@include background-size($width_center 100%, 2px 100%, $width_west 100%, $width_west 100%, auto);
+		@include background-size(
+			$width_center 100%,
+			2px 100%,
+			$width_west 100%,
+			$width_west 100%,
+			auto
+		);
 		background: {
 			position: $width_west top, $width_west - 2px 0, 0 0, 0 0, 0 0;
 			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;

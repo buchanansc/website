@@ -1,15 +1,18 @@
-/** Error Pages */
+/**
+* Error Pages
+*/
 
 #layout-error {
-	margin: 30px auto 0;
-	max-width: 300px;
+	margin: 25px auto 0;
+	max-width: 260px;
 	padding: 20px;
 	position: relative;
+	text-align: center;
 
 	.site-icon {
-		top: -10px;
 		left: auto;
 		right: -7px;
+		top: -10px;
 	}
 
 	.layout-inner {
@@ -25,26 +28,26 @@
 		background: {
 			color: #969696;
 			position: left top;
+			repeat: repeat;
 		}
-		text-align: center;
 		width: 100%;
+	}
 
-		.page-title {
-			@include text-shadow(
-				0 3px 20px transparentize(desaturate($body__bg, 100%), .6),
-				0 0 0 #333,
-				1px 1px 0 rgba(255,255,255,.2),
-				-1px 1px 0 rgba(255,255,255,.2)
-			);
-			color: #888;
-			font-size: 72px;
-			font-weight: 800;
-			margin: 0;
-			padding: 30px 0;
+	.page-title {
+		@include text-shadow(
+			0 3px 15px rgba(255,255,255,.3),
+			0 0 0 #5c0000,
+			1px 1px 0 rgba(255,255,255,.5)
+		);
+		color: #888;
+		font-size: 64px;
+		line-height: 64px;
+		font-weight: 800;
+		margin: 0;
+		padding: 30px 0;
 
-			html.textshadow & {
-				color: transparent;
-			}
+		html.textshadow & {
+			color: transparent;
 		}
 	}
 }

@@ -3,6 +3,7 @@ layout: post
 title: scott.textmate
 # link: https://github.com/wafflesnatcha/scott.textmate
 ---
+
 **An alternative TextMate Web Preview theme.**
 
 ## Install
@@ -16,9 +17,10 @@ Or, just [download the .zip][.zip] and extract it into `~/Library/Application Su
 ### Download [.zip][] or [.tar.gz][]
 
 <div class="gallery">
-	<a class="image" href="/projects/scott.textmate/screenshot1.png"><img src="/projects/scott.textmate/screenshot1_small.png"></a>
-	<a class="image" href="/projects/scott.textmate/screenshot2.png"><img src="/projects/scott.textmate/screenshot2_small.png"></a>
+	<a class="image" href="http://wafflesnatcha.github.com/projects/scott.textmate/screenshot1.png"><img src="http://wafflesnatcha.github.com/projects/scott.textmate/screenshot1_small.png"></a>
+	<a class="image" href="http://wafflesnatcha.github.com/projects/scott.textmate/screenshot2.png"><img src="http://wafflesnatcha.github.com/projects/scott.textmate/screenshot2_small.png"></a>
 </div>
 
+[source]: https://github.com/wafflesnatcha/scott.textmate
 [.zip]: https://github.com/downloads/wafflesnatcha/scott.textmate/scott.zip
 [.tar.gz]: https://github.com/downloads/wafflesnatcha/scott.textmate/scott.tar.gz

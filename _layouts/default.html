@@ -39,7 +39,7 @@
 	})();
 	</script>
 </head>
-<body>
+<body{% if page.class %} class="{{ page.class }}"{% endif %}>
 {{ content }}
 </body>
 </html>
