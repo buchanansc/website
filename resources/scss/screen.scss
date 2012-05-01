@@ -18,9 +18,10 @@ $link_hover: #fff;
 $link_hover__bg: $link;
 $link_image__bg: #e6e6e6;
 
+$heading: $default; // #2b661d
+
 $width_west: 330px;
 $width_center: 570px;
-
 
 /** Global */
 
@@ -58,6 +59,7 @@ a {
 	@include transition-property('background, box-shadow, color, margin, padding');
 	@include transition-duration(.08s);
 	color: $link;
+	cursor: pointer;
 	display: inline-block;
 	margin: 0;
 	outline: none;
@@ -81,7 +83,9 @@ a {
 	}
 }
 
-a.image-link {
+/** Image links */
+.gallery a,
+a.image {
 	background-color: $link_image__bg;
 	margin: 2px;
 	padding: 4px;
@@ -163,7 +167,34 @@ pre, code, kbd, samp {
 	}
 }
 
-@import "_sprites";
+/** Sprites */
+
+$sprites-spacing: 6px;
+$sprites-sprite-base-class: ".sprite";
+@import "sprites/*.png";
+
+.sprite-github { @include sprites-sprite("github_white_24"); }
+.sprite-lastfm { @include sprites-sprite("lastfm_white_24"); }
+
+.site-icon, .site-icon:hover, .site-icon:focus {
+	@include box-shadow(none);
+	@include sprites-sprite("site-icon_64");
+	@include transition(none);
+	background-color: transparent;
+	display: block;
+	height: 64px;
+	left: 11px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	text-indent: 1000px;
+	top: 11px;
+	white-space: nowrap;
+	width: 64px;
+	z-index: 10;
+}
+
 
 /** West */
 
@@ -309,7 +340,7 @@ pre, code, kbd, samp {
 	}
 
 	#{headings()} {
-		color: $default;
+		color: $heading;
 		font: {
 			family: inherit;
 			style: normal;
@@ -393,20 +424,26 @@ pre, code, kbd, samp {
 		}
 	}
 
+	.page-title,
+	.page-icon,
+	& > :first-child {
+		margin-top: 0;
+	}
+	
 	.page-icon {
 		float: right;
 	}
 
-	.page-title,
-	& > :first-child,
-	& > :first-child > :first-child,
-	& > :first-child > :first-child > :first-child,
-	& > :first-child > :first-child > :first-child > :first-child {
-		margin-top: 0;
+	.page-title {
+		color: $default;
 	}
 
 	.page-body {
 		clear: right;
+	}
+
+	.gallery {
+		text-align: center;
 	}
 
 	/** Content Loading */
@@ -431,8 +468,8 @@ pre, code, kbd, samp {
 			text-decoration: none;
 		}
 
-		a.image-link {
-			@extend a.image-link;
+		a.image {
+			@extend a.image;
 
 			&:hover, &:focus {
 				background-color: $link_image__bg;

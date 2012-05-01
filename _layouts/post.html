@@ -1,8 +1,10 @@
 ---
 layout: layout
 ---
-{% if page.icon %}<img class="page-icon" src="{{ page.icon }}" alt="{{ page.title }}">{% endif %}
-{% if page.title %}<h1 class="page-title">{{ page.title }}</h1>{% endif %}
+{% if page.icon %}<img class="page-icon" src="{{ page.icon }}" alt="{{ page.title }}" alt="{{ page.title }}">{% endif %}
+{% if page.title %}<h1 class="page-title">
+	{% if page.link %}<a href="{{ page.link }}">{{ page.title }}</a>{% else %}{{ page.title }}{% endif %}
+</h1>{% endif %}
 <div class="page-body">
 {{ content }}
 </div>

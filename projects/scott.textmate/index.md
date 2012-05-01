@@ -1,8 +1,8 @@
 ---
 layout: post
 title: scott.textmate
+# link: https://github.com/wafflesnatcha/scott.textmate
 ---
-
 **An alternative TextMate Web Preview theme.**
 
 ## Install
@@ -15,10 +15,10 @@ Or, just [download the .zip][.zip] and extract it into `~/Library/Application Su
 
 ### Download [.zip][] or [.tar.gz][]
 
-<p style="text-align:center">
-	<a class="image-link" href="https://github.com/downloads/wafflesnatcha/scott.textmate/screenshot1.png"><img src="https://github.com/downloads/wafflesnatcha/scott.textmate/screenshot1.png" width="200"></a>
-	<a class="image-link" href="https://github.com/downloads/wafflesnatcha/scott.textmate/screenshot2.png"><img src="https://github.com/downloads/wafflesnatcha/scott.textmate/screenshot2.png" width="200"></a>
-</p>
+<div class="gallery">
+	<a class="image" href="/projects/scott.textmate/screenshot1.png"><img src="/projects/scott.textmate/screenshot1_small.png"></a>
+	<a class="image" href="/projects/scott.textmate/screenshot2.png"><img src="/projects/scott.textmate/screenshot2_small.png"></a>
+</div>
 
 [.zip]: https://github.com/downloads/wafflesnatcha/scott.textmate/scott.zip
 [.tar.gz]: https://github.com/downloads/wafflesnatcha/scott.textmate/scott.tar.gz
