@@ -51,15 +51,9 @@
 			size: auto;
 		}
 		margin: 0 auto;
-		max-width: $width_west - 10;
+		max-width: $width_west;
 		padding: 0;
 		text-align: left;
-
-		.header {
-			.site-title {
-				margin-bottom: 2px;
-			}
-		}
 
 		.mylinks {
 			float: left;

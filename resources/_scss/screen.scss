@@ -54,6 +54,7 @@ body {
 
 
 a {
+	-webkit-tap-highlight-color: transparentize($link, .5);
 	@include border-radius(3px);
 	@include transition-property('background, box-shadow, color, margin, padding');
 	@include transition-duration(.08s);
@@ -73,7 +74,7 @@ a {
 	}
 
 	&:hover, &:focus {
-		@include box-shadow(0 1px 0px 0 rgba(0, 0, 0, 0.2), 0 -30px 30px -30px rgba(0,0,0, 0.35) inset);
+		@include box-shadow(0 1px 0 0 rgba(0,0,0,.2), 0 -30px 30px -30px rgba(0,0,0,.35) inset);
 		background-color: $link_hover__bg;
 		color: $link_hover;
 		margin: -3px -6px -3px;
@@ -156,29 +157,29 @@ pre, code, kbd, samp {
 
 /** Sprites */
 
-$sprites-spacing: 6px;
-$sprites-sprite-base-class: ".sprite";
-@import "sprites/*.png";
-
-.sprite-github { @include sprites-sprite("github_white_24"); }
-.sprite-lastfm { @include sprites-sprite("lastfm_white_24"); }
+$spr-spacing: 6px;
+$spr-sprite-base-class: ".sprite";
+@import "spr/*.png";
+@include all-spr-sprites;
 
 .site-icon, .site-icon:hover, .site-icon:focus {
 	@include box-shadow(none);
-	@include sprites-sprite("site-icon_64");
+	@include spr-sprite("site-icon");
 	@include transition(none);
 	background-color: transparent;
+	bottom: auto;
 	display: block;
-	height: sprites-sprite-width("site-icon_64");
+	height: spr-sprite-height("site-icon");
 	left: 11px;
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
 	position: absolute;
+	right: auto;
 	text-indent: 1000px;
 	top: 11px;
 	white-space: nowrap;
-	width: 64px;
+	width: spr-sprite-width("site-icon");
 	z-index: 10;
 }
 
@@ -212,7 +213,6 @@ $sprites-sprite-base-class: ".sprite";
 			position: relative;
 
 			// No font-face support
-
 			html.no-fontface & {
 				background: {
 					image: image-url("site-title.png");
@@ -228,6 +228,7 @@ $sprites-sprite-base-class: ".sprite";
 	.mylinks {
 		float: right;
 		font-size: $font_size + 1;
+		padding: 4px 0 0;
 		text-align: left;
 		width: 220px;
 
@@ -238,6 +239,7 @@ $sprites-sprite-base-class: ".sprite";
 
 	.mylinks-icons {
 		float: right;
+		margin-top: -2px;
 		white-space: nowrap;
 
 		li {
@@ -251,6 +253,7 @@ $sprites-sprite-base-class: ".sprite";
 
 			span {
 				@include border-radius(3px);
+				background-repeat: no-repeat;
 				display: block;
 				height: 24px;
 				overflow: hidden;

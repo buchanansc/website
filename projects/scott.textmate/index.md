@@ -1,7 +1,7 @@
 ---
 layout: post
 title: scott.textmate
-# link: https://github.com/wafflesnatcha/scott.textmate
+link: https://github.com/wafflesnatcha/scott.textmate
 ---
 
 **An alternative TextMate Web Preview theme.**
