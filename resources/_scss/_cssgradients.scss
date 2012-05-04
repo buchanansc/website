@@ -11,14 +11,13 @@ html.cssgradients.multiplebgs {
 				rgba(0,0,0,.05) 58px,
 				rgba(0,0,0,.15) 100%
 			),
-			linear-gradient(top, transparentize(lighten($body__bg, 5%), .1) 0, transparentize(darken($body__bg, 5%), 1) 300px),
-			linear-gradient(top, transparentize(darken($body__bg, 5%), .1), transparentize(darken($body__bg, 5%), .1)),
+			linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
 			image-url("noise_100.png")
 		);
-		@include background-size(60px 100%, 100% 300px, auto, auto);
+		@include background-size(60px 100%, auto, auto);
 		background: {
-			position: 0 0, 0 0, 0 300px, 0 0;
-			repeat: repeat, no-repeat, repeat, repeat;
+			position: 0 0;
+			repeat: repeat;
 		}
 	}
 
