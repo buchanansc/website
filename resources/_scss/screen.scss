@@ -49,10 +49,6 @@ body {
 	line-height: normal;
 }
 
-// ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-// ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
-
-
 a {
 	-webkit-tap-highlight-color: transparentize($link, .5);
 	@include border-radius(3px);
@@ -103,7 +99,6 @@ pre, code, kbd, samp {
 	font-family: $font_code;
 	font-size: inherit;
 }
-
 
 /** Layout */
 

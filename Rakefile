@@ -7,7 +7,7 @@ CONFIG = {
 }
 
 task :default do
-	exec("rake -f #{__FILE__} -T")
+	exec("rake --rakefile '#{__FILE__}' --tasks")
 end
 
 desc "Compile site"
@@ -33,11 +33,12 @@ namespace :compass do
 	task :development do
 		system("cd '#{CONFIG['path_scss']}' &>/dev/null && compass compile --time -e development")
 	end
+	
 	task :production do
 		system("cd '#{CONFIG['path_scss']}' &>/dev/null && compass compile --time -e production --force")
 	end
-	task :clear_cache do
-		puts "clearing compass cache..."
-		system('find "' + CONFIG["path_root"] + '" -type d -name ".sass-cache" -prune -exec rm -r \{\} \;')
+	
+	task :cache do
+		system("find '#{CONFIG['path_root']}' -type d -name '.sass-cache' -prune -print -exec rm -r \\{\\} \\;")
 	end
 end
