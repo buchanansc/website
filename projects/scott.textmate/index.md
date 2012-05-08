@@ -24,8 +24,10 @@ Or, just [download the .zip][.zip] and extract it into `~/Library/Application Su
 
 ## Screens
 
-[![screen1small][]][screen1]
-[![screen2small][]][screen2]
+<div class="gallery">
+	<a href="http://github.com/wafflesnatcha/scott.textmate/raw/master/files/screens/1.png"><img src="http://github.com/wafflesnatcha/scott.textmate/raw/master/files/screens/1small.png" alt=""></a>
+	<a href="http://github.com/wafflesnatcha/scott.textmate/raw/master/files/screens/2.png"><img src="http://github.com/wafflesnatcha/scott.textmate/raw/master/files/screens/2small.png" alt=""></a>
+</div>
 
 [source]: https://github.com/wafflesnatcha/scott.textmate
 

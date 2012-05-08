@@ -474,5 +474,12 @@ $spr-sprite-base-class: ".sprite";
 
 @import "_error";
 @import "_cssgradients";
-@import "_930";
+
+@media screen and (max-device-width: 930px) {
+	@import "_930";
+}
+body.layout-930 {
+	@import "_930";
+}
+
 @import "_ie";
