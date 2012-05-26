@@ -1,6 +1,7 @@
 ---
 layout: layout
 ---
+<article>
 {% if page.icon %}<img class="page-icon" src="{{ page.icon }}" alt="{{ page.title }}" alt="{{ page.title }}">{% endif %}
 {% if page.title %}<h1 class="page-title">
 	{% if page.link %}<a href="{{ page.link }}">{{ page.title }}</a>{% else %}{{ page.title }}{% endif %}
@@ -8,3 +9,4 @@ layout: layout
 <div class="page-body">
 {{ content }}
 </div>
+</article>

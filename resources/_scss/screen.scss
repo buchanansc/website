@@ -2,8 +2,8 @@
 @import "compass/css3";
 @import "compass/utilities";
 
-$font_body: "Open Sans", Arial, Helvetica, sans-serif;
-$font_code: Menlo, Consolas, "Andale Mono", monospace;
+$font_body: "Open Sans", "Arial", "Helvetica", sans-serif;
+$font_code: "Menlo", "Consolas", "Andale Mono", monospace;
 $font_size: 13px;
 
 $default: #2a2a2a;
@@ -29,23 +29,23 @@ html, body {
 	margin: 0;
 	height: 100%;
 	padding: 0;
-	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
 }
 
 body {
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
 	background: {
 		color: $body__bg;
 		image: image-url("background/body.png");
 		position: left top;
 		repeat: repeat;
 		size: auto;
-	}
+	};
 	color: $default;
 	font: {
 		family: $font_body;
 		size: $font_size;
-	}
+	};
 	line-height: normal;
 }
 
@@ -65,8 +65,7 @@ a {
 
 	& img {
 		border: 0;
-		padding: 0;
-		vertical-align: text-top;
+		vertical-align: text-bottom;
 	}
 
 	&:hover, &:focus {
@@ -108,7 +107,7 @@ pre, code, kbd, samp {
 		image: image-url("background/layout.png");
 		repeat: repeat;
 		size: auto;
-	}
+	};
 	clear: both;
 	float: left;
 	min-height: 100%;
@@ -196,24 +195,27 @@ $spr-sprite-base-class: ".sprite";
 
 		.site-title {
 			@include text-shadow(0 1px 0 rgba(255,255,255,.5));
+			background: none;
+			color: $default;
 			font: {
 				size: 30px;
 				style: italic;
 				weight: 700;
-			}
+			};
 			line-height: 30px;
 			height: 30px;
 			margin: 0;
 			padding: 0;
 			position: relative;
 
+			
 			// No font-face support
 			html.no-fontface & {
 				background: {
 					image: image-url("site-title.png");
 					position: right bottom;
 					repeat: no-repeat;
-				}
+				};
 				overflow: hidden;
 				text-indent: 1000px;
 			}
@@ -222,7 +224,7 @@ $spr-sprite-base-class: ".sprite";
 
 	.mylinks {
 		float: right;
-		font-size: $font_size + 1;
+		font-size: 1.1em;
 		padding: 4px 0 0;
 		text-align: left;
 		width: 220px;
@@ -243,7 +245,7 @@ $spr-sprite-base-class: ".sprite";
 		}
 
 		a {
-			background-color: #2a2a2a;
+			background-color: $default;
 			display: block;
 
 			span {
@@ -280,9 +282,9 @@ $spr-sprite-base-class: ".sprite";
 			color: $default;
 			display: block;
 			font: {
-				size: $font_size + 4;
+				size: 1.3em;
 				weight: 400;
-			}
+			};
 			line-height: 200%;
 			margin: 0 0 0 50px;
 			overflow: hidden;
@@ -320,8 +322,10 @@ $spr-sprite-base-class: ".sprite";
 	}
 
 	#{headings()}, p, pre, blockquote {
-		margin-bottom: .6em;
-		margin-top: .6em;
+		margin: {
+			bottom: .6em;
+			top: .6em;
+		};
 	}
 
 	#{headings()} {
@@ -330,7 +334,7 @@ $spr-sprite-base-class: ".sprite";
 			family: inherit;
 			style: normal;
 			weight: 400;
-		}
+		};
 	}
 
 	h1 { font-size: 2em; }
@@ -346,14 +350,14 @@ $spr-sprite-base-class: ".sprite";
 		margin: {
 			left: 40px;
 			right: 0;
-		}
+		};
 	}
 
 	dl, dt, dd {
 		margin: {
 			left: 0;
 			right: 0;
-		}
+		};
 	}
 
 	pre {
@@ -411,7 +415,8 @@ $spr-sprite-base-class: ".sprite";
 
 	.page-title,
 	.page-icon,
-	& > :first-child {
+	& > :first-child,
+	& > article > :first-child {
 		margin-top: 0;
 	}
 
@@ -432,12 +437,15 @@ $spr-sprite-base-class: ".sprite";
 	}
 
 	/** Image links */
-	.gallery a,
-	a.image {
+	.gallery a {
 		background-color: $link_image__bg;
 		margin: 2px;
-		padding: 4px;
+		padding: 0; // 4px;
 
+		img {
+			margin: 4px;
+		}
+		
 		&:hover, &:focus {
 			background-color: $link_hover__bg;
 		}
@@ -453,7 +461,7 @@ $spr-sprite-base-class: ".sprite";
 			overflow: hidden;
 		}
 
-		a {
+		a, a:hover, a:active, a:visited {
 			@include box-shadow(none);
 			@include transition(none);
 			background-color: transparent;
@@ -475,11 +483,15 @@ $spr-sprite-base-class: ".sprite";
 @import "_error";
 @import "_cssgradients";
 
-@media screen and (max-device-width: 930px) {
-	@import "_930";
-}
 body.layout-930 {
 	@import "_930";
 }
 
-@import "_ie";
+/** IE Settings */
+
+html.lt-ie7 {
+	#layout {
+		height: 100%;
+	}
+}
+

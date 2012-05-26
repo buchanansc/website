@@ -18,7 +18,7 @@ html.cssgradients.multiplebgs {
 		background: {
 			position: 0 0;
 			repeat: repeat;
-		}
+		};
 	}
 
 	#layout {
@@ -39,6 +39,6 @@ html.cssgradients.multiplebgs {
 		background: {
 			position: $width_west top, $width_west - 2px 0, 0 0, 0 0, 0 0;
 			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
-		}
+		};
 	}
 }
