@@ -10,7 +10,7 @@
 	{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800"> -->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800">
 	<link rel="stylesheet" type="text/css" href="/resources/css/print.css" media="print">
 	<link rel="stylesheet" type="text/css" href="/resources/css/screen.css" media="screen, projection">
 
@@ -22,26 +22,34 @@
 	<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 <![endif]-->
 
-	<script type="text/javascript">
-	window.log=function a(){log.history=log.history||[],log.history.push(arguments);if(this.console){var b=arguments,c;try{b.callee=a.caller}catch(d){}c=[].slice.call(b),typeof console.log=="object"?log.apply.call(console.log,console,c):console.log.apply(console,c)}},function(a){function b(){}for(var c="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),d;!!(d=c.pop());)a[d]=a[d]||b}(function(){try{return console.log(),window.console}catch(a){return window.console={}}}());
-	var site_config = {
-		'site_title': "{{ site.title }}"
-	};
-	</script>
-
+	<script src="/lib/log.js" type="text/javascript"></script>
 	<script src="/lib/modernizr.custom.65249.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-	<script src="/lib/site.js" type="text/javascript"></script>
+
+	<script src="/lib/site/site.js" type="text/javascript"></script>
+	<script src="/lib/site/site.content.js" type="text/javascript"></script>
+	<script src="/lib/site/site.links.js" type="text/javascript"></script>
+	<script src="/lib/site/site.navigation.js" type="text/javascript"></script>
+	<script src="/lib/site/site.ui.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-12612599-1']);
-	_gaq.push(['_trackPageview']);
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+		jQuery(function () {
+			Site.init({
+				'title': "{{ site.title }}",
+				'url': "{{ site.url }}"
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-12612599-1']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
 	</script>
 
 </head>

@@ -16,12 +16,15 @@ $navigation__bg: #e5e5e5;
 $link: #680094;
 $link_hover: #fff;
 $link_hover__bg: $link;
-$link_image__bg: #e6e6e6;
+$link_gallery__bg: #e6e6e6;
 
 $heading: $default; // #2b661d
 
 $width_west: 330px;
 $width_center: 570px;
+
+$height_my-links-icons: 24px;
+$width_my-links-icons: $height_my-links-icons;
 
 /** Global */
 
@@ -50,7 +53,7 @@ body {
 }
 
 a {
-	-webkit-tap-highlight-color: transparentize($link, .5);
+	// -webkit-tap-highlight-color: transparentize($link, .5);
 	@include border-radius(3px);
 	@include transition-property('background, box-shadow, color, margin, padding');
 	@include transition-duration(.08s);
@@ -72,8 +75,8 @@ a {
 		@include box-shadow(0 1px 0 0 rgba(0,0,0,.2), 0 -30px 30px -30px rgba(0,0,0,.35) inset);
 		background-color: $link_hover__bg;
 		color: $link_hover;
-		margin: -3px -6px -3px;
-		padding: 3px 6px 3px;
+		margin: -3px -6px;
+		padding: 3px 6px;
 		z-index: 2;
 	}
 }
@@ -222,7 +225,7 @@ $spr-sprite-base-class: ".sprite";
 		}
 	}
 
-	.mylinks {
+	.my-links {
 		float: right;
 		font-size: 1.1em;
 		padding: 4px 0 0;
@@ -234,7 +237,7 @@ $spr-sprite-base-class: ".sprite";
 		}
 	}
 
-	.mylinks-icons {
+	.my-links-icons {
 		float: right;
 		margin-top: -2px;
 		white-space: nowrap;
@@ -250,12 +253,13 @@ $spr-sprite-base-class: ".sprite";
 
 			span {
 				@include border-radius(3px);
+				@include background-origin(content-box);
 				background-repeat: no-repeat;
 				display: block;
-				height: 24px;
+				height: $height_my-links-icons;
 				overflow: hidden;
 				text-indent: 1000px;
-				width: 24px;
+				width: $width_my-links-icons;
 			}
 
 			&:hover, &:focus {
@@ -432,13 +436,13 @@ $spr-sprite-base-class: ".sprite";
 		clear: right;
 	}
 
+	/** Image galleries */
 	.gallery {
 		text-align: center;
 	}
 
-	/** Image links */
 	.gallery a {
-		background-color: $link_image__bg;
+		background-color: $link_gallery__bg;
 		margin: 2px;
 		padding: 0; // 4px;
 
@@ -453,7 +457,7 @@ $spr-sprite-base-class: ".sprite";
 
 	/** Content Loading */
 	&.loading {
-		&, & * {
+		&, * {
 			color: $default_loading;
 		}
 
@@ -461,7 +465,7 @@ $spr-sprite-base-class: ".sprite";
 			overflow: hidden;
 		}
 
-		a, a:hover, a:active, a:visited {
+		a, a:hover, a:visited {
 			@include box-shadow(none);
 			@include transition(none);
 			background-color: transparent;
@@ -470,6 +474,11 @@ $spr-sprite-base-class: ".sprite";
 			margin: 0;
 			padding: 0;
 			text-decoration: none;
+		}
+
+		.gallery a {
+			background-color: $link_gallery__bg;
+			margin: 2px;
 		}
 
 		img {
@@ -482,10 +491,7 @@ $spr-sprite-base-class: ".sprite";
 
 @import "_error";
 @import "_cssgradients";
-
-body.layout-930 {
-	@import "_930";
-}
+@import "_layout-930";
 
 /** IE Settings */
 
