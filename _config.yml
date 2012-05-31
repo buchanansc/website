@@ -14,7 +14,7 @@ title: Scott Buchanan
 # future: true
 # lsi: false
 pygments: true
-# markdown: maruku
+markdown: rdiscount
 # permalink: date
 
 # maruku:
