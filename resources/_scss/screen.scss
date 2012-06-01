@@ -23,18 +23,21 @@ $heading: $default; // #2b661d
 $width_west: 330px;
 $width_center: 570px;
 
-$height_my-links-icons: 24px;
-$width_my-links-icons: $height_my-links-icons;
+$my-links_height: 24px;
+$my-links_width: $my-links_height;
+
+// @import "_tipsy";
 
 /** Global */
 
 html, body {
-	margin: 0;
 	height: 100%;
+	margin: 0;
 	padding: 0;
 }
 
 body {
+	-moz-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	background: {
@@ -61,23 +64,27 @@ a {
 	cursor: pointer;
 	display: inline-block;
 	margin: 0;
-	outline: none;
 	padding: 0;
 	position: relative;
 	text-decoration: none;
 
-	& img {
+	img {
 		border: 0;
 		vertical-align: text-bottom;
 	}
 
-	&:hover, &:focus {
+	&:hover {
 		@include box-shadow(0 1px 0 0 rgba(0,0,0,.2), 0 -30px 30px -30px rgba(0,0,0,.35) inset);
 		background-color: $link_hover__bg;
 		color: $link_hover;
 		margin: -3px -6px;
 		padding: 3px 6px;
 		z-index: 2;
+	}
+	
+	&:focus {
+		outline-color: $link;
+		// outline-style: solid;
 	}
 }
 
@@ -88,6 +95,26 @@ b, strong {
 i, em {
 	font-style: italic;
 }
+
+h1, h2, h3, h4, h5, h6 {
+	color: $heading;
+	font: {
+		family: inherit;
+		style: normal;
+		weight: 400;
+	};
+}
+
+h3, h4, h5, h6 {
+	font-weight: 600;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.67em; }
 
 hr {
 	@include box-shadow(0 -1px 0 rgba(0,0,0,.2));
@@ -159,12 +186,11 @@ $spr-sprite-base-class: ".sprite";
 @import "spr/*.png";
 @include all-spr-sprites;
 
-.site-icon, .site-icon:hover, .site-icon:focus {
+.site-icon, .site-icon:hover { // , .site-icon:focus
 	@include box-shadow(none);
 	@include spr-sprite("site-icon");
 	@include transition(none);
 	background-color: transparent;
-	bottom: auto;
 	display: block;
 	height: spr-sprite-height("site-icon");
 	left: 11px;
@@ -172,7 +198,6 @@ $spr-sprite-base-class: ".sprite";
 	overflow: hidden;
 	padding: 0;
 	position: absolute;
-	right: auto;
 	text-indent: 1000px;
 	top: 11px;
 	white-space: nowrap;
@@ -195,52 +220,43 @@ $spr-sprite-base-class: ".sprite";
 		height: 70px;
 		min-height: 70px;
 		padding: 10px 20px;
+	}
+	.site-title {
+		@include text-shadow(0 1px 0 rgba(255,255,255,.5));
+		background: none;
+		color: $default;
+		font: {
+			size: 30px;
+			style: italic;
+			weight: 700;
+		};
+		line-height: 30px;
+		height: 30px;
+		margin: 0;
+		padding: 0;
+		position: relative;
 
-		.site-title {
-			@include text-shadow(0 1px 0 rgba(255,255,255,.5));
-			background: none;
-			color: $default;
-			font: {
-				size: 30px;
-				style: italic;
-				weight: 700;
+		// No font-face support
+		html.no-fontface & {
+			background: {
+				image: image-url("site-title.png");
+				position: right bottom;
+				repeat: no-repeat;
 			};
-			line-height: 30px;
-			height: 30px;
-			margin: 0;
-			padding: 0;
-			position: relative;
-
-			
-			// No font-face support
-			html.no-fontface & {
-				background: {
-					image: image-url("site-title.png");
-					position: right bottom;
-					repeat: no-repeat;
-				};
-				overflow: hidden;
-				text-indent: 1000px;
-			}
+			overflow: hidden;
+			text-indent: 1000px;
 		}
 	}
 
 	.my-links {
 		float: right;
-		font-size: 1.1em;
-		padding: 4px 0 0;
+		padding: 2px 0 0;
 		text-align: left;
-		width: 220px;
+		width: 222px;
 
-		a {
-			float: left;
+		ul {
+			white-space: nowrap;
 		}
-	}
-
-	.my-links-icons {
-		float: right;
-		margin-top: -2px;
-		white-space: nowrap;
 
 		li {
 			float: left;
@@ -249,27 +265,45 @@ $spr-sprite-base-class: ".sprite";
 
 		a {
 			background-color: $default;
+			color: $default__bg;
 			display: block;
+			float: left;
+			height: $my-links_height;
+			line-height: $my-links_height;
+			margin: 0;
+			padding: 0 6px;
 
 			span {
 				@include border-radius(3px);
 				@include background-origin(content-box);
 				background-repeat: no-repeat;
 				display: block;
-				height: $height_my-links-icons;
+				height: $my-links_height;
 				overflow: hidden;
 				text-indent: 1000px;
-				width: $width_my-links-icons;
+				width: $my-links_width;
 			}
 
-			&:hover, &:focus {
+			&:hover { // , &:focus
 				background-color: $link_hover__bg;
-				margin: -3px;
-				padding: 3px;
+				// margin: 0;
+				// padding: 0;
 
 				span {
 					background-color: transparent;
 				}
+			}
+		}
+
+		.my-links-left {
+			float: left;
+		}
+
+		.my-links-right {
+			float: right;
+
+			a {
+				padding: 0;
 			}
 		}
 	}
@@ -297,7 +331,7 @@ $spr-sprite-base-class: ".sprite";
 			text-overflow: ellipsis;
 			white-space: nowrap;
 
-			&:hover, &:focus {
+			&:hover { // , &:focus
 				background: $link_hover__bg;
 				color: $link_hover;
 			}
@@ -308,7 +342,9 @@ $spr-sprite-base-class: ".sprite";
 /** Center */
 
 #content {
-	color: $default;
+	-moz-text-size-adjust: 110%;
+	-ms-text-size-adjust: 110%;
+	-webkit-text-size-adjust: 110%;
 	padding: 10px 20px 30px;
 	text-align: left;
 
@@ -325,34 +361,18 @@ $spr-sprite-base-class: ".sprite";
 		padding: 0;
 	}
 
-	#{headings()}, p, pre, blockquote {
+	h1, h2, h3, h4, h5, h6, p, pre, blockquote {
 		margin: {
 			bottom: .6em;
 			top: .6em;
 		};
 	}
 
-	#{headings()} {
-		color: $heading;
-		font: {
-			family: inherit;
-			style: normal;
-			weight: 400;
-		};
-	}
-
-	h1 { font-size: 2em; }
-	h2 { font-size: 1.5em; }
-	h3 { font-size: 1.17em; }
-	h4 { font-size: 1em; }
-	h5 { font-size: 0.83em; }
-	h6 { font-size: 0.67em; }
-
 	blockquote {
 		color: #444;
 		font-style: italic;
 		margin: {
-			left: 40px;
+			left: 30px;
 			right: 0;
 		};
 	}
@@ -377,11 +397,16 @@ $spr-sprite-base-class: ".sprite";
 
 	ul, ol {
 		list-style-type: disc;
-		padding-left: 40px;
+		// padding-left: 30px;
+		padding-left: 0px;
 	}
 
 	ol {
 		list-style-type: decimal;
+	}
+	
+	li {
+		margin-left: 30px;
 	}
 
 	table {
@@ -418,18 +443,9 @@ $spr-sprite-base-class: ".sprite";
 	}
 
 	.page-title,
-	.page-icon,
 	& > :first-child,
 	& > article > :first-child {
 		margin-top: 0;
-	}
-
-	.page-icon {
-		float: right;
-	}
-
-	.page-title {
-		color: $default;
 	}
 
 	.page-body {
@@ -449,8 +465,8 @@ $spr-sprite-base-class: ".sprite";
 		img {
 			margin: 4px;
 		}
-		
-		&:hover, &:focus {
+
+		&:hover { // , &:focus
 			background-color: $link_hover__bg;
 		}
 	}
@@ -488,10 +504,97 @@ $spr-sprite-base-class: ".sprite";
 	}
 }
 
+/** Error Pages */
 
-@import "_error";
-@import "_cssgradients";
-@import "_layout-930";
+#layout-error {
+	margin: 25px auto 0;
+	max-width: 260px;
+	padding: 20px;
+	position: relative;
+	text-align: center;
+
+	.site-icon {
+		left: auto;
+		right: -7px;
+		top: -10px;
+	}
+
+	.layout-inner {
+		@include background-image(
+			linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
+			image-url("noise_100.png")
+		);
+		@include border-radius(8px);
+		@include box-shadow(0 1px 0px 0 rgba(255,255,255,.75) inset, 0 1px 4px 0 rgba(0, 0, 0, 0.35));
+		background: {
+			color: #969696;
+			position: left top;
+			repeat: repeat;
+		};
+		width: 100%;
+	}
+
+	.page-title {
+		@include text-shadow(0 3px 15px rgba(255,255,255,.3), 0 0 0 #5c0000, 1px 1px 0 rgba(255,255,255,.5));
+		color: #888;
+		font-size: 64px;
+		font-weight: 800;
+		line-height: 64px;
+		margin: 0;
+		padding: 30px 0;
+
+		html.textshadow & {
+			color: transparent;
+		}
+	}
+}
+
+/** CSS3 gradient support */
+
+html.cssgradients.multiplebgs {
+	body {
+		@include background-image(
+			linear-gradient(right,
+				rgba(0,0,0,0) 0%,
+				rgba(0,0,0,0) 30px,
+				rgba(0,0,0,.15) 30px,
+				rgba(0,0,0,.05) 32px,
+				rgba(0,0,0,.05) 58px,
+				rgba(0,0,0,.15) 100%
+			),
+			linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
+			image-url("noise_100.png")
+		);
+		@include background-size(60px 100%, auto, auto);
+		background: {
+			position: 0 0;
+			repeat: repeat;
+		};
+	}
+
+	#layout {
+		@include background-image(
+			linear-gradient(left, $default__bg, darken($default__bg, 2%)),
+			linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.15)),
+			linear-gradient(top, rgba(0,0,0,.07) 0%, rgba(0,0,0,0) $width_west * 2, rgba(0,0,0,0) 100%),
+			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
+			image-url("noise_100.png")
+		);
+		@include background-size(
+			$width_center 100%,
+			2px 100%,
+			$width_west 100%,
+			$width_west 100%,
+			auto
+		);
+		background: {
+			position: $width_west top, $width_west - 2px 0, 0 0, 0 0, 0 0;
+			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+		};
+	}
+}
+
+@import "_layout-narrow";
 
 /** IE Settings */
 

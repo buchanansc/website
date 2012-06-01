@@ -26,29 +26,27 @@ a {
 	color: $link;
 	font-weight: 600;
 	text-decoration: underline;
+
+	img {
+		border: 0;
+			vertical-align: text-bottom;
+		}
+	
 }
 
 a:after {
 	color: $default + #555;
-	content: " " attr(href);
-	font-size: small;
+	content: " (" attr(href) ") ";
+	font-size: $font_size - 2;
 	font-weight: normal;
 	text-decoration: none;
 	word-wrap: break-word;
 }
 
+
+
 a[href^="/"]:after {
 	content: " http://buchanansc.com" attr(href);
-}
-
-#{headings()}, b, strong {
-	&, & a {
-		font-weight: 700;
-	}
-}
-
-i, em {
-	font-style: italic;
 }
 
 hr {
@@ -68,7 +66,7 @@ pre {
 	background: none;
 	border: 2px solid #ccc;
 	color: $default;
-	padding: .6em .8em;	
+	padding: .6em .8em;
 	position: static;
 	white-space: pre-wrap;
 	word-wrap: break-word;
@@ -86,18 +84,24 @@ q:after {
 	content: " (" attr(cite) ")"
 }
 
-#{headings()}, p, pre, blockquote, ul, ol {
+h1, h2, h3, h4, h5, h6 {
+	font: {
+		family: inherit;
+		style: normal;
+	};
+}
+
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol {
 	margin: {
 		bottom: 15px;
 		top: 15px;
 	};
 }
 
-#{headings()} {
-	font: {
-		family: inherit;
-		style: normal;
-	};
+h1, h2, h3, h4, h5, h6, b, strong {
+	&, & a {
+		font-weight: 700;
+	}
 }
 
 h1 { font-size: 2em; }
@@ -107,13 +111,29 @@ h4 { font-size: 1em; }
 h5 { font-size: 0.83em; }
 h6 { font-size: 0.67em; }
 
+i, em {
+	font-style: italic;
+}
+
+#navigation {
+	* {
+		display: none;
+	}
+	
+	.header {
+		display: inline;
+	}
+	
+	.site-title {
+		display: block;
+		margin: 0;
+		font-style: italic;
+		font-size: 2em;
+	}
+}
+
 .page-title,
-.page-icon,
 #content > :first-child,
 #content > article > :first-child {
 	margin-top: 0;
-}
-
-.layout-west {
-	display: none;
 }
