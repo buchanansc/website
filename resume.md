@@ -4,12 +4,12 @@ title: Résumé
 ---
 
 <p itemscope itemtype="http://schema.org/Person">
-	<span itemprop="name"><b>Scott Buchanan</b></span><br>
-	<span class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+	<span itemprop="name"><b>Scott Buchanan</b></span>
+	<div class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 		<span itemprop="addressLocality">Dublin</span>,
 		<span itemprop="addressRegion">California</span>,
 		<span itemprop="addressCountry">United States</span>
-	</span><br>
+	</div>
 	<a href="http://buchanansc.com" itemprop="url">http://buchanansc.com</a>
 </p>
 
@@ -87,9 +87,10 @@ Designed and developed websites and internet applications on a corporate level. 
 **California State University, Chico, California**  
 *May 2003 - November 2003*
 
->Maintained the hardware and software of a variety of different computer systems over an entire college campus. Developed troubleshooting and support skills.
+Maintained the hardware and software of a variety of different computer systems over an entire college campus. Developed troubleshooting and support skills.
 
 ### Lab Technician
+
 **Vicom Systems, Fremont, California**  
 *June 2002 - August 2002*
 
