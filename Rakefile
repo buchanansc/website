@@ -1,27 +1,47 @@
+require "rake"
+require "yaml"
+
 CONFIG = {
 	'root' => File.dirname(__FILE__),
 	'compass_project' => '',
-	'jekyll_site' => '_site',
-	'server_hostname' => `echo "$HOSTNAME"`.chomp,
-	'server_port' => 4000
+	'jekyll_config' => '_config.yml',
 }
 
 task :default do
 	exec("rake --rakefile '#{__FILE__}' --tasks")
 end
 
-desc 'Switch to development environment'
-task :development => ["compass:clean", "compass:development", "jekyll:preview"] do
+def jekyllConfigProduction(on = true)
+	path = File.join(CONFIG['root'], CONFIG['jekyll_config'])
+	text = File.read(path)
+	f = File.open(path, "w")
+	f.write(text.sub(/^[ #]*production *: *true\s*$/mi, "#{(!on)? '# ' : ''}production: true\n"));
+	f.close()
 end
 
-desc 'Switch to production environment'
-task :production => ["compass:clean", "compass:production", "compass:cache", "jekyll:clean"]
+desc 'Switch to the development environment'
+task :development => ["compass:clean", "compass:development", "jekyll:clean"] do
+	jekyllConfigProduction(false)
+	Rake::Task["jekyll:server"].execute
+end
+
+desc 'Switch to the production environment'
+task :production => ["compass:clean", "compass:production", "compass:cache", "jekyll:clean"] do
+	jekyllConfigProduction(true)
+	Rake::Task["jekyll:run"].execute
+end
+
+desc 'Clean all cache and generated files'
+task :clean => ["compass:clean", "compass:cache", "jekyll:clean"]
+
+
 
 namespace :jekyll do
 
 	desc 'Clear generated site'
 	task :clean do
-		path = File.expand_path(File.join(CONFIG['root'], CONFIG['jekyll_site']))
+		yml = YAML.load_file(File.join(CONFIG['root'], CONFIG['jekyll_config']))
+		path = File.expand_path(File.join(CONFIG['root'], yml['destination'] || './_site'))
 		if (File.expand_path(CONFIG['root']) != path && File.directory?(path)) then
 			puts "Removing #{path}"
 			FileUtils.rm_rf(path)
@@ -29,15 +49,15 @@ namespace :jekyll do
 	end
 
 	desc 'Launch jekyll preview environment'
-	task :preview do
-		puts 'Launching jekyll server...'
-		system("{ sleep 1 && open 'http://#{CONFIG['server_hostname']}:#{CONFIG['server_port']}'; } &>/dev/null &")
-		system("cd '#{CONFIG['root']}' && jekyll --server #{CONFIG['server_port']} --auto")
+	task :server do
+		yml = YAML.load_file(File.join(CONFIG['root'], CONFIG['jekyll_config']))
+		port = yml['server_port'] || 4000
+		system("{ sleep 1 && open 'http://#{`echo "$HOSTNAME"`.chomp}:#{port}'; } &>/dev/null &")
+		system("cd '#{CONFIG['root']}' && jekyll --server --auto")
 	end
 
 	desc 'Run jekyll'
 	task :run do
-		puts 'Running jekyll...'
 		system("cd '#{CONFIG['root']}' && jekyll")
 	end
 

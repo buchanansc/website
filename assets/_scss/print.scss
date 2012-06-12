@@ -1,13 +1,10 @@
 @import "compass/css3";
 
-$font_body: "Open Sans", "Arial", "Helvetica", sans-serif;
-$font_code: "Menlo", "Consolas", "Andale Mono", monospace;
-$font_size: 13px;
+@import "_global";
 
+$site-title: $default;
 $default: #000;
 $default__bg: #fff;
-
-$link: #680094;
 
 html, body {
 	background: $default__bg;
@@ -29,24 +26,9 @@ a {
 
 	img {
 		border: 0;
-			vertical-align: text-bottom;
-		}
-	
-}
+		vertical-align: text-bottom;
+	}
 
-a:after {
-	color: $default + #555;
-	content: " (" attr(href) ") ";
-	font-size: $font_size - 2;
-	font-weight: normal;
-	text-decoration: none;
-	word-wrap: break-word;
-}
-
-
-
-a[href^="/"]:after {
-	content: " http://buchanansc.com" attr(href);
 }
 
 hr {
@@ -58,18 +40,27 @@ hr {
 
 pre, code, kbd, samp {
 	font-family: $font_code;
-	font-size: inherit;
+	font-size: $font_size_code;
 }
 
 pre {
 	@include border-radius(3px);
 	background: none;
-	border: 2px solid #ccc;
+	border: 2px solid #999;
 	color: $default;
 	padding: .6em .8em;
 	position: static;
 	white-space: pre-wrap;
 	word-wrap: break-word;
+}
+
+blockquote {
+	color: #444;
+	font-style: italic;
+	margin: {
+		left: 30px;
+		right: 0;
+	};
 }
 
 q {
@@ -89,6 +80,7 @@ h1, h2, h3, h4, h5, h6 {
 		family: inherit;
 		style: normal;
 	};
+	page-break-after: avoid;
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol {
@@ -119,21 +111,79 @@ i, em {
 	* {
 		display: none;
 	}
-	
+
 	.header {
-		display: inline;
-	}
-	
-	.site-title {
 		display: block;
+		float: right;
 		margin: 0;
+		text-align: right;
+	}
+
+	.site-title {
+		color: $site-title;
+		display: block;
+		font-size: 1.4em;
 		font-style: italic;
-		font-size: 2em;
+		line-height: 1.2em;
+		margin: 0;
+		padding: 0;
+	}
+
+	.site-icon {
+		// clear: right;
+		display: block;
+		// float: right;
+		font-size: 12px;
+		line-height: 1.1em;
+		margin: 0px 0 0;
+		padding: 0;
+		text-decoration: none;
+
+		span {
+			display: inline;
+		}
 	}
 }
 
-.page-title,
-#content > :first-child,
-#content > article > :first-child {
-	margin-top: 0;
+#content {
+	a:after {
+		color: $default + #555;
+		content: " (" attr(href) ") ";
+		font-size: $font_size - 2;
+		font-weight: normal;
+		text-decoration: none;
+		word-wrap: break-word;
+	}
+
+	a[href^="/"]:after {
+		content: " http://buchanansc.com" attr(href);
+	}
+
+	.page-title,
+	.page-title-link,
+ 	& > :first-child,
+ 	& > article > :first-child {
+		margin-top: 0;
+		padding-top: 0;
+	}
+
+	.page-title,
+	.page-title-link {
+		border-bottom: 1px solid #333;
+	}
+
+	p, pre, blockquote, ul, ol {
+		page-break-before: avoid;
+		page-break-inside: avoid;
+	}
 }
+
+.hidden {
+	visibility: collapse;
+}
+
+.print {
+	visibility: visible;
+}
+
+@import "_pages";

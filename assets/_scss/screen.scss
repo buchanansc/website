@@ -1,34 +1,8 @@
 @import "compass/reset";
 @import "compass/css3";
-@import "compass/utilities";
+// @import "compass/utilities";
 
-$font_body: "Open Sans", "Arial", "Helvetica", sans-serif;
-$font_code: "Menlo", "Consolas", "Andale Mono", monospace;
-$font_size: 13px;
-
-$default: #2a2a2a;
-$default_loading: #999;
-$default__bg: #fff;
-
-$body__bg: #81e381;
-$navigation__bg: #e5e5e5;
-
-$link: #680094;
-$link_hover: #fff;
-$link_hover__bg: $link;
-$link_gallery__bg: #e6e6e6;
-
-$heading: $default; // #2b661d
-
-$width_west: 330px;
-$width_center: 570px;
-
-$my-links_height: 24px;
-$my-links_width: $my-links_height;
-
-// @import "_tipsy";
-
-/** Global */
+@import "_global";
 
 html, body {
 	height: 100%;
@@ -37,9 +11,7 @@ html, body {
 }
 
 body {
-	-moz-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
+	@include text-size-adjust();
 	background: {
 		color: $body__bg;
 		image: image-url("background/body.png");
@@ -53,39 +25,51 @@ body {
 		size: $font_size;
 	};
 	line-height: normal;
+
+	html.cssgradients.multiplebgs & {
+		@include background-image(
+			linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
+			linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
+			image-url("noise_100.png")
+		);
+		@include background-size(60px 100%, auto, auto);
+		background: {
+			position: 0 0;
+			repeat: repeat;
+		};
+	}
 }
 
 a {
 	// -webkit-tap-highlight-color: transparentize($link, .5);
 	@include border-radius(3px);
-	@include transition-property('background, box-shadow, color, margin, padding');
-	@include transition-duration(.08s);
+	@include transition-duration(.1s);
+	@include transition-property('background, color, border, box-shadow, text-shadow');
 	color: $link;
 	cursor: pointer;
 	display: inline-block;
-	margin: 0;
-	padding: 0;
+	margin: -2px -5px;
+	padding: 2px 5px;
 	position: relative;
 	text-decoration: none;
+
+	&:hover {
+		@include box-shadow(0 1px 0 0 rgba(0,0,0,.2), 0 -30px 30px -30px rgba(0,0,0,.35) inset);
+		background-color: $link_hover__bg;
+		color: $link_hover;
+		z-index: 2;
+	}
+
+	&:focus {
+		outline-color: $link;
+		// outline-style: solid;
+	}
 
 	img {
 		border: 0;
 		vertical-align: text-bottom;
 	}
 
-	&:hover {
-		@include box-shadow(0 1px 0 0 rgba(0,0,0,.2), 0 -30px 30px -30px rgba(0,0,0,.35) inset);
-		background-color: $link_hover__bg;
-		color: $link_hover;
-		margin: -3px -6px;
-		padding: 3px 6px;
-		z-index: 2;
-	}
-	
-	&:focus {
-		outline-color: $link;
-		// outline-style: solid;
-	}
 }
 
 b, strong {
@@ -99,10 +83,10 @@ i, em {
 h1, h2, h3, h4, h5, h6 {
 	color: $heading;
 	font: {
-		family: inherit;
+		family: $font_heading;
 		style: normal;
 		weight: 400;
-	};
+	}
 }
 
 h3, h4, h5, h6 {
@@ -126,18 +110,20 @@ hr {
 
 pre, code, kbd, samp {
 	font-family: $font_code;
-	font-size: inherit;
+	font-size: $font_size_code;
+}
+
+abbr {
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+	cursor: help;
 }
 
 /** Layout */
 
 #layout {
-	background: {
-		color: $navigation__bg;
-		image: image-url("background/layout.png");
-		repeat: repeat;
-		size: auto;
-	};
+	// @include box-shadow(-1px 0 3px 2px rgba(0,0,0,.3));
+	background-color: $default__bg;
 	clear: both;
 	float: left;
 	min-height: 100%;
@@ -156,37 +142,29 @@ pre, code, kbd, samp {
 
 .layout-inner {
 	position: relative;
+}
 
-	.layout-west {
-		float: left;
-		width: $width_west;
-		position: relative;
-	}
+.layout-west {
+	float: left;
+	width: $width_west;
+	position: relative;
+	z-index: 10;
+}
 
-	.layout-center {
-		margin-left: $width_west;
-		position: relative;
-		width: $width_center;
-		z-index: 10;
-
-		.layout-page {
-			position: relative;
-		}
-	}
-
-	.layout-south {
-		clear: both;
-	}
+.layout-center {
+	margin-left: $width_west;
+	position: relative;
+	width: $width_center;
 }
 
 /** Sprites */
 
 $spr-spacing: 6px;
-$spr-sprite-base-class: ".sprite";
+// $spr-sprite-base-class: ".sprite";
 @import "spr/*.png";
 @include all-spr-sprites;
 
-.site-icon, .site-icon:hover { // , .site-icon:focus
+.site-icon, .site-icon:hover {
 	@include box-shadow(none);
 	@include spr-sprite("site-icon");
 	@include transition(none);
@@ -205,46 +183,80 @@ $spr-sprite-base-class: ".sprite";
 	z-index: 10;
 }
 
-
 /** West */
+
+// $navigation_box-shadow: -2px 0 1px -1px rgba(255,255,255,.3) inset, -30px 0 20px -30px rgba(255,255,255,.2) inset;
+$navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 
 #navigation {
 	@include box-sizing(border-box);
 	@include text-shadow(0 1px 0 rgba(0,0,0,.2));
+	background: {
+		color: $navigation__bg;
+		image: image-url("background/navigation.png");
+		position: right top;
+		repeat: repeat-y;
+		size: auto;
+	};
+	bottom: 0;
+	left: 0;
 	margin: 0;
 	padding: 0 0 10px;
-	position: relative;
+	position: fixed;
 	text-align: right;
+	top: 0;
+	width: $width_west;
+
+	html.cssgradients.multiplebgs.boxshadow & {
+		@include box-shadow($navigation_box-shadow, -2px 0 3px 2px rgba(0,0,0,1));
+		@include background-image(
+			linear-gradient(top, rgba(0,0,0,.07) 0%, rgba(0,0,0,0) $width_west * 2, rgba(0,0,0,0) 100%),
+			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
+			image-url("noise_100.png")
+		);
+		@include background-size(auto);
+		background: {
+			color: transparent;
+			position: 0 0;
+			repeat: no-repeat, no-repeat, repeat;
+		};
+	}
+
+	html.cssgradients.multiplebgs.boxshadow .collapsed & {
+		@include box-shadow($navigation_box-shadow, -2px 0 3px 2px rgba(0,0,0,.5));
+	}
 
 	.header {
 		height: 70px;
 		min-height: 70px;
 		padding: 10px 20px;
 	}
+
 	.site-title {
-		@include text-shadow(0 1px 0 rgba(255,255,255,.5));
-		background: none;
+		@include text-shadow(0 1px 0 rgba(255,255,255,.4));
+		background: {
+			image: image-url("site-title.png");
+			position: right bottom;
+			repeat: no-repeat;
+		};
 		color: $default;
 		font: {
 			size: 30px;
 			style: italic;
 			weight: 700;
 		};
-		line-height: 30px;
 		height: 30px;
+		line-height: 30px;
 		margin: 0;
+		overflow: hidden;
 		padding: 0;
 		position: relative;
+		text-indent: 1000px;
 
-		// No font-face support
-		html.no-fontface & {
-			background: {
-				image: image-url("site-title.png");
-				position: right bottom;
-				repeat: no-repeat;
-			};
-			overflow: hidden;
-			text-indent: 1000px;
+		// Font-face support
+		html.fontface & {
+			background: none;
+			text-indent: 0;
 		}
 	}
 
@@ -264,6 +276,8 @@ $spr-sprite-base-class: ".sprite";
 		}
 
 		a {
+			@include border-radius(3px);
+			color: $link;
 			background-color: $default;
 			color: $default__bg;
 			display: block;
@@ -284,33 +298,35 @@ $spr-sprite-base-class: ".sprite";
 				width: $my-links_width;
 			}
 
-			&:hover { // , &:focus
+			&:hover {
 				background-color: $link_hover__bg;
-				// margin: 0;
-				// padding: 0;
 
 				span {
 					background-color: transparent;
 				}
 			}
-		}
 
-		.my-links-left {
-			float: left;
-		}
-
-		.my-links-right {
-			float: right;
-
-			a {
-				padding: 0;
-			}
+			// &.github-link:hover { background-color: #777; }
+			// &.lastfm-link:hover { background-color: #d51007; }
+			// &.twitter-link:hover { background-color: #33ccff; }
 		}
 	}
 
-	.projects {
+	.my-links-left {
+		float: left;
+	}
+
+	.my-links-right {
+		float: right;
+
+		a {
+			padding: 0;
+		}
+	}
+
+	.navigation-links {
 		clear: both;
-		padding: 80px 0 10px;
+		padding: 50px 0 10px;
 		text-align: right;
 
 		a {
@@ -331,7 +347,7 @@ $spr-sprite-base-class: ".sprite";
 			text-overflow: ellipsis;
 			white-space: nowrap;
 
-			&:hover { // , &:focus
+			&:hover {
 				background: $link_hover__bg;
 				color: $link_hover;
 			}
@@ -342,29 +358,21 @@ $spr-sprite-base-class: ".sprite";
 /** Center */
 
 #content {
-	-moz-text-size-adjust: 110%;
-	-ms-text-size-adjust: 110%;
-	-webkit-text-size-adjust: 110%;
 	padding: 10px 20px 30px;
 	text-align: left;
 
 	#layout.collapsed & {
-		display: none;
+		// display: none;
 	}
 
-	#layout.expanded &,
-	html.no-js & {
-		display: block;
+	#layout.expanded &, html.no-js & {
+		// display: block;
 	}
 
-	&:empty {
-		padding: 0;
-	}
-
-	h1, h2, h3, h4, h5, h6, p, pre, blockquote {
+	blockquote, h1, h2, h3, h4, h5, h6, p, pre, ol, ul {
 		margin: {
-			bottom: .6em;
-			top: .6em;
+			bottom: 15px;
+			top: 15px;
 		};
 	}
 
@@ -384,6 +392,14 @@ $spr-sprite-base-class: ".sprite";
 		};
 	}
 
+	dt {
+		font-weight: bold;
+	}
+
+	dd {
+		margin-left: 30px;
+	}
+
 	pre {
 		@include border-radius(3px);
 		@include box-sizing(border-box);
@@ -395,18 +411,22 @@ $spr-sprite-base-class: ".sprite";
 		word-wrap: normal;
 	}
 
+	code {
+		display: inline-block;
+		white-space: nowrap;
+	}
+
+	pre code {
+		white-space: pre;
+	}
+
 	ul, ol {
 		list-style-type: disc;
-		// padding-left: 30px;
-		padding-left: 0px;
+		padding-left: 30px;
 	}
 
 	ol {
 		list-style-type: decimal;
-	}
-	
-	li {
-		margin-left: 30px;
 	}
 
 	table {
@@ -442,32 +462,70 @@ $spr-sprite-base-class: ".sprite";
 		}
 	}
 
-	.page-title,
+	h1.page-title,
 	& > :first-child,
 	& > article > :first-child {
 		margin-top: 0;
 	}
 
 	.page-body {
+		// @include text-size-adjust(110%);
 		clear: right;
 	}
 
+	/** File download info */
+	p.file-download {
+		padding: {
+			left: 10px;
+			right: 10px;
+		};
+
+		a {
+			font-size: $font_size + 1;
+		}
+	}
+
 	/** Image galleries */
+
 	.gallery {
 		text-align: center;
 	}
 
 	.gallery a {
+		@include border-radius(3px);
 		background-color: $link_gallery__bg;
 		margin: 2px;
-		padding: 0; // 4px;
+		padding: 0;
 
 		img {
 			margin: 4px;
 		}
 
-		&:hover { // , &:focus
+		&:hover {
 			background-color: $link_hover__bg;
+		}
+	}
+
+	/** Error page */
+	.page-error {
+		margin: 25px auto 0;
+		max-width: 260px;
+		padding: 20px;
+		position: relative;
+		text-align: center;
+
+		.page-title {
+			color: #888;
+			font-size: 64px;
+			font-weight: 800;
+			line-height: 64px;
+			margin: 0;
+			padding: 30px 0;
+
+			html.textshadow & {
+				@include text-shadow(0 3px 15px rgba(255,255,255,.3), 0 0 0 #5c0000, 1px 1px 0 rgba(255,255,255,.5));
+				color: transparent;
+			}
 		}
 	}
 
@@ -487,8 +545,8 @@ $spr-sprite-base-class: ".sprite";
 			background-color: transparent;
 			color: inherit;
 			cursor: default;
-			margin: 0;
-			padding: 0;
+			// margin: 0;
+			// padding: 0;
 			text-decoration: none;
 		}
 
@@ -504,97 +562,14 @@ $spr-sprite-base-class: ".sprite";
 	}
 }
 
-/** Error Pages */
-
-#layout-error {
-	margin: 25px auto 0;
-	max-width: 260px;
-	padding: 20px;
-	position: relative;
-	text-align: center;
-
-	.site-icon {
-		left: auto;
-		right: -7px;
-		top: -10px;
-	}
-
-	.layout-inner {
-		@include background-image(
-			linear-gradient(top, rgba(245,245,245,.9), rgba(225,225,225,.9)),
-			image-url("noise_100.png")
-		);
-		@include border-radius(8px);
-		@include box-shadow(0 1px 0px 0 rgba(255,255,255,.75) inset, 0 1px 4px 0 rgba(0, 0, 0, 0.35));
-		background: {
-			color: #969696;
-			position: left top;
-			repeat: repeat;
-		};
-		width: 100%;
-	}
-
-	.page-title {
-		@include text-shadow(0 3px 15px rgba(255,255,255,.3), 0 0 0 #5c0000, 1px 1px 0 rgba(255,255,255,.5));
-		color: #888;
-		font-size: 64px;
-		font-weight: 800;
-		line-height: 64px;
-		margin: 0;
-		padding: 30px 0;
-
-		html.textshadow & {
-			color: transparent;
-		}
-	}
+.print, .hidden {
+	visibility: collapse;
 }
 
-/** CSS3 gradient support */
-
-html.cssgradients.multiplebgs {
-	body {
-		@include background-image(
-			linear-gradient(right,
-				rgba(0,0,0,0) 0%,
-				rgba(0,0,0,0) 30px,
-				rgba(0,0,0,.15) 30px,
-				rgba(0,0,0,.05) 32px,
-				rgba(0,0,0,.05) 58px,
-				rgba(0,0,0,.15) 100%
-			),
-			linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
-			image-url("noise_100.png")
-		);
-		@include background-size(60px 100%, auto, auto);
-		background: {
-			position: 0 0;
-			repeat: repeat;
-		};
-	}
-
-	#layout {
-		@include background-image(
-			linear-gradient(left, $default__bg, darken($default__bg, 2%)),
-			linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.15)),
-			linear-gradient(top, rgba(0,0,0,.07) 0%, rgba(0,0,0,0) $width_west * 2, rgba(0,0,0,0) 100%),
-			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
-			image-url("noise_100.png")
-		);
-		@include background-size(
-			$width_center 100%,
-			2px 100%,
-			$width_west 100%,
-			$width_west 100%,
-			auto
-		);
-		background: {
-			position: $width_west top, $width_west - 2px 0, 0 0, 0 0, 0 0;
-			repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
-		};
-	}
-}
-
+// @import "_tipsy";
 @import "_layout-narrow";
+@import "_pages";
+// @import "_experimental";
 
 /** IE Settings */
 
@@ -603,4 +578,3 @@ html.lt-ie7 {
 		height: 100%;
 	}
 }
-

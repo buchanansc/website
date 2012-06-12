@@ -5,12 +5,19 @@ Site.UI = (function () {
 		 * Called at page load
 		 */
 		init: function () {
-			// Default site layout won't fit if device width <= 900
-			if (Modernizr.mq('only all and (max-device-width: 900px)')) {
+			// Default site layout won't fit if device width <= 930
+			if (Modernizr.mq('only all and (max-device-width: 930px)')) {
 				Site.config('layout', 'narrow');
+				Site.config('animation', false);
+			} else {
+				// Get the width for the collapse/expanded layout
+				var nw = $('.layout-west').width(),
+					cw = $('.layout-center').width();
+				Site.config('layout_width_collapsed', nw);
+				Site.config('layout_width_expanded', nw + cw);
 			}
-
-			$(document.body).addClass('layout-' + Site.config('layout'));
+			
+			// $(document.body).addClass('layout-' + Site.config('layout'));
 
 			// Initialize tooltips
 			if (jQuery().tipsy) {
@@ -33,7 +40,7 @@ Site.UI = (function () {
 		},
 
 		/**
-		 * Refresh the layout
+		 * Refresh the pagelayout
 		 */
 		refresh: function () {
 			// Hide URL bar on iOS
@@ -51,8 +58,7 @@ Site.UI = (function () {
 			for (prop in data) {
 				result = result.replace('<%' + prop + '%>', data[prop])
 			}
-			result = result.replace(/<%[a-z_\-0-9]+%>/ig, '')
-			return result;
+			return result.replace(/<%[a-z_\-0-9]+%>/ig, '');
 		}
 	};
 })();

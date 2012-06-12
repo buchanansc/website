@@ -9,6 +9,9 @@
 var Site = (function () {
 	/** @private */
 	var config = {
+		/** Enable animation */
+		animation: true,
+		
 		/** Effect duration (milliseconds) when animating the content expanding/collapsing. */
 		content_anim_duration: 300,
 
@@ -17,20 +20,20 @@ var Site = (function () {
 
 		/** Enable routing */
 		routing: true,
-		
+
 		/** Site title */
 		title: '',
-		
+
 		/** Site base URL */
 		url: '',
-		
+
 		/** Turn on Google Analytics tracking (requires that routing is also enabled). */
 		tracking: true,
 
+		layout_width_collapsed: null,
+		layout_width_expanded: null,
 		layout: 'default',
 		origin: location.protocol + "//" + location.host,
-		
-		selector_content: '#content',
 		selector_links_all: 'a',
 		selector_links_external: [
 			'a[rel="external"]',
@@ -38,7 +41,7 @@ var Site = (function () {
 			'a[href^="https://"]:not([href^="https://' + location.host + '"])'
 			].join(','),
 		selector_links_internal: 'a[href^="/"]',
-		
+
 		template_error_page: '<div id="layout-error"><h1 class="page-title"><%status%></h1><div class="page-body"><%text%></div></div>'
 	};
 

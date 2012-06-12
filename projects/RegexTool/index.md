@@ -2,6 +2,7 @@
 layout: post
 title: RegexTool
 link: http://wafflesnatcha.github.com/RegexTool
+tags: project
 ---
 
 **RegexTool is a browser-based regular expression tester.**
@@ -10,7 +11,7 @@ Leveraging the power of the [XRegExp][] JavaScript regular expression library,
 RegexTool delivers an efficient and helpful interface to create, diagnose, and
 test your regular expressions.
 
-**[![](/projects/RegexTool/icon_16.png) Live demo][demo]**
+**[![][icon16] Live demo][demo]**
 
 **[source @ github.com][source]**
 
@@ -24,6 +25,8 @@ test your regular expressions.
 
 *Dual licensed under the MIT and GPL licenses.*
 
-[XRegExp]: http://xregexp.com
+
+[icon16]: /projects/RegexTool/icon_16.png
 [demo]: http://wafflesnatcha.github.com/RegexTool
 [source]: http://github.com/wafflesnatcha/RegexTool
+[XRegExp]: http://xregexp.com

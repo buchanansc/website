@@ -18,7 +18,7 @@ Site.Navigation = (function () {
 	 * @private
 	 */
 	function track(category, action) {
-		if (!Site.config("tracking") || !_gaq) return false;
+		if (!Site.config("tracking") || typeof _gaq === "undefined") return false;
 		if (category || action) _gaq.push(['_trackEvent', category || "", action || ""]);
 		else _gaq.push(['_trackPageview']);
 	}
