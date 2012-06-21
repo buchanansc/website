@@ -1,4 +1,4 @@
-/**!
+/**
  * JavaScript for wafflesnatcha.github.com
  *
  * @author Scott Buchanan <buchanan.sc@gmail.com>
@@ -11,7 +11,7 @@ var Site = (function () {
 	var config = {
 		/** Enable animation */
 		animation: true,
-		
+
 		/** Effect duration (milliseconds) when animating the content expanding/collapsing. */
 		content_anim_duration: 300,
 
@@ -29,7 +29,8 @@ var Site = (function () {
 
 		/** Turn on Google Analytics tracking (requires that routing is also enabled). */
 		tracking: true,
-
+		
+		
 		layout_width_collapsed: null,
 		layout_width_expanded: null,
 		layout: 'default',
@@ -42,7 +43,16 @@ var Site = (function () {
 			].join(','),
 		selector_links_internal: 'a[href^="/"]',
 
-		template_error_page: '<div id="layout-error"><h1 class="page-title"><%status%></h1><div class="page-body"><%text%></div></div>'
+		template_error_page: [
+			'<article class="page-error">',
+				'<h1 class="page-title">',
+					'<span class="page-title"><%status%></span>',
+				'</h1>',
+				'<div class="page-body">',
+					'<p><%text%></p>',
+				'</div>',
+			'</article>'
+			].join('\n')
 	};
 
 	return {

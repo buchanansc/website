@@ -13,6 +13,7 @@ Site.UI = (function () {
 				// Get the width for the collapse/expanded layout
 				var nw = $('.layout-west').width(),
 					cw = $('.layout-center').width();
+					
 				Site.config('layout_width_collapsed', nw);
 				Site.config('layout_width_expanded', nw + cw);
 			}
@@ -20,6 +21,7 @@ Site.UI = (function () {
 			// $(document.body).addClass('layout-' + Site.config('layout'));
 
 			// Initialize tooltips
+/*
 			if (jQuery().tipsy) {
 				$('#navigation .my-links a').tipsy({
 					delayIn: 0,
@@ -35,6 +37,7 @@ Site.UI = (function () {
 					trigger: 'hover'
 				});
 			}
+*/
 
 			Site.UI.refresh();
 		},

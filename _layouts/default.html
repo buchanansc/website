@@ -8,6 +8,7 @@
 	<meta charset="utf-8">
 	<title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 	{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+	{% if page.author %}<meta name="author" content="{{ page.author }}">{% endif %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800">
@@ -20,26 +21,11 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/icon/apple-touch-icon-precomposed-114x114.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/icon/apple-touch-icon-precomposed-72x72.png">
 	<link rel="apple-touch-icon-precomposed" href="/assets/img/icon/apple-touch-icon-precomposed.png">
-
 {% if site.production %}
 {% include javascript-production.html %}
 {% else %}
 {% include javascript-development.html %}
 {% endif %}
-
-	<script type="text/javascript">
-	jQuery(function () {
-		Site.init({
-			'title': "{{ site.title }}",
-			'url': "{{ site.url }}"
-		});
-	});
-	</script>
-
-{% if site.production %}
-{% include google-analytics.html %}
-{% endif %}
-
 </head>
 <body>
 {{ content }}

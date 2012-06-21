@@ -22,7 +22,9 @@ Site.Content = (function () {
 			this.expand();
 
 			jqXHR = $(selector).load(url + ' #content > *', function (response, status, xhr) {
-				if (status == "error") Site.Content.error(xhr.status, xhr.statusText);
+				if (status == "error") {
+					Site.Content.error(xhr.status, xhr.statusText);
+				}
 
 				// new site title
 				var m = title_pattern.exec(response);
@@ -35,7 +37,9 @@ Site.Content = (function () {
 				// content is empty
 				if ($(this).text() == "") {
 					Site.Content.clear();
-				} else Site.Links.init(this);
+				} else {
+					Site.Links.init(this);
+				}
 			});
 		},
 
@@ -58,46 +62,40 @@ Site.Content = (function () {
 		},
 
 		expand: function (callback) {
-			callback = callback || $.noop;
 			var el = $('#layout'),
-				cw = Site.config('layout_width_collapsed'),
-				ew = Site.config('layout_width_expanded');
+				done = function() {
+					el.addClass('expanded').removeClass('collapsed');
+					return (callback || $.noop).apply(this);
+				};
 
-			if (!cw || !ew || !el.hasClass('collapsed') || el.hasClass('expanded') || !Site.config('animation')) {
-				el.removeClass('collapsed').addClass('expanded');
-				return callback.apply(this);
+			if (!el.hasClass('collapsed') || el.hasClass('expanded') || !Site.config('animation')) {
+				return done();
 			}
 
-			el.stop(true, true).width(cw).removeClass('collapsed').animate({
-				// 'width': '+=' + $(selector).parent().outerWidth()
-				'width': ew
+			el.stop(true, true).width(Site.config('layout_width_collapsed')).removeClass('collapsed').animate({
+				'width': Site.config('layout_width_expanded')
 			}, {
 				'duration': Site.config('content_anim_duration'),
-				'complete': function () {
-					$(this).removeClass('collapsed').addClass('expanded')
-					callback.apply(this);
-				}
+				'complete': done
 			});
 		},
 
 		collapse: function (callback) {
-			callback = callback || $.noop;
-			var el = $('#layout');
+			var el = $('#layout'),
+				done = function() {
+					el.addClass('collapsed').removeClass('expanded');
+					return (callback || $.noop).apply(this);
+				};
 
 			if (!el.hasClass('expanded') || el.hasClass('collapsed') || !Site.config('animation')) {
-				el.removeClass('expanded').addClass('collapsed');
-				return callback.apply(el);
+				return done();
 			}
 
-			// el.width(el.width()).removeClass('expanded');
-			el.stop(true, true).animate({
-				'width': "-=" + $(selector).parent().outerWidth()
+			el.stop(true, true).width(Site.config('layout_width_expanded')).removeClass('expanded').animate({
+				'width': Site.config('layout_width_collapsed')
 			}, {
 				'duration': Site.config('content_anim_duration'),
-				'complete': function () {
-					$(this).removeClass('expanded').addClass('collapsed');
-					callback.apply(this);
-				}
+				'complete': done
 			});
 		},
 

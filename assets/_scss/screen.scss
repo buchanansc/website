@@ -121,22 +121,20 @@ abbr {
 /** Layout */
 
 #layout {
-	// @include box-shadow(-1px 0 3px 2px rgba(0,0,0,.3));
 	background-color: $default__bg;
 	clear: both;
 	float: left;
 	min-height: 100%;
-	overflow: hidden;
 	position: relative;
 
 	&.collapsed {
 		width: $width_west;
 	}
 
-	&.expanded,
-	html.no-js & {
-		width: $width_west + $width_center;
-	}
+	// &.expanded,
+	// html.no-js & {
+	// 	width: $width_west + $width_center;
+	// }
 }
 
 .layout-inner {
@@ -159,7 +157,7 @@ abbr {
 /** Sprites */
 
 $spr-spacing: 6px;
-// $spr-sprite-base-class: ".sprite";
+$spr-sprite-base-class: ".sprite";
 @import "spr/*.png";
 @include all-spr-sprites;
 
@@ -323,7 +321,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		}
 	}
 
-	.navigation-links {
+	.content-links {
 		clear: both;
 		padding: 50px 0 10px;
 		text-align: right;
@@ -339,7 +337,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 				weight: 400;
 			};
 			line-height: 200%;
-			margin: 0 0 0 50px;
+			margin: 0 -1px 0 50px;
 			overflow: hidden;
 			padding: 0 20px;
 			text-decoration: none;
@@ -359,14 +357,6 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 #content {
 	padding: 10px 20px 30px;
 	text-align: left;
-
-	#layout.collapsed & {
-		// display: none;
-	}
-
-	#layout.expanded &, html.no-js & {
-		// display: block;
-	}
 
 	blockquote, h1, h2, h3, h4, h5, h6, p, pre, ol, ul {
 		margin: {

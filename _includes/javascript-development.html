@@ -1,8 +1,17 @@
-<script src="/assets/js/src/log.js" type="text/javascript"></script>
-<script src="/assets/js/src/modernizr/modernizr.custom.65249.js" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-<script src="/assets/js/src/site/site.js" type="text/javascript"></script>
-<script src="/assets/js/src/site/site.content.js" type="text/javascript"></script>
-<script src="/assets/js/src/site/site.links.js" type="text/javascript"></script>
-<script src="/assets/js/src/site/site.navigation.js" type="text/javascript"></script>
-<script src="/assets/js/src/site/site.ui.js" type="text/javascript"></script>
+	<script src="/assets/js/src/log.js" type="text/javascript"></script>
+	<script src="/assets/js/src/modernizr/modernizr.custom.65249.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/site.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/site.content.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/site.links.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/site.navigation.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/site.ui.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+	jQuery(function () {
+		Site.init({
+			'title': "{{ site.title }}",
+			'url': "{{ site.url }}"
+		});
+	});
+	</script>
