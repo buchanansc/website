@@ -186,9 +186,9 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	@include box-sizing(border-box);
 	@include text-shadow(0 1px 0 rgba(0,0,0,.2));
 	background: {
-		color: $navigation__bg;
+		color: transparent;
 		image: image-url("background-navigation.png");
-		position: right top;
+		position: 0 0;
 		repeat: repeat-y;
 		size: auto;
 	};
@@ -209,11 +209,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 			image-url("noise_100.png")
 		);
 		@include background-size(auto);
-		background: {
-			color: transparent;
-			position: 0 0;
-			repeat: no-repeat, no-repeat, repeat;
-		};
+		background-repeat: no-repeat, no-repeat, repeat;
 	}
 
 	html.cssgradients.multiplebgs.boxshadow .collapsed & {
@@ -340,6 +336,10 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 			text-decoration: none;
 			text-overflow: ellipsis;
 			white-space: nowrap;
+
+			html.cssgradients.multiplebgs.boxshadow & {
+				margin-right: 1px;
+			}
 
 			&:hover {
 				background: $link_hover__bg;
