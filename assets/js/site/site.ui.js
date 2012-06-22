@@ -21,7 +21,7 @@ Site.UI = (function () {
 			// $(document.body).addClass('layout-' + Site.config('layout'));
 
 			// Initialize tooltips
-/*
+
 			if (jQuery().tipsy) {
 				$('#navigation .my-links a').tipsy({
 					delayIn: 0,
@@ -37,7 +37,7 @@ Site.UI = (function () {
 					trigger: 'hover'
 				});
 			}
-*/
+
 
 			Site.UI.refresh();
 		},

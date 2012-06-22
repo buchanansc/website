@@ -56,11 +56,6 @@ var Site = (function () {
 	};
 
 	return {
-		/**
-		 * Called at window.load
-		 * 
-		 * @param {Object} [conf] Set Site.config with these values
-		 */
 		init: function (conf) {
 			if (typeof conf === "object") {
 				for (var prop in conf) {
@@ -82,7 +77,7 @@ var Site = (function () {
 		 */
 		config: function (property, value) {
 			if (property) {
-				if (value) config[property] = value;
+				if (arguments.length > 1) config[property] = value;
 				return config[property];
 			}
 			return config;

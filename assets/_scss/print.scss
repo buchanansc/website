@@ -122,9 +122,9 @@ i, em {
 	.site-title {
 		color: $site-title;
 		display: block;
-		font-size: 1.4em;
+		font-size: 18px;
 		font-style: italic;
-		line-height: 1.2em;
+		line-height: 20px;
 		margin: 0;
 		padding: 0;
 	}
@@ -134,7 +134,7 @@ i, em {
 		display: block;
 		// float: right;
 		font-size: 12px;
-		line-height: 1.1em;
+		line-height: 12px;
 		margin: 0px 0 0;
 		padding: 0;
 		text-decoration: none;
@@ -160,30 +160,21 @@ i, em {
 	}
 
 	.page-title,
-	.page-title-link,
  	& > :first-child,
  	& > article > :first-child {
 		margin-top: 0;
 		padding-top: 0;
 	}
 
-	.page-title,
-	.page-title-link {
+	h1.page-title {
 		border-bottom: 1px solid #333;
+		min-height: 32px;
 	}
 
 	p, pre, blockquote, ul, ol {
 		page-break-before: avoid;
 		page-break-inside: avoid;
 	}
-}
-
-.hidden {
-	visibility: collapse;
-}
-
-.print {
-	visibility: visible;
 }
 
 @import "_pages";

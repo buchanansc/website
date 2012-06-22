@@ -86,7 +86,8 @@ Apache Server, DNS
 
 </div>
 
-
+<div markdown="1" class="resume-experience">
+    
 ## Experience
 
 ### Software Developer
@@ -126,9 +127,14 @@ Problem-solved, worked independently, and resolved customer service issues for
 products sold to HP, Sun and IBM. Developed proof-of-concept software and
 firmware for storage virtualization hardware.
 
+</div>
+
+<div markdown="1" class="resume-education">
+    
 ## Education
 
 ### California State University, Chico
 
 *August 2002 - December 2004*
 
+</div>

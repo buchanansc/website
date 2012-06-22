@@ -14,11 +14,19 @@ body {
 	@include text-size-adjust();
 	background: {
 		color: $body__bg;
-		image: image-url("background/body.png");
+		image: image-url("background-body.png");
 		position: left top;
 		repeat: repeat;
 		size: auto;
 	};
+
+	@include background-image(
+		linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
+		linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
+		image-url("noise_100.png")
+	);
+	@include background-size(60px 100%, auto, auto);
+
 	color: $default;
 	font: {
 		family: $font_body;
@@ -26,18 +34,14 @@ body {
 	};
 	line-height: normal;
 
-	html.cssgradients.multiplebgs & {
-		@include background-image(
-			linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
-			linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
-			image-url("noise_100.png")
-		);
-		@include background-size(60px 100%, auto, auto);
-		background: {
-			position: 0 0;
-			repeat: repeat;
-		};
-	}
+	// html.cssgradients.multiplebgs & {
+	// 	@include background-image(
+	// 		linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
+	// 		linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
+	// 		image-url("noise_100.png")
+	// 	);
+	// 	@include background-size(60px 100%, auto, auto);
+	// }
 }
 
 a {
@@ -141,19 +145,6 @@ abbr {
 	position: relative;
 }
 
-.layout-west {
-	float: left;
-	width: $width_west;
-	position: relative;
-	z-index: 10;
-}
-
-.layout-center {
-	margin-left: $width_west;
-	position: relative;
-	width: $width_center;
-}
-
 /** Sprites */
 
 $spr-spacing: 6px;
@@ -182,7 +173,13 @@ $spr-sprite-base-class: ".sprite";
 
 /** West */
 
-// $navigation_box-shadow: -2px 0 1px -1px rgba(255,255,255,.3) inset, -30px 0 20px -30px rgba(255,255,255,.2) inset;
+.layout-west {
+	float: left;
+	width: $width_west;
+	position: relative;
+	z-index: 10;
+}
+
 $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 
 #navigation {
@@ -190,7 +187,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	@include text-shadow(0 1px 0 rgba(0,0,0,.2));
 	background: {
 		color: $navigation__bg;
-		image: image-url("background/navigation.png");
+		image: image-url("background-navigation.png");
 		position: right top;
 		repeat: repeat-y;
 		size: auto;
@@ -202,7 +199,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	position: fixed;
 	text-align: right;
 	top: 0;
-	width: $width_west;
+	width: $width_west + 2;  // +2 for box shadow
 
 	html.cssgradients.multiplebgs.boxshadow & {
 		@include box-shadow($navigation_box-shadow, -2px 0 3px 2px rgba(0,0,0,1));
@@ -353,6 +350,12 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 }
 
 /** Center */
+
+.layout-center {
+	margin-left: $width_west;
+	position: relative;
+	width: $width_center;
+}
 
 #content {
 	padding: 10px 20px 30px;
