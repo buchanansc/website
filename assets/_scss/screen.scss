@@ -1,6 +1,5 @@
 @import "compass/reset";
 @import "compass/css3";
-// @import "compass/utilities";
 
 @import "_global";
 
@@ -11,7 +10,6 @@ html, body {
 }
 
 body {
-	@include text-size-adjust();
 	background: {
 		color: $body__bg;
 		image: image-url("background-body.png");
@@ -19,29 +17,24 @@ body {
 		repeat: repeat;
 		size: auto;
 	};
-
 	@include background-image(
 		linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
 		linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
 		image-url("noise_100.png")
 	);
+	/** Gray background */
+	// @include background-image(
+	// 	linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
+	// 	linear-gradient(top, transparentize(#5a5a5a, .1), transparentize(#5a5a5a, .1)),
+	// 	image-url("noise_100.png")
+	// );
 	@include background-size(60px 100%, auto, auto);
-
 	color: $default;
 	font: {
 		family: $font_body;
 		size: $font_size;
 	};
 	line-height: normal;
-
-	// html.cssgradients.multiplebgs & {
-	// 	@include background-image(
-	// 		linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
-	// 		linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
-	// 		image-url("noise_100.png")
-	// 	);
-	// 	@include background-size(60px 100%, auto, auto);
-	// }
 }
 
 a {
@@ -65,8 +58,10 @@ a {
 	}
 
 	&:focus {
-		outline-color: $link;
-		// outline-style: solid;
+		outline: {
+			color: $link;
+			// style: solid;
+		}
 	}
 
 	img {
@@ -132,17 +127,9 @@ abbr {
 	position: relative;
 
 	&.collapsed {
+		background-color: transparent;
 		width: $width_west;
 	}
-
-	// &.expanded,
-	// html.no-js & {
-	// 	width: $width_west + $width_center;
-	// }
-}
-
-.layout-inner {
-	position: relative;
 }
 
 /** Sprites */
@@ -175,8 +162,9 @@ $spr-sprite-base-class: ".sprite";
 
 .layout-west {
 	float: left;
-	width: $width_west;
+	overflow: visible;
 	position: relative;
+	width: $width_west;
 	z-index: 10;
 }
 
@@ -188,7 +176,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	background: {
 		color: transparent;
 		image: image-url("background-navigation.png");
-		position: 0 0;
+		position: right 0;
 		repeat: repeat-y;
 		size: auto;
 	};
@@ -199,7 +187,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	position: fixed;
 	text-align: right;
 	top: 0;
-	width: $width_west + 2;  // +2 for box shadow
+	width: $width_west;
 
 	html.cssgradients.multiplebgs.boxshadow & {
 		@include box-shadow($navigation_box-shadow, -2px 0 3px 2px rgba(0,0,0,1));
@@ -555,19 +543,40 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	}
 }
 
-.print, .hidden {
-	visibility: collapse;
+.print-only, .hidden {
+	display: none;
 }
 
-// @import "_tipsy";
 @import "_layout-narrow";
+@import "_lt-ie7";
 @import "_pages";
-// @import "_experimental";
+// @import "_tipsy";
 
-/** IE Settings */
-
-html.lt-ie7 {
-	#layout {
-		height: 100%;
-	}
-}
+/** New page title */
+// #content {
+// 	.page-body {
+// 		padding-top: 30px;
+// 	}
+// 	.page-title {
+// 		@include background-image(linear-gradient(top, rgba(82,82,82,.9), rgba(119,119,119,.9)), image-url("noise_100.png"));
+// 		@include border-radius(0);
+// 		@include box-shadow(rgba(0,0,0,.5) 0px -4px 6px -4px inset);
+// 		background: {
+// 			color: #6a6a6a;
+// 			position: 0 0;
+// 			size: auto;
+// 		}
+// 		color: #eee;
+// 		left: 0px;
+// 		margin: 0px;
+// 		padding: 0.3em 20px;
+// 		position: absolute;
+// 		right: 0px;
+// 		text-shadow: rgba(0,0,0,.5) 0px 1px 1px;
+// 		top: 0px;
+// 	}
+// 	a.page-title {
+// 		@include background-image(linear-gradient(top, rgba(69,41,82,.9), rgba(100,59,117,.9)), image-url("noise_100.png"));
+// 		color: #fff;
+// 	}
+// }
