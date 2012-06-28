@@ -4,15 +4,6 @@ title: Résumé
 class: resume
 ---
 
-<!--
-<div markdown="1" class="resume-head">
-
-**Scott Buchanan**  
-Dublin CA, United States
-
-</div>
--->
-
 <div itemscope="1" itemtype="http://schema.org/Person">
     <strong><span itemprop="name">
         <span itemprop="givenName">Scott</span>
