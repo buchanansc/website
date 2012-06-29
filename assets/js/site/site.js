@@ -5,7 +5,6 @@
  * @link http://wafflesnatcha.github.com
  */
 
-/** @namespace */
 var Site = (function () {
 	/** @private */
 	var config = {

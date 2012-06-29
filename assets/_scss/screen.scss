@@ -10,6 +10,7 @@ html, body {
 }
 
 body {
+	@include text-size-adjust(100%);
 	background: {
 		color: $body__bg;
 		image: image-url("background-body.png");
@@ -22,12 +23,6 @@ body {
 		linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
 		image-url("noise_100.png")
 	);
-	/** Gray background */
-	// @include background-image(
-	// 	linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
-	// 	linear-gradient(top, transparentize(#5a5a5a, .1), transparentize(#5a5a5a, .1)),
-	// 	image-url("noise_100.png")
-	// );
 	@include background-size(60px 100%, auto, auto);
 	color: $default;
 	font: {
@@ -36,12 +31,20 @@ body {
 	};
 	line-height: normal;
 }
+/** Gray background */
+// body {
+// 	@include background-image(
+// 		linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
+// 		linear-gradient(top, transparentize(#5a5a5a, .1), transparentize(#5a5a5a, .1)),
+// 		image-url("noise_100.png")
+// 	);
+// }
 
 a {
 	// -webkit-tap-highlight-color: transparentize($link, .5);
 	@include border-radius(3px);
 	@include transition-duration(.1s);
-	@include transition-property('background, color, border, box-shadow, text-shadow');
+	@include transition-property('background, color, box-shadow, text-shadow');
 	color: $link;
 	cursor: pointer;
 	display: inline-block;
@@ -231,7 +234,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		position: relative;
 		text-indent: 1000px;
 
-		// Font-face support
+		/** font-face support */
 		html.fontface & {
 			background: none;
 			text-indent: 0;
@@ -433,13 +436,13 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		}
 
 		thead th {
-			@include box-shadow(0 -3px 4px -3px rgba(0, 0, 0, 0.2) inset, 0 -35px 35px -35px rgba(50, 50, 50, 0.1) inset);
+			@include box-shadow(0 -3px 4px -3px rgba(0,0,0,.2) inset, 0 -35px 35px -35px rgba(50,50,50,.1) inset);
 			border-bottom: 1px solid #bbb;
 		}
 
 		& > tbody > tr:nth-child(even) > td {
-			background-color: #f2f5fa;
-			background-color: rgba(200,220,250,.15);
+			background-color: #f3f6fa;
+			background-color: rgba(206,219,234,.25);
 		}
 	}
 
@@ -452,18 +455,6 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	.page-body {
 		// @include text-size-adjust(110%);
 		clear: right;
-	}
-
-	/** File download info */
-	p.file-download {
-		padding: {
-			left: 10px;
-			right: 10px;
-		};
-
-		a {
-			font-size: $font_size + 1;
-		}
 	}
 
 	/** Image galleries */
@@ -488,6 +479,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	}
 
 	/** Error page */
+
 	.page-error {
 		margin: 25px auto 0;
 		max-width: 260px;
@@ -511,6 +503,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	}
 
 	/** Content Loading */
+
 	&.loading {
 		&, * {
 			color: $default_loading;
@@ -526,8 +519,6 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 			background-color: transparent;
 			color: inherit;
 			cursor: default;
-			// margin: 0;
-			// padding: 0;
 			text-decoration: none;
 		}
 

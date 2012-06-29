@@ -11,30 +11,28 @@ task :default do
 	exec("rake --rakefile '#{__FILE__}' --tasks")
 end
 
-def jekyllConfigProduction(on = true)
+def jekyllEnvironment(mode = 'development')
 	path = File.join(CONFIG['root'], CONFIG['jekyll_config'])
 	text = File.read(path)
 	f = File.open(path, "w")
-	f.write(text.sub(/^[ #]*production *: *true\s*$/mi, "#{(!on)? '# ' : ''}production: true\n"));
+	f.write(text.sub(/^([ \t#]*environment[\t ]*:[ \t]*)\w+[ \t]*$/mi, '\1' + mode));
 	f.close()
 end
 
 desc 'Switch to the development environment'
-task :development => ["compass:clean", "compass:development", "jekyll:clean"] do
-	jekyllConfigProduction(false)
+task :development => ["clean", "compass:development"] do
+	jekyllEnvironment('development')
 	Rake::Task["jekyll:server"].execute
 end
 
 desc 'Switch to the production environment'
-task :production => ["compass:clean", "compass:production", "compass:cache", "jekyll:clean"] do
-	jekyllConfigProduction(true)
+task :production => ["clean", "compass:production", "compass:cache"] do
+	jekyllEnvironment('production')
 	Rake::Task["jekyll:run"].execute
 end
 
 desc 'Clean all cache and generated files'
 task :clean => ["compass:clean", "compass:cache", "jekyll:clean"]
-
-
 
 namespace :jekyll do
 

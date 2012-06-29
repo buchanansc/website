@@ -43,4 +43,5 @@ exclude: ["CNAME", "config.rb", "Rakefile"]
 
 url: http://buchanansc.com
 title: Scott Buchanan
-production: true
+
+environment: production
