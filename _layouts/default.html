@@ -22,7 +22,7 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/icon/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon-precomposed" href="/assets/img/icon/apple-touch-icon-57x57.png">
 
-{% if site.production %}
+{% if site.environment == "production" %}
 {% include javascript-production.html %}
 {% else %}
 {% include javascript-development.html %}
