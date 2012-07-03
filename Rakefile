@@ -5,6 +5,7 @@ CONFIG = {
 	'root' => File.dirname(__FILE__),
 	'compass_project' => '',
 	'jekyll_config' => '_config.yml',
+	'images_dir' => 'assets/img',
 }
 
 task :default do
@@ -26,13 +27,17 @@ task :development => ["clean", "compass:development"] do
 end
 
 desc 'Switch to the production environment'
-task :production => ["clean", "compass:production", "compass:cache"] do
+task :production => ["clean", "compass:production", "compass:cache", "crush"] do
 	jekyllEnvironment('production')
 	Rake::Task["jekyll:run"].execute
 end
 
 desc 'Clean all cache and generated files'
 task :clean => ["compass:clean", "compass:cache", "jekyll:clean"]
+
+task :crush do
+	system("which crush.sh &>/dev/null && find '" + File.join(CONFIG['root'], CONFIG['images_dir']) + "' -type f -name '*.png' | xargs crush.sh")
+end
 
 namespace :jekyll do
 
