@@ -1,25 +1,31 @@
-$tipsy: $default__bg;
-$tipsy__bg: $default; // $link_hover__bg
+
+$tipsy_foreground: $color_background !default;
+$tipsy_background: $color_foreground !default;
+$tipsy_font-size: $font-size - 2 !default;
+$tipsy_max-width: $width_west + 30 !default;
 
 .tipsy {
-	font: small-caption;
+	font: {
+		family: "Lucida Grande", "Segoe UI", "Tahoma", "Arial", sans-serif;
+		size: 11px;
+	};
 	padding: 5px;
 	position: absolute;
+	text-align: center;
 	z-index: 100000;
 }
 
 .tipsy-inner {
 	@include border-radius(3px);
-	// @include box-shadow(0 0 5px #000);
-	background-color: $tipsy__bg;
-	color: $tipsy;
-	max-width: 200px;
-	padding: 4px 8px 5px;
-	text-align: center;
+	@include box-shadow(0 1px 1px rgba(0,0,0,.5));
+	background-color: $tipsy_background;
+	color: $tipsy_foreground;
+	max-width: $tipsy_max-width;
+	padding: 4px;
 }
 
 .tipsy-arrow {
-	border: 5px dashed $tipsy__bg;
+	border: 5px dashed $tipsy_background;
 	height: 0;
 	line-height: 0;
 	position: absolute;
@@ -29,19 +35,19 @@ $tipsy__bg: $default; // $link_hover__bg
 /* Rules to colour arrows */
 
 .tipsy-arrow-n {
-	border-bottom-color: $tipsy__bg;
+	border-bottom-color: $tipsy_background;
 }
 
 .tipsy-arrow-s {
-	border-top-color: $tipsy__bg;
+	border-top-color: $tipsy_background;
 }
 
 .tipsy-arrow-e {
-	border-left-color: $tipsy__bg;
+	border-left-color: $tipsy_background;
 }
 
 .tipsy-arrow-w {
-	border-right-color: $tipsy__bg;
+	border-right-color: $tipsy_background;
 }
 
 .tipsy-n .tipsy-arrow {

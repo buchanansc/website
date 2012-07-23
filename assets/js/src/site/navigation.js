@@ -18,9 +18,13 @@ Site.Navigation = (function () {
 	 * @private
 	 */
 	function track(category, action) {
-		if (!Site.config("tracking") || typeof _gaq === "undefined") return false;
-		if (category || action) _gaq.push(['_trackEvent', category || "", action || ""]);
-		else _gaq.push(['_trackPageview']);
+		if (Site.config("tracking") && typeof _gaq !== "undefined") {
+			if (category || action) {
+				_gaq.push(['_trackEvent', category || "", action || ""]);
+			} else {
+				_gaq.push(['_trackPageview']);
+			}
+		}
 	}
 
 	/**
@@ -36,7 +40,9 @@ Site.Navigation = (function () {
 			location.href = url;
 			return false;
 		}
-		Site.Content.load(url);
+		Site.Content.load(url, function() {
+			track();
+		});
 		return true;
 	}
 
@@ -51,9 +57,11 @@ Site.Navigation = (function () {
 		// log("Site.Navigation.outbound", url, change);
 		var change = change || false;
 		track('Outbound Link', url);
-		if (change) setTimeout(function () {
-			location.href = url;
-		}, 100);
+		if (change) {
+			setTimeout(function () {
+				location.href = url;
+			}, 100);
+		}
 	}
 
 	/**
@@ -70,8 +78,11 @@ Site.Navigation = (function () {
 				'url': url
 			}, 'page', url];
 
-			if (replace || url == window.location.href || url == window.location.pathname) window.history.replaceState.apply(window.history, args);
-			else window.history.pushState.apply(window.history, args);
+			if (replace || url == window.location.href || url == window.location.pathname) {
+				window.history.replaceState.apply(window.history, args);
+			} else {
+				window.history.pushState.apply(window.history, args);
+			}
 		} else if (support.hashchange) {
 			location.href = "/#" + url;
 		}
@@ -88,8 +99,11 @@ Site.Navigation = (function () {
 			if (support.history) {
 				window.onpopstate = function (event) {
 					// log("onpopstate", event.state);
-					if (event.state && event.state.url) Site.Navigation.go(event.state.url, true);
-					else changeURL(window.location.pathname + window.location.hash, true);
+					if (event.state && event.state.url) {
+						Site.Navigation.go(event.state.url, true);
+					} else {
+						changeURL(window.location.pathname + window.location.hash, true);
+					}
 				};
 			} else if (support.hashchange) {
 				window.onhashchange = function (event) {
@@ -125,7 +139,9 @@ Site.Navigation = (function () {
 
 			// Strip the origin from URLs to the current domain
 			var origin = Site.config("origin");
-			if (url.substr(0, origin.length) == origin) url = url.substr(origin.length);
+			if (url.substr(0, origin.length) == origin) {
+				url = url.substr(origin.length);
+			}
 
 			// Check for hashed links
 			var parts = url.split("/#/");
@@ -136,17 +152,22 @@ Site.Navigation = (function () {
 
 			// Current page, no navigation necessary
 			if (!reload && (url == window.location.href || url == window.location.pathname)) {
-				if (url.indexOf("#") >= 0) return false; // link is probably to an anchor on the page, let it continue
-				else return true;
+				if (url.indexOf("#") >= 0) {
+					// link is probably to an anchor on the page, let it continue
+					return false;
+				} else {
+					return true;
+				}
 			}
 
 			// External link
-			if (url.charAt(0) != "/") outbound(url, true);
-			else {
+			if (url.charAt(0) != "/") {
+				outbound(url, true);
+			} else {
 				internal(url);
 				changeURL(url, reload);
-				track();
 			}
+			
 			return true;
 		}
 	};

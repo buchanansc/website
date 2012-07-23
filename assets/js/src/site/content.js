@@ -3,10 +3,9 @@ Site.Content = (function () {
 	var jqXHR;
 	var title_pattern = /<title>(.*)<\/title>/i;
 	var selector = '#content';
-	
-	return {
 
-		load: function (url) {
+	return {
+		load: function (url, callback) {
 			// log("Site.Content.load(%o)", url);
 			if (jqXHR && jqXHR.abort) {
 				jqXHR.abort();
@@ -40,11 +39,14 @@ Site.Content = (function () {
 				} else {
 					Site.Links.init(this);
 				}
+
+				(callback || $.noop).apply(this)
 			});
 		},
 
 		error: function (code, text) {
-			$(selector).html(Site.UI.template(Site.config('template_error_page'), {
+			var tpl = Site.config('template_error_page') || "";
+			$(selector).html(tpl._templatee({
 				'status': code,
 				'text': text
 			}));
@@ -63,7 +65,7 @@ Site.Content = (function () {
 
 		expand: function (callback) {
 			var el = $('#layout'),
-				done = function() {
+				done = function () {
 					el.addClass('expanded').removeClass('collapsed');
 					return (callback || $.noop).apply(this);
 				};
@@ -82,7 +84,7 @@ Site.Content = (function () {
 
 		collapse: function (callback) {
 			var el = $('#layout'),
-				done = function() {
+				done = function () {
 					el.addClass('collapsed').removeClass('expanded');
 					return (callback || $.noop).apply(this);
 				};

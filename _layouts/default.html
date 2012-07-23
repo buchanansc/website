@@ -6,28 +6,94 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta charset="utf-8">
-	<title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-	{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
-	{% if page.author %}<meta name="author" content="{{ page.author }}">{% endif %}
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700">
+	<title>{{ page.title }}{% if page.title %} | {% endif %}{{ site.title }}</title>{% if page.description or page.subtitle %}
+	<meta name="description" content="{{ page.description }}{% unless page.description %}{{ page.subtitle }}{% endunless %}">{% endif %}{% if page.author %}
+	<meta name="author" content="{{ page.author }}">{% endif %}
+
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,300,400,600,700">
 	<link rel="stylesheet" type="text/css" href="/assets/css/print.css" media="print">
 	<link rel="stylesheet" type="text/css" href="/assets/css/screen.css" media="screen, projection">
 
 	<link rel="shortcut icon" href="/favicon.ico">
+	<!--[if gte IE 9]><link rel="shortcut icon" href="/assets/img/icon/favicon-all.ico"><![endif]-->
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/icon/apple-touch-icon-144x144.png">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/icon/apple-touch-icon-114x114.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/icon/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon-precomposed" href="/assets/img/icon/apple-touch-icon-57x57.png">
 
+	<script src="/assets/js/lib.js" type="text/javascript"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 {% if site.environment == "production" %}
-{% include javascript-production.html %}
+	<script src="/assets/js/site.js" type="text/javascript"></script>
 {% else %}
-{% include javascript-development.html %}
+	<script src="/assets/js/src/string._template.js" type="text/javascript"></script>
+	<script src="/assets/js/src/jquery/jquery.date.js" type="text/javascript"></script>
+	<script src="/assets/js/src/jquery/jquery.tipsy.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/content.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/links.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/navigation.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/ui.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/me.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/me/github.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/me/lastfm.js" type="text/javascript"></script>
+	<script src="/assets/js/src/site/me/twitter.js" type="text/javascript"></script>
+{% endif %}
+	<script type="text/javascript">jQuery(function(){Site.init({title:"{{ site.title }}",url:"{{ site.url }}",twitter_user:"{{ site.twitter.user }}",twitter_limit:"{{ site.twitter.limit }}",github_user:"{{ site.github.user }}",github_limit:"{{ site.github.limit }}",lastfm_user:"{{ site.lastfm.user }}",lastfm_limit:"{{ site.lastfm.limit }}",lastfm_api_key:"{{ site.lastfm.api_key }}"})});</script>
+{% if site.environment == "production" %}
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-12612599-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
 {% endif %}
 </head>
 <body>
+	<div id="layout" class="{% if page.collapsed %}collapsed{% else %}expanded{% endif %}">
+		<div class="layout-west">
+			<div id="navigation">
+				<header class="header" itemscope itemtype="http://schema.org/Person">
+					<h1 class="site-title" itemprop="name">
+						<span itemprop="givenName">Scott</span>
+						<span itemprop="familyName">Buchanan</span>
+					</h1>
+				    <meta itemprop="jobTitle" content="Software Engineer">
+				    <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+				        <meta itemprop="addressLocality" content="San Francisco Bay Area">
+				        <meta itemprop="addressRegion" content="CA">
+				        <meta itemprop="addressCountry" content="United States">
+				    </span>
+					<a href="{{ site.url }}" class="site-icon" itemprop="url"><span class="spr-site-icon">{{ site.subtitle }}</span></a>
+					<nav class="my-links">
+						<ul class="my-links-left">
+							<li><a href="/resume.html">R&eacute;sum&eacute;</a></li>
+						</ul>
+						<ul class="my-links-right">
+							{% if site.github %}<li><a rel="external" href="http://github.com/{{ site.github.user }}" title="github" target="_blank" class="github-link"><span class="spr-github">github</span></a></li>{% endif %}
+							{% if site.lastfm %}<li><a rel="external" href="http://www.last.fm/user/{{ site.lastfm.user }}" title="last.fm" target="_blank" class="lastfm-link"><span class="spr-lastfm">last.fm</span></a></li>{% endif %}
+							{% if site.twitter %}<li><a rel="external" href="http://twitter.com/{{ site.twitter.user }}" title="twitter" target="_blank" class="twitter-link"><span class="spr-twitter">twitter</span></a></li>{% endif %}
+						</ul>
+					</nav>
+				</header>
+				<ul class="content-links">
+					<li><a href="/projects/RegexTool/">RegexTool</a></li>
+					<li><a href="/projects/scott.textmate/">scott.textmate</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="layout-center">
+			<div id="content">
 {{ content }}
+			</div>
+		</div>
+	</div>
 </body>
 </html>

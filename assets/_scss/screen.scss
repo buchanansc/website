@@ -12,7 +12,7 @@ html, body {
 body {
 	@include text-size-adjust(100%);
 	background: {
-		color: $body__bg;
+		color: $body_background;
 		image: image-url("background-body.png");
 		position: left top;
 		repeat: repeat;
@@ -20,49 +20,47 @@ body {
 	};
 	@include background-image(
 		linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
-		linear-gradient(top, transparentize($body__bg, .1), transparentize($body__bg, .1)),
+		linear-gradient(top, transparentize($body_background, .1), transparentize($body_background, .1)),
 		image-url("noise_100.png")
 	);
+	/** Gray background */
+	// @include background-image(linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%), linear-gradient(top, transparentize(#646464, .1), transparentize(#646464, .1)), image-url("noise_100.png"));
 	@include background-size(60px 100%, auto, auto);
-	color: $default;
+	color: $color_foreground;
 	font: {
-		family: $font_body;
-		size: $font_size;
+		family: $font-family;
+		size: $font-size;
 	};
 	line-height: normal;
 }
-/** Gray background */
-// body {
-// 	@include background-image(
-// 		linear-gradient(right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30px, rgba(0,0,0,.15) 30px, rgba(0,0,0,.05) 32px, rgba(0,0,0,.05) 58px, rgba(0,0,0,.15) 100%),
-// 		linear-gradient(top, transparentize(#5a5a5a, .1), transparentize(#5a5a5a, .1)),
-// 		image-url("noise_100.png")
-// 	);
-// }
 
 a {
-	// -webkit-tap-highlight-color: transparentize($link, .5);
+	// -webkit-tap-highlight-color: transparentize($link_foreground, .5);
 	@include border-radius(3px);
+	@include box-shadow(0 1px 0 0 rgba(0,0,0,0), 0 -40px 40px -40px rgba(0,0,0,0) inset);
+	@include text-shadow(0 1px 1px rgba(0,0,0,0));
 	@include transition-duration(.1s);
-	@include transition-property('background, color, box-shadow, text-shadow');
-	color: $link;
+	@include transition-property('background-color, box-shadow, color, text-shadow');
+	background-color: transparent;
+	color: $link_foreground;
 	cursor: pointer;
 	display: inline-block;
-	margin: -2px -5px;
-	padding: 2px 5px;
+	margin: -0.2em -0.4em;
+	padding: 0.2em 0.4em;
 	position: relative;
 	text-decoration: none;
 
 	&:hover {
-		@include box-shadow(0 1px 0 0 rgba(0,0,0,.2), 0 -30px 30px -30px rgba(0,0,0,.35) inset);
-		background-color: $link_hover__bg;
-		color: $link_hover;
+		@include box-shadow(0 1px 0 0 rgba(0,0,0,.2), 0 -40px 40px -40px rgba(0,0,0,.35) inset);
+		@include text-shadow(0 1px 1px rgba(0,0,0,.3));
+		background-color: $link_hover_background;
+		color: $link_hover_foreground;
 		z-index: 2;
 	}
 
 	&:focus {
 		outline: {
-			color: $link;
+			color: $link_foreground;
 			// style: solid;
 		}
 	}
@@ -82,11 +80,11 @@ i, em {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	color: $heading;
+	color: $heading_foreground;
 	font: {
-		family: $font_heading;
+		family: $font-family_heading;
 		style: normal;
-		weight: 400;
+		weight: 600;
 	}
 }
 
@@ -94,12 +92,12 @@ h3, h4, h5, h6 {
 	font-weight: 600;
 }
 
-h1 { font-size: 2em; }
-h2 { font-size: 1.5em; }
-h3 { font-size: 1.17em; }
-h4 { font-size: 1em; }
-h5 { font-size: 0.83em; }
-h6 { font-size: 0.67em; }
+h1 { font-size: $font-size * 2; }
+h2 { font-size: $font-size * 1.5; }
+h3 { font-size: $font-size * 1.17; }
+h4 { font-size: $font-size * 1; }
+h5 { font-size: $font-size * 0.83; }
+h6 { font-size: $font-size * 0.67; }
 
 hr {
 	@include box-shadow(0 -1px 0 rgba(0,0,0,.2));
@@ -110,20 +108,14 @@ hr {
 }
 
 pre, code, kbd, samp {
-	font-family: $font_code;
-	font-size: $font_size_code;
-}
-
-abbr {
-	border-bottom-style: dotted;
-	border-bottom-width: 1px;
-	cursor: help;
+	font-family: $font-family_code;
+	font-size: $font-size_code;
 }
 
 /** Layout */
 
 #layout {
-	background-color: $default__bg;
+	background-color: $color_background;
 	clear: both;
 	float: left;
 	min-height: 100%;
@@ -135,35 +127,12 @@ abbr {
 	}
 }
 
-/** Sprites */
-
-$spr-spacing: 6px;
-$spr-sprite-base-class: ".sprite";
-@import "spr/*.png";
-@include all-spr-sprites;
-
-.site-icon, .site-icon:hover {
-	@include box-shadow(none);
-	@include spr-sprite("site-icon");
-	@include transition(none);
-	background-color: transparent;
-	display: block;
-	height: spr-sprite-height("site-icon");
-	left: 11px;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	text-indent: 1000px;
-	top: 11px;
-	white-space: nowrap;
-	width: spr-sprite-width("site-icon");
-	z-index: 10;
-}
-
 /** West */
 
 .layout-west {
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
 	float: left;
 	overflow: visible;
 	position: relative;
@@ -196,7 +165,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		@include box-shadow($navigation_box-shadow, -2px 0 3px 2px rgba(0,0,0,1));
 		@include background-image(
 			linear-gradient(top, rgba(0,0,0,.07) 0%, rgba(0,0,0,0) $width_west * 2, rgba(0,0,0,0) 100%),
-			linear-gradient(left, transparentize(lighten($navigation__bg, 8%), .1), transparentize(darken($navigation__bg, 8%), .1)),
+			linear-gradient(left, transparentize(lighten($navigation_background, 8%), .1), transparentize(darken($navigation_background, 8%), .1)),
 			image-url("noise_100.png")
 		);
 		@include background-size(auto);
@@ -220,9 +189,9 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 			position: right bottom;
 			repeat: no-repeat;
 		};
-		color: $default;
+		color: $color_foreground;
 		font: {
-			size: 30px;
+			size: $site-title_font-size;
 			style: italic;
 			weight: 700;
 		};
@@ -241,70 +210,6 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		}
 	}
 
-	.my-links {
-		float: right;
-		padding: 2px 0 0;
-		text-align: left;
-		width: 222px;
-
-		ul {
-			white-space: nowrap;
-		}
-
-		li {
-			float: left;
-			margin: 0 2px;
-		}
-
-		a {
-			@include border-radius(3px);
-			color: $link;
-			background-color: $default;
-			color: $default__bg;
-			display: block;
-			float: left;
-			height: $my-links_height;
-			line-height: $my-links_height;
-			margin: 0;
-			padding: 0 6px;
-
-			span {
-				@include border-radius(3px);
-				@include background-origin(content-box);
-				background-repeat: no-repeat;
-				display: block;
-				height: $my-links_height;
-				overflow: hidden;
-				text-indent: 1000px;
-				width: $my-links_width;
-			}
-
-			&:hover {
-				background-color: $link_hover__bg;
-
-				span {
-					background-color: transparent;
-				}
-			}
-
-			// &.github-link:hover { background-color: #777; }
-			// &.lastfm-link:hover { background-color: #d51007; }
-			// &.twitter-link:hover { background-color: #33ccff; }
-		}
-	}
-
-	.my-links-left {
-		float: left;
-	}
-
-	.my-links-right {
-		float: right;
-
-		a {
-			padding: 0;
-		}
-	}
-
 	.content-links {
 		clear: both;
 		padding: 50px 0 10px;
@@ -313,8 +218,8 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		a {
 			@include border-radius(3px 0 0 3px);
 			@include box-shadow(none);
-			@include transition-duration(.1s);
-			color: $default;
+			// @include transition-duration(.1s);
+			color: $color_foreground;
 			display: block;
 			font: {
 				size: 1.3em;
@@ -334,9 +239,75 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 			}
 
 			&:hover {
-				background: $link_hover__bg;
-				color: $link_hover;
+				background: $link_hover_background;
+				color: $link_hover_foreground;
 			}
+		}
+	}
+}
+
+.my-links {
+	float: right;
+	padding: 2px 0 0;
+	text-align: left;
+	width: 220px;
+
+	ul {
+		white-space: nowrap;
+	}
+
+	li {
+		float: left;
+	}
+
+	a {
+		@include border-radius(3px);
+		background-color: $color_foreground;
+		color: $color_background;
+		display: block;
+		float: left;
+		height: $my-links_height;
+		line-height: $my-links_height;
+		margin: 0;
+		padding: 0 6px;
+
+		span {
+			@include border-radius(3px);
+			@include background-origin(content-box);
+			background-repeat: no-repeat;
+			display: block;
+			height: $my-links_height;
+			overflow: hidden;
+			text-indent: 1000px;
+			width: $my-links_width;
+		}
+
+		&:hover {
+			@include box-shadow(0 1px 0 0 rgba(0,0,0,.2), 0 -1px 3px -1px rgba(0,0,0,.25) inset, 0 -30px 30px -15px rgba(0,0,0,.3) inset);;
+			background-color: $link_hover_background;
+
+			span {
+				background-color: transparent;
+			}
+		}
+	}
+
+	.my-links-left {
+		float: left;
+		li {
+			margin-right: 4px;
+		}
+	}
+
+	.my-links-right {
+		float: right;
+
+		li {
+			margin-left: 4px;
+		}
+
+		a {
+			padding: 0;
 		}
 	}
 }
@@ -350,13 +321,14 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 }
 
 #content {
+	color: $color_foreground;
 	padding: 10px 20px 30px;
 	text-align: left;
 
 	blockquote, h1, h2, h3, h4, h5, h6, p, pre, ol, ul {
 		margin: {
-			bottom: 15px;
-			top: 15px;
+			bottom: $content_block_margin;
+			top: $content_block_margin;
 		};
 	}
 
@@ -367,6 +339,10 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 			left: 30px;
 			right: 0;
 		};
+	}
+
+	abbr {
+		border-bottom: 1px dotted #bbb;
 	}
 
 	dl, dt, dd {
@@ -384,24 +360,39 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		margin-left: 30px;
 	}
 
-	pre {
+	code, pre {
 		@include border-radius(3px);
-		@include box-sizing(border-box);
-		background-color: #eee;
-		overflow: auto;
-		padding: .6em .8em;
-		position: relative;
-		white-space: pre;
-		word-wrap: normal;
+		background: $code_background;
+		border: 1px solid transparentize(darken($code_background, 20%), .8);
+	}
+	
+	blockquote, a {
+		code, pre {
+			color: $color_foreground;
+			font-style: normal;
+			font-style: initial;
+		}
 	}
 
 	code {
 		display: inline-block;
+		padding: 1px 4px;
 		white-space: nowrap;
 	}
 
-	pre code {
+	pre {
+		@include box-sizing(border-box);
+		overflow: auto;
+		padding: .5em .7em;
+		position: relative;
 		white-space: pre;
+		word-wrap: normal;
+
+		code {
+			background: transparent;
+			border: 0;
+			white-space: pre;
+		}
 	}
 
 	ul, ol {
@@ -446,15 +437,46 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		}
 	}
 
-	h1.page-title,
-	& > :first-child,
-	& > article > :first-child {
-		margin-top: 0;
+	header {
+		border-bottom: 3px solid #f5f5f5;
+		margin: 0 0 $content_block_margin;
+		padding: 0 0 6px;
+		
+		&, .page-title {
+			@include text-shadow(0 1px 1px rgba(0,0,0,.2));
+		}
+
+		h1.page-title,
+		.page-subtitle {
+			margin: 0;
+		}
+		
+		h1.page-title {
+			font-weight: 300;
+			line-height: $site-title_font-size;
+			margin: 0 0 6px;
+		}
+		
+		.page-subtitle {
+			color: lighten($color_foreground, 35%);
+			font-weight: 400;
+			margin: 6px 0 0;
+			padding: 0 1px;
+		}
 	}
 
 	.page-body {
 		// @include text-size-adjust(110%);
-		clear: right;
+		clear: both;
+		& > :first-child {
+			margin-top: 0;
+		}
+	}
+
+	.disclaimer {
+		color: lighten($color_foreground, 20%);
+		font-size: $font-size - 1;
+		margin-top: $content_block_margin * 2;
 	}
 
 	/** Image galleries */
@@ -465,7 +487,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 
 	.gallery a {
 		@include border-radius(3px);
-		background-color: $link_gallery__bg;
+		background-color: $link_gallery_background;
 		margin: 2px;
 		padding: 0;
 
@@ -474,7 +496,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		}
 
 		&:hover {
-			background-color: $link_hover__bg;
+			background-color: $link_hover_background;
 		}
 	}
 
@@ -484,15 +506,15 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		text-align: center;
 
 		.page-title {
-			color: #888;
-			font-size: 64px;
-			font-weight: 800;
-			line-height: 64px;
+			color: #555;
+			font-size: 72px;
+			font-weight: 700;
+			line-height: 72px;
 			margin: 0;
 			padding: 30px 0;
 
 			html.textshadow & {
-				@include text-shadow(0 3px 15px rgba(255,255,255,.3), 0 0 0 #5c0000, 1px 1px 0 rgba(255,255,255,.5));
+				@include text-shadow(0 3px 15px rgba(255,255,255,.3), 0 0 0 #555, 1px 1px 0 rgba(255,255,255,.5));
 				color: transparent;
 			}
 		}
@@ -502,7 +524,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 
 	&.loading {
 		&, * {
-			color: $default_loading;
+			color: $content_loading_foreground;
 		}
 
 		pre {
@@ -519,8 +541,9 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		}
 
 		.gallery a {
-			background-color: $link_gallery__bg;
+			background-color: $link_gallery_background;
 			margin: 2px;
+			max-width: 45%;
 		}
 
 		img {
@@ -534,10 +557,12 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	display: none;
 }
 
-@import "_layout-narrow";
-@import "_lt-ie7";
+@import "_syntax";
+@import "_sprites";
+@import "_tipsy";
+@import "_me";
+@import "_mobile";
 @import "_pages";
-// @import "_tipsy";
 
 /** New page title */
 // #content {

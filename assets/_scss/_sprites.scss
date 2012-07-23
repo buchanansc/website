@@ -1,0 +1,35 @@
+/** Sprites */
+
+$spr-spacing: 6px;
+$spr-sprite-base-class: ".sprite";
+@import "spr/*.png";
+@include all-spr-sprites;
+
+.site-icon,
+.site-icon:hover {
+	@include box-shadow(none);
+	@include transition(none);
+	background-color: transparent;
+	display: block;
+	left: 11px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 11px;
+	z-index: 10;
+
+	span {
+		display: block;
+		overflow: hidden;
+		text-indent: 1000px;
+		white-space: nowrap;
+		height: spr-sprite-height("site-icon");
+		width: spr-sprite-width("site-icon");
+	}
+}
+
+// @import "x2/spr/*.png";
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+	// @include all-spr-sprites;
+}

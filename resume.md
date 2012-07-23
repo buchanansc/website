@@ -1,24 +1,9 @@
 ---
 layout: post
 title: Résumé
+subtitle: Software Engineer / San Francisco Bay Area
 class: resume
 ---
-
-<div itemscope="1" itemtype="http://schema.org/Person">
-    <strong><span itemprop="name">
-        <span itemprop="givenName">Scott</span>
-        <span itemprop="familyName">Buchanan</span>
-    </span></strong><br>
-    <meta itemprop="jobTitle" content="Software Engineer" />
-    <span itemprop="address" itemscope="1" itemtype="http://schema.org/PostalAddress">
-        <span itemprop="addressLocality">Dublin</span>
-        <span itemprop="addressRegion">CA</span>,
-        <span itemprop="addressCountry">United States</span>
-    </span><br>
-    <a href="http://buchanansc.com" itemprop="url">buchanansc.com</a>
-</div>
-
-<div markdown="1" class="resume-highlights">
 
 ## Highlights
 
@@ -28,10 +13,6 @@ class: resume
 * Excellent understanding of networking components and protocols.
 * Excellent team player with strong troubleshooting capabilities.
 * Good customer service and communication skills.
-
-</div>
-
-<div markdown="1" class="resume-skills">
 
 ## Skills
 
@@ -56,10 +37,6 @@ Adobe Creative Suite (Flash, Illustrator, Photoshop), Autodesk 3DS Max/Maya
 ### Other Proficiencies
 Apache Server, DNS
 
-</div>
-
-<div markdown="1" class="resume-related">
-
 ## Related Projects
 
 * Created, designed, and improved web based applications and highly functional
@@ -75,10 +52,7 @@ Apache Server, DNS
 * Setup, configured, and administrated a virtual server environment for commercial
   web hosting.
 
-</div>
 
-<div markdown="1" class="resume-experience">
-    
 ## Experience
 
 ### Software Developer
@@ -118,14 +92,8 @@ Problem-solved, worked independently, and resolved customer service issues for
 products sold to HP, Sun and IBM. Developed proof-of-concept software and
 firmware for storage virtualization hardware.
 
-</div>
-
-<div markdown="1" class="resume-education">
-    
 ## Education
 
 ### California State University, Chico
 
-*August 2002 - December 2004*
-
-</div>
+*August 2002 - January 2005*

@@ -4,9 +4,13 @@
 Site.Links = (function () {
 	/** @private */
 	var selector = {
-		'all': Site.config('selector_links_all'),
-		'external': Site.config('selector_links_external'),
-		'internal': Site.config('selector_links_internal')
+		'all': 'a',
+		'internal': 'a[href^="/"]',
+		'external': [
+			'a[rel="external"]',
+			'a[href^="http://"]:not([href^="http://' + location.host + '"])"',
+			'a[href^="https://"]:not([href^="https://' + location.host + '"])'
+			].join(',')
 	};
 
 	return {

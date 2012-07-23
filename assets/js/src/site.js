@@ -1,12 +1,4 @@
-/**
- * JavaScript for wafflesnatcha.github.com
- *
- * @author Scott Buchanan <buchanan.sc@gmail.com>
- * @link http://wafflesnatcha.github.com
- */
-
 var Site = (function () {
-	/** @private */
 	var config = {
 		/** Enable animation */
 		animation: true,
@@ -28,43 +20,41 @@ var Site = (function () {
 
 		/** Turn on Google Analytics tracking (requires that routing is also enabled). */
 		tracking: true,
-		
-		
-		layout_width_collapsed: null,
-		layout_width_expanded: null,
-		layout: 'default',
+
+		layout: null,
+
 		origin: location.protocol + "//" + location.host,
-		selector_links_all: 'a',
-		selector_links_external: [
-			'a[rel="external"]',
-			'a[href^="http://"]:not([href^="http://' + location.host + '"])"',
-			'a[href^="https://"]:not([href^="https://' + location.host + '"])'
-			].join(','),
-		selector_links_internal: 'a[href^="/"]',
 
 		template_error_page: [
 			'<article class="page-error">',
-				'<h1 class="page-title">',
-					'<span class="page-title"><%status%></span>',
-				'</h1>',
-				'<div class="page-body">',
-					'<p><%text%></p>',
-				'</div>',
+			    '<h1 class="page-title">',
+			        '<span class="page-title"><%status%></span>',
+			    '</h1>',
+			    '<div class="page-body">',
+			        '<p><%text%></p>',
+			    '</div>',
 			'</article>'
 			].join('\n')
 	};
 
 	return {
 		init: function (conf) {
+			var prop;
 			if (typeof conf === "object") {
-				for (var prop in conf) {
-					Site.config(prop, conf[prop]);
+				for (prop in conf) {
+					if (conf.hasOwnProperty(prop)) {
+						Site.config(prop, conf[prop]);
+					}
 				}
 			}
 
 			Site.UI.init();
 			Site.Links.init();
 			Site.Navigation.init();
+
+			if (!Site.config('layout')) {
+				Site.Me.init();
+			}
 		},
 
 		/**
@@ -76,7 +66,9 @@ var Site = (function () {
 		 */
 		config: function (property, value) {
 			if (property) {
-				if (arguments.length > 1) config[property] = value;
+				if (arguments.length > 1) {
+					config[property] = value;
+				}
 				return config[property];
 			}
 			return config;
@@ -108,8 +100,10 @@ var Site = (function () {
 		 * @returns {String}
 		 */
 		setTitle: function (title) {
-			if (title) $(document).prop("title", title);
+			if (title) {
+				$(document).prop("title", title);
+			}
 			return $(document).prop("title");
 		}
 	};
-})();
+}());

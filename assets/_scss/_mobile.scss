@@ -1,5 +1,7 @@
 /** Width smaller than 930px */
 
+$width_west: $width_west - 30;
+
 @media screen and (max-device-width: 930px) {
 	body {
 		background-position: 15px top;
@@ -37,7 +39,7 @@
 		@include spr-sprite("site-icon_small");
 		height: spr-sprite-height("site-icon_small");
 		left: auto;
-		right: 5px;
+		right: 7px;
 		top: 12px;
 		width: spr-sprite-width("site-icon_small");
 	}
@@ -45,14 +47,14 @@
 	#navigation {
 		@include border-radius(10px);
 		background: {
-			color: $navigation__bg;
+			color: $navigation_background;
 			image: image-url("background-navigation.png");
 			position: right top;
 			repeat: repeat-y;
 			size: auto;
 		};
 		margin: 0 auto;
-		max-width: $width_west_narrow;
+		max-width: $width_west;
 		padding: 0;
 		position: relative;
 		text-align: left;
@@ -62,7 +64,7 @@
 		html.cssgradients.multiplebgs.boxshadow .collapsed & {
 			@include background-image(
 				linear-gradient(top, rgba(0,0,0,.07), rgba(0,0,0,0)),
-				linear-gradient(left, transparentize(lighten($navigation__bg, 4%), .1), transparentize(darken($navigation__bg, 4%), .1)),
+				linear-gradient(left, transparentize($navigation_background, .1), transparentize($navigation_background, .1)),
 				image-url("noise_100.png")
 			);
 			@include background-size(cover, cover, auto);
@@ -74,25 +76,10 @@
 				0 -1px 1px 0 rgba(0,0,0,.08) inset,
 				0 1px 3px 0 rgba(0,0,0,.3) inset,
 				0 0 3px 0 rgba(0,0,0,.3) inset,
-				0 1px 0 0 rgba(255,255,255,.2)
+				0 1px 0 0 rgba(255,255,255,.2),
+				1px 0 0 0 rgba(255,255,255,.2),
+				-1px 0 0 0 rgba(255,255,255,.2)
 			);
-		}
-
-		.my-links {
-			float: left;
-			font-size: 1.1em;
-
-			a {
-				float: right;
-			}
-		}
-		
-		.my-links-left {
-			float: right;
-		}
-
-		.my-links-right {
-			float: left;
 		}
 		
 		.content-links {
@@ -107,20 +94,69 @@
 		}
 	}
 
+	.my-links {
+		float: left;
+		font-size: 1.1em;
+
+		a {
+			float: right;
+		}
+	
+		.my-links-left {
+			float: right;
+			li {
+				margin: {
+					right: 0;
+					left: 4px;
+				};
+			}
+		}
+
+		.my-links-right {
+			float: left;
+			li {
+				margin: {
+					right: 4px;
+					left: 0;
+				};
+			}
+		}
+	}
+
+	.layout-center {
+		padding: 10px 30px 20px;
+	}
+	
 	#content {
-		@include box-shadow(0 -1px 4px -1px rgba(0,0,0,.3));
+		@include border-radius(8px);
+		@include box-shadow(0 -1px 4px -1px rgba(0,0,0,.3), 0 1px 4px -1px rgba(0,0,0,.3), 0 0 8px 0 rgba(0,0,0,.2));
+		@include box-sizing(border-box);
 		background: {
-			color: $default__bg;
+			color: $color_background;
 			position: 0 0;
 		};
+		margin: 0 auto;
+		max-width: $width_center + 30;
 		min-height: 300px;
-		padding: {
-			left: 15px;
-			right: 15px;
-		};
 		
 		.collapsed & {
 			display: none;
 		}
+	}
+}
+
+@media screen and (max-device-width: 640px) {
+	.layout-center {
+		padding: 0;
+	}
+
+	#content {
+		@include border-radius(0);
+		margin: 0;
+		max-width: none;
+		padding: {
+			left: 15px;
+			right: 15px;
+		};
 	}
 }

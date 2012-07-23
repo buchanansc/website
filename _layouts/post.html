@@ -1,14 +1,12 @@
 ---
-layout: layout
+layout: default
 ---
 <article{% if page.class %} class="{{ page.class }}"{% endif %}>
-{% if page.title %}
-	<h1 class="page-title">
-		{% if page.link %}<a class="page-title" href="{{ page.link }}">{{ page.title }}</a>
-		{% else %}<span class="page-title">{{ page.title }}</span>{% endif %}
-	</h1>
-{% endif %}
-<div class="page-body">
-{{ content }}
-</div>
+{% if page.title or page.subtitle %}<header>
+{% if page.title %}<h1 class="page-title">
+{% if page.title_link %}<a class="page-title" href="{{ page.title_link }}">{{ page.title }}</a>{% else %}<span class="page-title">{{ page.title }}</span>{% endif %}	
+</h1>{% endif %}
+{% if page.subtitle %}<p class="page-subtitle">{{ page.subtitle }}</p>{% endif %}
+</header>{% endif %}
+<div class="page-body">{{ content }}</div>
 </article>

@@ -1,31 +1,34 @@
-$font_body: "Open Sans", "Arial", "Helvetica", sans-serif;
-// $font_code: "Andale Mono", "Monaco", "Courier New", monospace;
-$font_code: "Menlo", "Consolas", "DejaVu Sans Mono", "Courier", monospace;
-$font_heading: $font_body;
+$font-family: "Open Sans", "Arial", "Helvetica", sans-serif;
+$font-family_code: "Consolas", "Droid Sans Mono", "Monaco", "Courier", monospace; // "Andale Mono", "Monaco", "Courier New", monospace;
+$font-family_heading: $font-family;
 
-$font_size: 13px;
-$font_size_code: $font_size;
+$font-size: 13px;
+$font-size_code: $font-size - 1;
 
-$default: #2a2a2a;
-$default_loading: #999;
-$default__bg: #fff;
+$color_foreground: #2a2a2a;
+$color_background: #fff;
 
-$body__bg: #81e381;
-$navigation__bg: #e5e5e5;
+$body_background: #81e381;
+$navigation_background: #e5e5e5;
+$code_background: #f9f9f9;
 
-$link: #680094;
-$link_hover: #fff;
-$link_hover__bg: $link;
-$link_gallery__bg: #e6e6e6;
+$link_foreground: #680094;
+$link_hover_foreground: #fff;
+$link_hover_background: $link_foreground;
+$link_gallery_background: #e6e6e6;
 
-$heading: $default; // #2b661d
+$heading_foreground: $color_foreground; // #2b661d
 
 $width_west: 330px;
-$width_west_narrow: $width_west - 30;
 $width_center: 570px;
+
+$site-title_font-size: 30px;
 
 $my-links_height: 24px;
 $my-links_width: $my-links_height;
+
+$content_loading_foreground: #999;
+$content_block_margin: 15px;
 
 @mixin text-size-adjust($percentage: 100%) {
 	-moz-text-size-adjust: $percentage;

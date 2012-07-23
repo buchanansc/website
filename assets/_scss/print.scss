@@ -2,25 +2,28 @@
 
 @import "_global";
 
-$site-title: $default;
-$default: #000;
-$default__bg: #fff;
+$color_foreground: #000;
+$color_background: #fff;
+
+* {
+	font-size: 100%;
+}
 
 html, body {
-	background: $default__bg;
+	background: $color_background;
 }
 
 body {
-	background: $default__bg;
-	color: $default;
+	background: $color_background;
+	color: $color_foreground;
 	font: {
-		family: $font_body;
-		size: $font_size;
+		family: $font-family;
+		size: $font-size;
 	};
 }
 
 a {
-	color: $link;
+	color: $link_foreground;
 	font-weight: 600;
 	text-decoration: underline;
 
@@ -39,15 +42,15 @@ hr {
 }
 
 pre, code, kbd, samp {
-	font-family: $font_code;
-	font-size: $font_size_code;
+	font-family: $font-family_code;
+	font-size: $font-size_code;
 }
 
 pre {
 	@include border-radius(3px);
 	background: none;
 	border: 2px solid #999;
-	color: $default;
+	color: $color_foreground;
 	padding: .6em .8em;
 	position: static;
 	white-space: pre-wrap;
@@ -85,8 +88,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol {
 	margin: {
-		bottom: 15px;
-		top: 15px;
+		bottom: $content_block_margin;
+		top: $content_block_margin;
 	};
 }
 
@@ -96,15 +99,19 @@ h1, h2, h3, h4, h5, h6, b, strong {
 	}
 }
 
-h1 { font-size: 2em; }
-h2 { font-size: 1.5em; }
-h3 { font-size: 1.17em; }
-h4 { font-size: 1em; }
-h5 { font-size: 0.83em; }
-h6 { font-size: 0.67em; }
+h1 { font-size: $font-size * 2; }
+h2 { font-size: $font-size * 1.5; }
+h3 { font-size: $font-size * 1.17; }
+h4 { font-size: $font-size * 1; }
+h5 { font-size: $font-size * 0.83; }
+h6 { font-size: $font-size * 0.67; }
 
 i, em {
 	font-style: italic;
+}
+
+#layout {
+	width: auto !important;
 }
 
 #navigation {
@@ -120,8 +127,10 @@ i, em {
 	}
 
 	.site-title {
-		color: $site-title;
-		display: block;
+		&, & * {
+			display: inline;
+		}
+		color: $color_foreground;
 		font-size: 18px;
 		font-style: italic;
 		line-height: 20px;
@@ -130,9 +139,7 @@ i, em {
 	}
 
 	.site-icon {
-		// clear: right;
 		display: block;
-		// float: right;
 		font-size: 12px;
 		line-height: 12px;
 		margin: 0px 0 0;
@@ -146,10 +153,28 @@ i, em {
 }
 
 #content {
+	font-size: $font-size;
+
+	h1, h2, h3, h4, h5, h6 {
+		page-break-after: avoid;
+	}
+
+/*
+	p, pre, blockquote, ul, ol {
+		orphans: 3;
+		widows: 3;
+	}
+	
+	ul, ol {
+		page-break-before: avoid;
+		page-break-inside: avoid;
+	}
+*/
+
 	a:after {
-		color: $default + #555;
+		color: $color_foreground + #555;
 		content: " (" attr(href) ") ";
-		font-size: $font_size - 2;
+		font-size: $font-size - 2;
 		font-weight: normal;
 		text-decoration: none;
 		word-wrap: break-word;
@@ -159,22 +184,37 @@ i, em {
 		content: " http://buchanansc.com" attr(href);
 	}
 
+	a[href^="mailto:"],
+	a[href^="javascript:"] {
+		display: none;
+	}
+	
 	.page-title,
- 	& > :first-child,
- 	& > article > :first-child {
-		margin-top: 0;
-		padding-top: 0;
+	.page-subtitle {
+		margin: 0;
+		padding: 0;
+		text-decoration: none;
 	}
 
 	h1.page-title {
-		border-bottom: 1px solid #333;
-		min-height: 32px;
+		border-bottom: 1px solid #666;
+		min-height: 38px;
 	}
 
-	p, pre, blockquote, ul, ol {
-		page-break-before: avoid;
-		page-break-inside: avoid;
+	.page-subtitle {
+		font-size: $font-size + 1;
+		font-weight: 600;
+		padding: 4px;
 	}
 }
 
+.screen-only, .hidden {
+	display: none;
+}
+
+.tipsy {
+	display: none !important;
+}
+
+@import "_syntax";
 @import "_pages";

@@ -27,20 +27,20 @@ task :development => ["clean", "compass:development"] do
 end
 
 desc 'Switch to the production environment'
-task :production => ["clean", "compass:production", "compass:cache", "crush"] do
+task :production => ["clean", "compass:production", "optipng"] do
 	jekyllEnvironment('production')
 	Rake::Task["jekyll:run"].execute
 end
 
 desc 'Clean all cache and generated files'
-task :clean => ["compass:clean", "compass:cache", "jekyll:clean"]
+task :clean => ["compass:clean", "jekyll:clean"]
 
-task :crush do
-	system("which crush.sh &>/dev/null && find '" + File.join(CONFIG['root'], CONFIG['images_dir']) + "' -type f -name '*.png' | xargs crush.sh")
+desc 'Optimize PNG files with optipng'
+task :optipng do
+	system("find '" + File.join(CONFIG['root'], CONFIG['images_dir']) + "' -type f -name '*.png' | xargs optipng")
 end
 
 namespace :jekyll do
-
 	desc 'Clear generated site'
 	task :clean do
 		yml = YAML.load_file(File.join(CONFIG['root'], CONFIG['jekyll_config']))
@@ -50,42 +50,29 @@ namespace :jekyll do
 			FileUtils.rm_rf(path)
 		end
 	end
-
 	desc 'Launch jekyll preview environment'
 	task :server do
 		yml = YAML.load_file(File.join(CONFIG['root'], CONFIG['jekyll_config']))
-		port = yml['server_port'] || 4000
-		system("{ sleep 1 && open 'http://#{`echo "$HOSTNAME"`.chomp}:#{port}'; } &>/dev/null &")
+		system("{ sleep 1 && open 'http://#{`echo "$HOSTNAME"`.chomp}:#{yml['server_port'] || 4000}'; } &>/dev/null &")
 		system("cd '#{CONFIG['root']}' && jekyll --server --auto")
 	end
-
 	desc 'Run jekyll'
 	task :run do
 		system("cd '#{CONFIG['root']}' && jekyll")
 	end
-
 end
 
 namespace :compass do
-
-	desc 'Remove sass cache'
-	task :cache do
-		system("find '#{CONFIG['root']}' -type d -name '.sass-cache' -prune -exec echo \"Removing {}\" \\; -exec rm -r \\{\\} \\;")
-	end
-
 	desc 'Remove generated files and the sass cache'
 	task :clean do
 		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass clean")
 	end
-
 	desc 'Compass compile with `-e development`'
 	task :development do
 		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass compile --time -e development")
 	end
-
 	desc 'Compass compile with `-e production --force`'
 	task :production do
 		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass compile --time -e production --force")
 	end
-
 end
