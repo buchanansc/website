@@ -1,4 +1,3 @@
-/** @namespace */
 Site.Content = (function () {
 	var jqXHR;
 	var title_pattern = /<title>(.*)<\/title>/i;

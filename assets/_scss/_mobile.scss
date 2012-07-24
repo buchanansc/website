@@ -35,15 +35,6 @@ $width_west: $width_west - 30;
 		padding: 10px;
 	}
 
-	.site-icon, .site-icon:hover {
-		@include spr-sprite("site-icon_small");
-		height: spr-sprite-height("site-icon_small");
-		left: auto;
-		right: 7px;
-		top: 12px;
-		width: spr-sprite-width("site-icon_small");
-	}
-
 	#navigation {
 		@include border-radius(10px);
 		background: {
@@ -91,6 +82,18 @@ $width_west: $width_west - 30;
 				margin: 3px 0;
 				padding: 0 10px;
 			}
+		}
+	}
+
+	.site-icon, .site-icon:hover {
+		left: auto;
+		right: 7px;
+		top: 12px;
+
+		span {
+			@include spr-sprite("site-icon_small");
+			height: spr-sprite-height("site-icon_small");
+			width: spr-sprite-width("site-icon_small");
 		}
 	}
 

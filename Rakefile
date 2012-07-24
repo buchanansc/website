@@ -4,6 +4,7 @@ require "yaml"
 CONFIG = {
 	'root' => File.dirname(__FILE__),
 	'compass_project' => '',
+	'grunt_dir' => '',
 	'jekyll_config' => '_config.yml',
 	'images_dir' => 'assets/img',
 }
@@ -27,18 +28,23 @@ task :development => ["clean", "compass:development"] do
 end
 
 desc 'Switch to the production environment'
-task :production => ["clean", "compass:production", "optipng"] do
+task :production => ["clean", "compass:production", "grunt", "optipng"] do
 	jekyllEnvironment('production')
 	Rake::Task["jekyll:run"].execute
 end
 
-desc 'Clean all cache and generated files'
-task :clean => ["compass:clean", "jekyll:clean"]
+desc 'Run grunt.js'
+task :grunt do
+	system("cd '" + File.join(CONFIG['root'], CONFIG['grunt_dir']) + "' &>/dev/null && grunt")
+end
 
 desc 'Optimize PNG files with optipng'
 task :optipng do
-	system("find '" + File.join(CONFIG['root'], CONFIG['images_dir']) + "' -type f -name '*.png' | xargs optipng")
+	system("find '" + File.join(CONFIG['root'], CONFIG['images_dir']) + "' -type f -name '*.png' | xargs optipng -quiet -preserve")
 end
+
+desc 'Clean all cache and generated files'
+task :clean => ["compass:clean", "jekyll:clean"]
 
 namespace :jekyll do
 	desc 'Clear generated site'

@@ -1,5 +1,5 @@
 /**
- * @namespace Manage all navigation within, and away from the page
+ * Manage all navigation within, and away from the page
  */
 Site.Navigation = (function () {
 	/** @private */

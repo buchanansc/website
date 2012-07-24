@@ -1,9 +1,11 @@
 safe: true
 pygments: true
 permalink: /:category/:year/:month/:day/:title/
+
 url: http://buchanansc.com
 title: Scott Buchanan
 subtitle: buchanansc.com
+
 twitter:
     user: wafflesnatcha
     limit: 3
@@ -14,5 +16,6 @@ lastfm:
     user: wafflesnatcha
     api_key: 1ad6bea80327069ed4ecccf76fe34175
     limit: 3
+    
 exclude: ["CNAME", "config.rb", "grunt.js", "Rakefile"]
 environment: production

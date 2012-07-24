@@ -85,14 +85,13 @@ Site.Me.Lastfm = (function () {
 				gravity: 'nw',
 				html: true,
 				opacity: 1,
+				fixed: true,
 				title: function () {
 					return html;
 				}
 			});
-			// $(selector).tipsy("disable");
 			loadData(function (h) {
 				$(selector).data("tipsy").tip().find('.tipsy-inner')['html'](h);
-				// $(selector).tipsy("enable");
 			});
 		}
 	};

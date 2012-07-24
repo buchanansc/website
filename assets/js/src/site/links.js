@@ -1,5 +1,5 @@
 /**
- * @namespace Bridge HTML anchor elements to Site.Navigation
+ * Bridge HTML anchor elements to Site.Navigation
  */
 Site.Links = (function () {
 	/** @private */
