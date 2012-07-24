@@ -20,7 +20,7 @@ body {
 		family: $font-family;
 		size: $font-size;
 	};
-	line-height: 1.4em;
+	line-height: normal;
 }
 
 a {
@@ -155,7 +155,7 @@ i, em {
 
 #content {
 	font-size: $font-size;
-
+	
 	h1, h2, h3, h4, h5, h6 {
 		page-break-after: avoid;
 	}
