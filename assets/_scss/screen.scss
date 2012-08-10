@@ -127,18 +127,33 @@ pre, code, kbd, samp {
 	}
 }
 
-@import "_navigation";
-@import "_content";
-@import "_syntax";
-@import "_sprites";
-@import "_tipsy";
-@import "_me";
-@import "_mobile";
-@import "_pages";
+.layout-west {
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	float: left;
+	overflow: visible;
+	position: relative;
+	width: $width_west;
+	z-index: 10;
+}
+
+.layout-center {
+	margin-left: $width_west;
+	position: relative;
+	width: $width_center;
+}
 
 .print-only, .hidden {
 	display: none;
 }
+
+@import "screen/_sprites";
+@import "screen/_navigation";
+@import "screen/_content";
+@import "screen/_tipsy";
+@import "screen/_me";
+@import "screen/_mobile";
 
 
 /** New page title */

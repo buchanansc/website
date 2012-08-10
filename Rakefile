@@ -3,14 +3,31 @@ require "yaml"
 
 CONFIG = {
 	'root' => File.dirname(__FILE__),
-	'compass_project' => '',
-	'grunt_dir' => '',
+	'compass_project' => 'assets/_scss',
 	'jekyll_config' => '_config.yml',
+	'grunt_dir' => '',
 	'images_dir' => 'assets/img',
 }
 
 task :default do
 	exec("rake --rakefile '#{__FILE__}' --tasks")
+end
+
+desc 'Switch to the development environment'
+task :development => ["clean", "compass:development", "jekyll:development", "jekyll:run"]
+
+desc 'Switch to the production environment'
+task :production => ["clean", "compass:production", "grunt", "optipng", "jekyll:production", "jekyll:run"]
+
+desc 'Clean all cache and generated files'
+task :clean => ["compass:clean", "jekyll:clean"]
+
+
+task :grunt do
+	system("cd '" + File.join(CONFIG['root'], CONFIG['grunt_dir']) + "' &>/dev/null && grunt")
+end
+task :optipng do
+	system("find '" + File.join(CONFIG['root'], CONFIG['images_dir']) + "' -type f -name '*.png' | xargs optipng -quiet -preserve")
 end
 
 def jekyllEnvironment(mode = 'development')
@@ -21,64 +38,44 @@ def jekyllEnvironment(mode = 'development')
 	f.close()
 end
 
-desc 'Switch to the development environment'
-task :development => ["clean", "compass:development"] do
-	jekyllEnvironment('development')
-	Rake::Task["jekyll:server"].execute
+def jekyllConfig(param)
+	YAML.load_file(File.join(CONFIG['root'], CONFIG['jekyll_config']))[param]
 end
-
-desc 'Switch to the production environment'
-task :production => ["clean", "compass:production", "grunt", "optipng"] do
-	jekyllEnvironment('production')
-	Rake::Task["jekyll:run"].execute
-end
-
-desc 'Run grunt.js'
-task :grunt do
-	system("cd '" + File.join(CONFIG['root'], CONFIG['grunt_dir']) + "' &>/dev/null && grunt")
-end
-
-desc 'Optimize PNG files with optipng'
-task :optipng do
-	system("find '" + File.join(CONFIG['root'], CONFIG['images_dir']) + "' -type f -name '*.png' | xargs optipng -quiet -preserve")
-end
-
-desc 'Clean all cache and generated files'
-task :clean => ["compass:clean", "jekyll:clean"]
 
 namespace :jekyll do
-	desc 'Clear generated site'
+	task :development do
+		jekyllEnvironment('development')
+	end
+	task :production do
+		jekyllEnvironment('production')
+	end
 	task :clean do
-		yml = YAML.load_file(File.join(CONFIG['root'], CONFIG['jekyll_config']))
-		path = File.expand_path(File.join(CONFIG['root'], yml['destination'] || './_site'))
+		path = File.expand_path(File.join(CONFIG['root'], jekyllConfig('destination') || '_site'))
 		if (File.expand_path(CONFIG['root']) != path && File.directory?(path)) then
 			puts "Removing #{path}"
 			FileUtils.rm_rf(path)
 		end
 	end
-	desc 'Launch jekyll preview environment'
 	task :server do
-		yml = YAML.load_file(File.join(CONFIG['root'], CONFIG['jekyll_config']))
-		system("{ sleep 1 && open 'http://#{`echo "$HOSTNAME"`.chomp}:#{yml['server_port'] || 4000}'; } &>/dev/null &")
+		system("open 'http://#{`echo "$HOSTNAME"`.chomp}:" + (jekyllConfig('server_port') || '4000') + "'")
 		system("cd '#{CONFIG['root']}' && jekyll --server --auto")
 	end
-	desc 'Run jekyll'
 	task :run do
 		system("cd '#{CONFIG['root']}' && jekyll")
 	end
 end
 
 namespace :compass do
-	desc 'Remove generated files and the sass cache'
 	task :clean do
 		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass clean")
 	end
-	desc 'Compass compile with `-e development`'
 	task :development do
-		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass compile --time -e development")
+		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass compile -e development")
 	end
-	desc 'Compass compile with `-e production --force`'
 	task :production do
-		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass compile --time -e production --force")
+		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass compile -e production --force")
+	end
+	task :watch do
+		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass watch -e development")
 	end
 end

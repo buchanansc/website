@@ -1,49 +1,30 @@
 var Site = (function () {
 	var config = {
-		/** Enable animation */
+		// Enable animation
 		animation: true,
-
-		/** Effect duration (milliseconds) when animating the content expanding/collapsing. */
+		// Effect duration (milliseconds) when animating the content expanding/collapsing.
 		content_anim_duration: 300,
-
-		/** Index page */
+		// Index page
 		index_page: 'index.html',
-
-		/** Enable routing */
+		// Enable routing
 		routing: true,
-
-		/** Site title */
-		title: '',
-
-		/** Site base URL */
-		url: '',
-
-		/** Turn on Google Analytics tracking (requires that routing is also enabled). */
+		// Turn on Google Analytics tracking (requires that routing is also enabled).
 		tracking: true,
 
+		tipsy_list_limit: 3,
 		layout: null,
-
-		origin: location.protocol + "//" + location.host,
-
-		template_error_page: [
-			'<article class="page-error">',
-			    '<h1 class="page-title">',
-			        '<span class="page-title"><%status%></span>',
-			    '</h1>',
-			    '<div class="page-body">',
-			        '<p><%text%></p>',
-			    '</div>',
-			'</article>'
-			].join('\n')
+		origin: location.protocol + "//" + location.host
 	};
 
 	return {
+		_config: config,
+
 		init: function (conf) {
 			var prop;
 			if (typeof conf === "object") {
 				for (prop in conf) {
 					if (conf.hasOwnProperty(prop)) {
-						Site.config(prop, conf[prop]);
+						Site._config[prop] = conf[prop];
 					}
 				}
 			}
@@ -52,7 +33,7 @@ var Site = (function () {
 			Site.Links.init();
 			Site.Navigation.init();
 
-			if (!Site.config('layout')) {
+			if (!Site.config['layout']) {
 				Site.Me.init();
 			}
 		},
@@ -67,11 +48,10 @@ var Site = (function () {
 		config: function (property, value) {
 			if (property) {
 				if (arguments.length > 1) {
-					config[property] = value;
+					Site._config[property] = value;
 				}
-				return config[property];
+				return Site._config[property];
 			}
-			return config;
 		},
 
 		/**

@@ -9,9 +9,8 @@
 	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-	<title>{{ page.title }}{% if page.title %} | {% endif %}{{ site.title }}</title>{% if page.description or page.subtitle %}
-	<meta name="description" content="{{ page.description }}{% unless page.description %}{{ page.subtitle }}{% endunless %}">{% endif %}{% if page.author %}
-	<meta name="author" content="{{ page.author }}">{% endif %}
+	<title>{{ page.title }}{% if page.title %} | {% endif %}{% include site.title.html %}</title>
+{% if page.description %}	<meta name="description" content="{{ page.description }}">{% endif %}
 
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,300,400,600,700">
 	<link rel="stylesheet" type="text/css" href="/assets/css/all.css" media="all">
@@ -29,10 +28,9 @@
 {% else %}
 	<script src="/assets/js/src/log.js" type="text/javascript"></script>
 	<script src="/assets/js/src/modernizr.custom.js" type="text/javascript"></script>
-	<script src="/assets/js/src/jquery-1.7.2.min.js" type="text/javascript"></script>
-	<script src="/assets/js/src/jquery/jquery-ajax-localstorage-cache.js" type="text/javascript"></script>	
-	<script src="/assets/js/src/jquery/jquery.date.js" type="text/javascript"></script>
-	<script src="/assets/js/src/jquery/jquery.tipsy.js" type="text/javascript"></script>
+	<script src="/assets/js/src/jquery/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script src="/assets/js/src/jquery/plugins/jquery.date.js" type="text/javascript"></script>
+	<script src="/assets/js/src/jquery/plugins/jquery.tipsy.js" type="text/javascript"></script>
 	<script src="/assets/js/src/string._template.js" type="text/javascript"></script>
 	<script src="/assets/js/src/site.js" type="text/javascript"></script>
 	<script src="/assets/js/src/site/content.js" type="text/javascript"></script>
@@ -47,26 +45,17 @@
 	<script type="text/javascript">
 	jQuery(function () {
 		Site.init({
-			title: "{{ site.title }}",
+			title: "{% include site.title.html %}",
 			url: "{{ site.url }}",
-			twitter: "{{ site.author.twitter }}",
-			github: "{{ site.author.github }}",
-			lastfm: "{{ site.author.lastfm }}",
+			twitter: "{{ site.me.twitter }}",
+			github: "{{ site.me.github }}",
+			lastfm: "{{ site.me.lastfm }}",
 			lastfm_apikey: "{{ site.lastfm_apikey }}"
 		});
 	});
 	</script>
 {% if site.environment == "production" %}
-	<script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-12612599-1']);
-	_gaq.push(['_trackPageview']);
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
-	</script>
+	<script type="text/javascript">var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-12612599-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
 {% endif %}
 </head>
 <body>
@@ -75,30 +64,29 @@
 			<div id="navigation">
 				<header class="header" itemscope itemtype="http://schema.org/Person">
 					<h1 class="site-title" itemprop="name">
-						{% if site.author.name_given %}<span itemprop="givenName">{{ site.author.name_given }}</span>{% endif %}
-						{% if site.author.name_family %}<span itemprop="familyName">{{ site.author.name_family }}</span>{% endif %}
+						{% if site.me.name.given %}<span itemprop="givenName">{{ site.me.name.given }}</span>{% endif %}
+						{% if site.me.name.family %}<span itemprop="familyName">{{ site.me.name.family }}</span>{% endif %}
 					</h1>
-					{% if site.author.job_title %}<meta itemprop="jobTitle" content="{{ site.author.job_title }}">{% endif %}
-					{% if site.author.address %}<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-						{% if site.author.address.locality %}<meta itemprop="addressLocality" content="{{ site.author.address.locality }}">{% endif %}
-						{% if site.author.address.region %}<meta itemprop="addressRegion" content="{{ site.author.address.region }}">{% endif %}
-						{% if site.author.address.country %}<meta itemprop="addressCountry" content="{{ site.author.address.country }}">{% endif %}
+					{% if site.me.job_title %}<meta itemprop="jobTitle" content="{{ site.me.job_title }}">{% endif %}
+					{% if site.me.address %}<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+						{% if site.me.address.locality %}<meta itemprop="addressLocality" content="{{ site.me.address.locality }}">{% endif %}
+						{% if site.me.address.region %}<meta itemprop="addressRegion" content="{{ site.me.address.region }}">{% endif %}
+						{% if site.me.address.country %}<meta itemprop="addressCountry" content="{{ site.me.address.country }}">{% endif %}
 					</span>{% endif %}
-					<a href="/" class="site-icon" itemprop="url"><span class="spr-site-icon">{{ site.subtitle }}</span></a>
-					<nav class="my-links">
-						<ul class="my-links-left">
-							<li><a href="/resume.html">R&eacute;sum&eacute;</a></li>
-						</ul>
-						<ul class="my-links-right">
-							{% if site.author.github %}<li><a rel="external" href="http://github.com/{{ site.author.github }}" title="github" target="_blank" class="github-link"><span class="spr-github">github</span></a></li>{% endif %}
-							{% if site.author.lastfm %}<li><a rel="external" href="http://www.last.fm/user/{{ site.author.lastfm }}" title="last.fm" target="_blank" class="lastfm-link"><span class="spr-lastfm">last.fm</span></a></li>{% endif %}
-							{% if site.author.twitter %}<li><a rel="external" href="http://twitter.com/{{ site.author.twitter }}" title="twitter" target="_blank" class="twitter-link"><span class="spr-twitter">twitter</span></a></li>{% endif %}
+					<a href="/" class="site-icon" itemprop="url"><span class="spr-site-icon">{{ site.url | replace_first:'http://','' }}</span></a>
+					<nav class="me-links">
+						<ul>
+							{% comment %}<li class="left"><a href="/resume.html">R&eacute;sum&eacute;</a></li>{% endcomment %}
+							{% if site.me.twitter %}<li><a href="http://twitter.com/{{ site.me.twitter }}" id="me-link-twitter" title="twitter" rel="external" target="_blank"><span class="spr-twitter">twitter</span></a></li>{% endif %}
+							{% if site.me.lastfm %}<li><a href="http://www.last.fm/user/{{ site.me.lastfm }}" id="me-link-lastfm" title="last.fm" target="_blank"><span class="spr-lastfm">last.fm</span></a></li>{% endif %}
+							{% if site.me.github %}<li><a href="http://github.com/{{ site.me.github }}" id="me-link-github" title="github" target="_blank"><span class="spr-github">github</span></a></li>{% endif %}
 						</ul>
 					</nav>
 				</header>
 				<ul class="content-links">
 					<li><a href="/projects/RegexTool/">RegexTool</a></li>
 					<li><a href="/projects/scott.textmate/">scott.textmate</a></li>
+{% if site.environment == "development" %}<li><a href="/sandbox.html">Sandbox</a></li>{% endif %}
 				</ul>
 			</div>
 		</div>

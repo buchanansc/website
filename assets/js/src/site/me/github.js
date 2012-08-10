@@ -1,5 +1,5 @@
 Site.Me.Github = (function () {
-	var selector = '.my-links a.github-link',
+	var selector = '#me-link-github',
 		url = 'https://api.github.com/users/<%user%>/events/public?callback=?',
 		html = '';
 
@@ -18,14 +18,16 @@ Site.Me.Github = (function () {
 		].join('\n');
 
 	var tpl_events = {
-		'PushEvent': 'Pushed to <%branch%> at <b><%repo%></b>',
-		'ForkEvent': 'Forked <b><%repo%></b>',
-		'WatchEvent': 'Started watching <b><%repo%></b>'
+		'FollowEvent': 'Started following <a href="<%payload_target_url%>" rel="external"><%payload_target%></a>',
+		'ForkEvent': 'Forked <a href="<%repo_url%>" rel="external"><%repo%></a>',
+		'PullRequestEvent': 'Opened <a href="<%payload.pull_request.html_url%>" rel="external">pull request #<%payload_number%></a> on <%repo_link%>',
+		'PushEvent': 'Pushed <%commit_count%> to <%payload_ref%> at <a href="<%repo_url%>" rel="external"><%repo%></a>',
+		'WatchEvent': 'Starred <%repo_link%>'
 	};
 
 	function loadData(callback) {
-		var user = Site.config('github_user'),
-			limit = Site.config('github_limit') || 3;
+		var user = Site._config.github,
+			limit = Site._config.tipsy_list_limit || 3;
 		$.getJSON(url._template({
 			'user': user,
 			'count': limit
@@ -33,20 +35,28 @@ Site.Me.Github = (function () {
 			if (status != "success") {
 				return html = '';
 			}
-			var i, arr = data.data,
+			var i, n, arr = data.data,
 				l = arr.length,
 				items = '';
 			for (i = 0; i < l && i < limit; i++) {
-				if (!tpl_events[arr[i].type]) {
+				n = arr[i];
+				if (!tpl_events[n.type]) {
 					limit++;
 					continue;
 				}
 				items += tpl_item._template({
-					'date': $.date.relative(arr[i].created_at),
-					'message': tpl_events[arr[i].type]._template({
-						'type': arr[i].type,
-						'repo': arr[i].repo ? arr[i].repo.name : '',
-						'branch': arr[i].payload ? arr[i].payload.ref.replace(/^.+?\/([^\/]+)$/, '$1') : ''
+					'date': $.date.relative(n.created_at),
+					'message': tpl_events[n.type]._template({
+						'type': n.type,
+						'repo': n.repo ? n.repo.name : '',
+						'repo_url': n.repo ? n.repo.url : '',
+						'repo_link': n.repo && n.repo.url && n.repo.name ? '<a href="' + n.repo.url + '" rel="external">' + n.repo.name + '</a>' : '',
+						'commit_count': n.payload && n.payload.size >= 1 ? ((n.payload.size == 1) ? '1 commit' : n.payload.size + ' commits') : '',
+						'payload.pull_request.html_url': n.payload && n.payload.pull_request ? n.payload.pull_request.html_url : '',
+						'payload_number': n.payload && n.payload.number ? n.payload.number : '',
+						'payload_ref': n.payload && n.payload.ref ? n.payload.ref.replace(/^.+?\/([^\/]+)$/, '$1') : '',
+						'payload_target': n.payload && n.payload.target ? n.payload.target.login : '',
+						'payload_target_url': n.payload && n.payload.target ? n.payload.target.html_url : ''
 					})
 				});
 			}
@@ -60,7 +70,7 @@ Site.Me.Github = (function () {
 
 	return {
 		init: function () {
-			if (!jQuery().tipsy || !Site.config('github_user')) {
+			if (!jQuery().tipsy || !Site._config.github) {
 				return;
 			}
 			$(selector).tipsy({
@@ -74,8 +84,9 @@ Site.Me.Github = (function () {
 					return html;
 				}
 			});
-			loadData(function (h) {
-				$(selector).data("tipsy").tip().find('.tipsy-inner')['html'](h);
+			loadData(function (html) {
+				$(selector).data('tipsy').tip().find('.tipsy-inner')['html'](html);
+				Site.Links.init($(selector).data('tipsy').tip());
 			});
 		}
 	};

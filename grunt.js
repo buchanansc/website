@@ -1,7 +1,5 @@
 /*global module:false*/
 module.exports = function (grunt) {
-
-	// Project configuration.
 	grunt.initConfig({
 		meta: {},
 		lint: {
@@ -13,9 +11,13 @@ module.exports = function (grunt) {
 		concat: {
 			dist: {
 				src: [
+					"assets/js/src/log.js",
+					"assets/js/src/modernizr.custom.js",
+					"assets/js/src/jquery/jquery-1.7.2.min.js",
+					// "assets/js/src/jquery/plugins/jquery-ajax-localstorage-cache.js",
+					"assets/js/src/jquery/plugins/jquery.date.js",
+					"assets/js/src/jquery/plugins/jquery.tipsy.js",
 					"assets/js/src/string._template.js",
-					"assets/js/src/jquery/jquery.date.js",
-					"assets/js/src/jquery/jquery.tipsy.js",
 					"assets/js/src/site.js",
 					"assets/js/src/site/content.js",
 					"assets/js/src/site/links.js",
@@ -24,9 +26,9 @@ module.exports = function (grunt) {
 					"assets/js/src/site/me.js",
 					"assets/js/src/site/me/github.js",
 					"assets/js/src/site/me/lastfm.js",
-					"assets/js/src/site/me/twitter.js"
+					"assets/js/src/site/me/twitter.js",
 					],
-				dest: "assets/js/site.js"
+				dest: "assets/js/all.js"
 			}
 		},
 		min: {
@@ -55,7 +57,5 @@ module.exports = function (grunt) {
 		uglify: {}
 	});
 
-	// Default task.
 	grunt.registerTask('default', 'concat min');
-
 };

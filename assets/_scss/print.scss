@@ -1,6 +1,6 @@
-@import "compass/css3";
-
 @import "_global";
+
+@import "compass/css3";
 
 $color_foreground: #000;
 $color_background: #fff;
@@ -191,7 +191,7 @@ i, em {
 	}
 	
 	.page-title,
-	.page-subtitle {
+	.page-description {
 		margin: 0;
 		padding: 0;
 		text-decoration: none;
@@ -202,7 +202,7 @@ i, em {
 		min-height: 38px;
 	}
 
-	.page-subtitle {
+	.page-description {
 		font-size: $font-size + 1;
 		font-weight: 600;
 		padding: 4px;
@@ -216,6 +216,3 @@ i, em {
 .tipsy {
 	display: none !important;
 }
-
-@import "_syntax";
-@import "_pages";

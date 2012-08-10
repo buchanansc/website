@@ -15,10 +15,24 @@ $tipsy_max-width: $width_west + 30 !default;
 	z-index: 100000;
 }
 
+.tipsy a {
+	@include box-shadow(none);
+	@include text-shadow(none);
+	background: transparent;
+	color: #6cf;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
 .tipsy-inner {
 	@include border-radius(3px);
 	@include box-shadow(0 1px 1px rgba(0,0,0,.5));
-	background-color: $tipsy_background;
+	background-color: transparentize($tipsy_background, .03);
 	color: $tipsy_foreground;
 	max-width: $tipsy_max-width;
 	padding: 4px;

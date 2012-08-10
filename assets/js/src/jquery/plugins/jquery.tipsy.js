@@ -3,6 +3,8 @@
 // (c) 2008-2010 jason frame [jason@onehackoranother.com]
 // released under the MIT license
 
+// modified 2012-08-09 by Scott Buchanan <buchanan.sc@gmail.com> http://wafflesnatcha.github.com
+
 (function($) {
     
     function maybeCall(thing, ctx) {

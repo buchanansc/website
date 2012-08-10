@@ -1,6 +1,6 @@
-.my-links .twitter-link:hover { background-color: #33ccff; }
-.my-links .github-link:hover { background-color: #888; }
-.my-links .lastfm-link:hover { background-color: #d51007; }
+#me-link-github:hover { background-color: #888; }
+#me-link-lastfm:hover { background-color: #d51007; }
+#me-link-twitter:hover { background-color: #33ccff; }
 
 .tipsy-list {
 	color: #fff;
@@ -42,8 +42,7 @@
 		padding: 4px 0;
 
 		&:first-child {
-			border-top: 0;
-			padding-bottom: 2px;
+			border-top-color: #1a1a1a;
 		}
 		&:last-child {
 			border-bottom: 0;
@@ -76,6 +75,7 @@ $art-size: 42px;
 		width: $art-size;
 
 		img {
+			@include box-shadow(0 1px 1px 0 rgba(0,0,0,.3));
 			display: inline;
 			max-height: $art-size;
 			max-width: $art-size;
@@ -83,8 +83,7 @@ $art-size: 42px;
 
 		.missing-artwork {
 			@include text-shadow(0 -1px 0 darken($color_foreground, 8%), 0 1px 1px lighten($color_foreground, 10%));
-			background-color: lighten($color_foreground, 5%);
-			color: $color_foreground;
+			color: lighten($color_foreground, 5%);
 			font: {
 				size: 22px;
 				weight: 700;

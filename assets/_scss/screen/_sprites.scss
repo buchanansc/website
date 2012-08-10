@@ -1,0 +1,16 @@
+/** Sprites */
+
+$disable-magic-sprite-selectors: true;
+// $spr-layout: smart;
+// $spr-sprite-dimensions: true;
+// $spr-spacing: 6px;
+@import "spr/*.png";
+@include all-spr-sprites;
+$MAP_spr: sprite-map("spr/*.png");
+
+// $MAP_spr-x2: sprite-map("x2/spr/*.png");
+// @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+// 	.spr-github, .spr-lastfm, .spr-twitter, .spr-site-icon {
+// 		background: $MAP_spr-x2;
+// 	}
+// }

@@ -1,9 +1,15 @@
 ---
 layout: post
 title: Résumé
-subtitle: Software Engineer / San Francisco Bay Area
-class: resume
+description: Software Engineer / San Francisco Bay Area
+css_class: resume
 ---
+
+<style type="text/css">
+#content .page_body h3 { margin-bottom: 3px; }
+#content .page_body p { margin-top: 0; }
+#content .page_body #experience { page-break-before: always; }
+</style>
 
 ## Highlights
 

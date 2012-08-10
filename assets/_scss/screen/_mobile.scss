@@ -50,7 +50,7 @@ $width_west: $width_west - 30;
 		position: relative;
 		text-align: left;
 		width: auto;
-		
+
 		html.cssgradients.multiplebgs.boxshadow &,
 		html.cssgradients.multiplebgs.boxshadow .collapsed & {
 			@include background-image(
@@ -62,7 +62,7 @@ $width_west: $width_west - 30;
 			background: {
 				position: 0 0;
 				repeat: no-repeat, no-repeat, repeat;
-			};			
+			};
 			@include box-shadow(
 				0 -1px 1px 0 rgba(0,0,0,.08) inset,
 				0 1px 3px 0 rgba(0,0,0,.3) inset,
@@ -72,7 +72,7 @@ $width_west: $width_west - 30;
 				-1px 0 0 0 rgba(255,255,255,.2)
 			);
 		}
-		
+
 		.content-links {
 			padding: 0 10px 10px;
 			text-align: left;
@@ -85,51 +85,46 @@ $width_west: $width_west - 30;
 		}
 	}
 
-	.site-icon, .site-icon:hover {
+	.site-icon,
+	.site-icon:hover {
 		left: auto;
 		right: 7px;
 		top: 12px;
 
 		span {
-			@include spr-sprite("site-icon_small");
-			height: spr-sprite-height("site-icon_small");
-			width: spr-sprite-width("site-icon_small");
+			@include sprite($MAP_spr, "site-icon_small", true);
 		}
 	}
 
-	.my-links {
+	.me-links {
 		float: left;
 		font-size: 1.1em;
-
+		
 		a {
 			float: right;
 		}
-	
-		.my-links-left {
-			float: right;
-			li {
-				margin: {
-					right: 0;
-					left: 4px;
-				};
-			}
+
+		li {
+			float: left;
+			margin: {
+				left: 0;
+				right: 4px;
+			};
 		}
 
-		.my-links-right {
-			float: left;
-			li {
-				margin: {
-					right: 4px;
-					left: 0;
-				};
-			}
+		li.left {
+			float: right;
+			margin: {
+				left: 4px;
+				right: 0;
+			};
 		}
 	}
 
 	.layout-center {
 		padding: 10px 30px 20px;
 	}
-	
+
 	#content {
 		@include border-radius(8px);
 		@include box-shadow(0 -1px 4px -1px rgba(0,0,0,.3), 0 1px 4px -1px rgba(0,0,0,.3), 0 0 8px 0 rgba(0,0,0,.2));
@@ -140,10 +135,21 @@ $width_west: $width_west - 30;
 		};
 		margin: 0 auto;
 		max-width: $width_center + 30;
-		min-height: 300px;
-		
+		min-height: 250px;
+
 		.collapsed & {
 			display: none;
+		}
+
+		header {
+			.page-title,
+			.page-description {
+				@include text-shadow(none);
+			}
+
+			h1.page-title {
+				font-weight: normal;
+			}
 		}
 	}
 }

@@ -1,13 +1,13 @@
 Site.Me.Twitter = (function () {
-	var selector = '.my-links a.twitter-link',
+	var selector = '#me-link-twitter',
 		url = 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=<%user%>&count=<%limit%>&callback=?',
 		html = '';
 
 	var tpl = [
-	    '<h3>Twitter <span>@<%user%></span></h3>',
-	    '<ul>',
-	        '<%items%>',
-	    '</ul>',
+		'<h3>Twitter <span>@<%user%></span></h3>',
+		'<ul>',
+		    '<%items%>',
+		'</ul>',
 		].join('\n');
 
 	var tpl_tweet = [
@@ -18,8 +18,8 @@ Site.Me.Twitter = (function () {
 		].join('\n');
 
 	function loadData(callback) {
-		var user = Site.config('lastfm_user'),
-			limit = Site.config('lastfm_limit') || 3;
+		var user = Site._config.twitter,
+			limit = Site._config.tipsy_list_limit || 3;
 
 		$.getJSON(url._template({
 			'user': user,
@@ -46,7 +46,7 @@ Site.Me.Twitter = (function () {
 
 	return {
 		init: function () {
-			if (!jQuery().tipsy || !Site.config('twitter_user')) {
+			if (!jQuery().tipsy || !Site._config.twitter) {
 				return;
 			}
 			$(selector).tipsy({
@@ -60,8 +60,9 @@ Site.Me.Twitter = (function () {
 					return html;
 				}
 			});
-			loadData(function(h) {
-				$(selector).data("tipsy").tip().find('.tipsy-inner')['html'](h);
+			loadData(function (html) {
+				$(selector).data('tipsy').tip().find('.tipsy-inner')['html'](html);
+				Site.Links.init($(selector).data('tipsy').tip());
 			});
 		}
 	};

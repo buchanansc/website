@@ -1,26 +1,22 @@
 safe: true
 pygments: true
 permalink: /:categories/:year/:month/:day/:title
-
 url: http://buchanansc.com
-title: Scott Buchanan
-subtitle: buchanansc.com
+exclude: ["CNAME", "grunt.js", "Rakefile"]
 
-author:
-    name: Scott Buchanan
-    name_given: Scott
-    name_family: Buchanan
-    github: wafflesnatcha
-    twitter: wafflesnatcha
-    lastfm: wafflesnatcha
+me:
+    name:
+        given: Scott
+        family: Buchanan
     job_title: Software Engineer
     address:
         locality: San Francisco Bay Area
         region: CA
         country: United States
+    github: wafflesnatcha
+    twitter: wafflesnatcha
+    lastfm: wafflesnatcha
 
 lastfm_apikey: 1ad6bea80327069ed4ecccf76fe34175
 
-exclude: ["CNAME", "config.rb", "grunt.js", "Rakefile"]
-environment: development
-
+environment: production

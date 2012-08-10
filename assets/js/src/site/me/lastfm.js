@@ -1,5 +1,5 @@
 Site.Me.Lastfm = (function () {
-	var selector = '.my-links a.lastfm-link',
+	var selector = '#me-link-lastfm',
 		url = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=<%user%>&api_key=<%api_key%>&limit=<%limit%>&format=json&callback=?',
 		html = '';
 
@@ -41,9 +41,9 @@ Site.Me.Lastfm = (function () {
 	}
 
 	function loadData(callback) {
-		var user = Site.config('lastfm_user'),
-			limit = Site.config('lastfm_limit') || 3,
-			api_key = Site.config('lastfm_api_key');
+		var user = Site._config.lastfm,
+			limit = Site._config.tipsy_list_limit || 3,
+			api_key = Site._config.lastfm_apikey;
 
 		$.getJSON(url._template({
 			'user': user,
@@ -76,7 +76,7 @@ Site.Me.Lastfm = (function () {
 
 	return {
 		init: function () {
-			if (!jQuery().tipsy || !Site.config('lastfm_user')) {
+			if (!jQuery().tipsy || !Site._config.lastfm) {
 				return;
 			}
 			$(selector).tipsy({
@@ -90,8 +90,9 @@ Site.Me.Lastfm = (function () {
 					return html;
 				}
 			});
-			loadData(function (h) {
-				$(selector).data("tipsy").tip().find('.tipsy-inner')['html'](h);
+			loadData(function (html) {
+				$(selector).data('tipsy').tip().find('.tipsy-inner')['html'](html);
+				Site.Links.init($(selector).data('tipsy').tip());
 			});
 		}
 	};

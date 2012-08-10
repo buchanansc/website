@@ -20,9 +20,12 @@ Site.Links = (function () {
 		 * @param {Object} [parent=document.body] Limit to children of this element.
 		 */
 		init: function (parent) {
-			$(selector['external'], parent || document.body).attr('target', '_blank').addClass('link-external');
+			$(selector['external'], parent || document.body).attr({
+				'target': '_blank',
+				'rel': 'external'
+			}).addClass('link-external');
 			$(selector['internal'], parent || document.body).addClass('link-internal');
-			if (Site.config('routing')) this.startRouting(parent);
+			if (Site._config.routing) this.startRouting(parent);
 		},
 
 		/**
@@ -34,7 +37,6 @@ Site.Links = (function () {
 			$(selector['all'], parent || document.body).on('click', function (event) {
 				// Clicked with a button other than left mouse button, or was holding a modifier when clicking
 				if ((event.which && event.which != 1) || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
 				if (Site.navigate(this)) event.preventDefault();
 			});
 		},
