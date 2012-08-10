@@ -17,5 +17,5 @@ lastfm:
     api_key: 1ad6bea80327069ed4ecccf76fe34175
     limit: 3
     
-exclude: ["CNAME", "config.rb", "grunt.js", "Rakefile"]
+exclude: ["CNAME", "config.rb", "grunt.js", "resume.md", "Rakefile"]
 environment: production
