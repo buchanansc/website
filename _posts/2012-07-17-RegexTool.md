@@ -1,8 +1,8 @@
 ---
 layout: post
 title: RegexTool
-link: http://wafflesnatcha.github.com/RegexTool/
 description: RegexTool is a browser-based regular expression tester.
+link: http://wafflesnatcha.github.com/RegexTool/
 permalink: /projects/RegexTool/
 tags: project
 ---

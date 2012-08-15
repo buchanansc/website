@@ -1,16 +1,16 @@
-$font-family: "Open Sans", "Arial", "Helvetica", sans-serif;
-$font-family_code: "Consolas", "Droid Sans Mono", "Monaco", "Courier", monospace; // "Andale Mono", "Monaco", "Courier New", monospace;
-$font-family_heading: $font-family;
-
+$font-family: "Ubuntu", "Arial", "Helvetica", sans-serif;
 $font-size: 13px;
-$font-size_code: $font-size - 1;
 
 $color_foreground: #2a2a2a;
 $color_background: #fff;
 
 $body_background: #81e381;
 $navigation_background: #e5e5e5;
+
+$code_foreground: #000;
 $code_background: #f9f9f9;
+$code_font-family: "Ubuntu Mono", "Droid Sans Mono", "Consolas", "Monaco", "Courier", monospace; // "Andale Mono", "Monaco", "Courier New", monospace;
+$code_font-size: $font-size;
 
 $link_foreground: #680094;
 $link_hover_foreground: #fff;
@@ -22,6 +22,7 @@ $heading_foreground: $color_foreground; // #2b661d
 $width_west: 330px;
 $width_center: 570px;
 
+$site-title_font-family: "Open Sans", "Arial", "Helvetica", sans-serif;
 $site-title_font-size: 30px;
 
 $me-links_height: 24px;
@@ -29,6 +30,7 @@ $me-links_width: $me-links_height;
 
 $content_loading_foreground: #999;
 $content_block_margin: 15px;
+$content_line-height: 1.3em;
 
 @mixin text-size-adjust($percentage: 100%) {
 	-moz-text-size-adjust: $percentage;

@@ -4,29 +4,29 @@ module.exports = function (grunt) {
 		meta: {},
 		lint: {
 			files: [
-				"assets/js/src/site.js",
-				"assets/js/src/site/*"
+				"_site/assets/js/src/site.js",
+				"_site/assets/js/src/site/*"
 				]
 		},
 		concat: {
 			dist: {
 				src: [
-					"assets/js/src/log.js",
-					"assets/js/src/modernizr.custom.js",
-					"assets/js/src/jquery/jquery-1.7.2.min.js",
-					// "assets/js/src/jquery/plugins/jquery-ajax-localstorage-cache.js",
-					"assets/js/src/jquery/plugins/jquery.date.js",
-					"assets/js/src/jquery/plugins/jquery.tipsy.js",
-					"assets/js/src/string._template.js",
-					"assets/js/src/site.js",
-					"assets/js/src/site/content.js",
-					"assets/js/src/site/links.js",
-					"assets/js/src/site/navigation.js",
-					"assets/js/src/site/ui.js",
-					"assets/js/src/site/me.js",
-					"assets/js/src/site/me/github.js",
-					"assets/js/src/site/me/lastfm.js",
-					"assets/js/src/site/me/twitter.js",
+					"_site/assets/js/src/lib/log.js",
+					"_site/assets/js/src/lib/modernizr.custom.js",
+					"_site/assets/js/src/jquery/jquery-1.7.2.min.js",
+					"_site/assets/js/src/jquery/plugins/jquery.date.js",
+					"_site/assets/js/src/jquery/plugins/jquery.tipsy.js",
+					"_site/assets/js/src/lib/string._template.js",
+					"_site/assets/js/src/site.js",
+					"_site/assets/js/src/site/content.js",
+					"_site/assets/js/src/site/links.js",
+					"_site/assets/js/src/site/navigation.js",
+					"_site/assets/js/src/site/ui.js",
+					"_site/assets/js/src/site/me.js",
+					"_site/assets/js/src/site/me/github.js",
+					"_site/assets/js/src/site/me/lastfm.js",
+					"_site/assets/js/src/site/me/twitter.js",
+					"_site/assets/js/src/init.js",
 					],
 				dest: "assets/js/all.js"
 			}

@@ -17,7 +17,7 @@
 	function absolute(time) {
 		var then = new Date(time);
 		if ($.browser.msie) {
-			then = Date.parse(("" + time).replace(/( \+)/, " UTC$1"));
+			then = Date.parse(String(time).replace(/( \+)/, " UTC$1"));
 		}
 		var ampm = "";
 		var hour = (function () {
@@ -49,7 +49,7 @@
 		var now = new Date();
 		var then = new Date(time);
 		if ($.browser.msie) {
-			then = Date.parse(("" + time).replace(/( \+)/, " UTC$1"));
+			then = Date.parse(String(time).replace(/( \+)/, " UTC$1"));
 		}
 		var delta = now - then;
 		var n = 1000,
@@ -90,8 +90,8 @@
 
 	$.extend({
 		date: {
-			absolute: absolute,
-			relative: relative
+			'absolute': absolute,
+			'relative': relative
 		}
 	});
 }(jQuery));

@@ -1,83 +1,9 @@
 #content {
 	color: $color_foreground;
 	padding: 10px 20px 10px;
-	text-align: left;
 
-	blockquote, h1, h2, h3, h4, h5, h6, p, pre, ol, ul {
-		margin: {
-			bottom: $content_block_margin;
-			top: $content_block_margin;
-		};
-	}
-
-	blockquote {
-		color: #444;
-		font-style: italic;
-		margin: {
-			left: 30px;
-			right: 0;
-		};
-	}
-
-	abbr {
-		border-bottom: 1px dotted #bbb;
-	}
-
-	dl, dt, dd {
-		margin: {
-			left: 0;
-			right: 0;
-		};
-	}
-
-	dt {
-		font-weight: bold;
-	}
-
-	dd {
-		margin-left: 30px;
-	}
-
-	code, pre {
-		@include border-radius(3px);
-		background: $code_background;
-		border: 1px solid transparentize(darken($code_background, 20%), .8);
-
-		& blockquote, & a {
-			color: $color_foreground;
-			font-style: normal;
-			font-style: initial;
-		}
-	}
-	
-	code {
-		display: inline-block;
-		padding: 1px 4px;
-	}
-
-	pre {
-		@include box-sizing(border-box);
-		overflow: auto;
-		padding: .5em .7em;
-		position: relative;
-		white-space: pre;
-		word-wrap: normal;
-
-		code {
-			background: transparent;
-			border: 0;
-			padding: 0;
-			white-space: pre;
-		}
-	}
-
-	ul, ol {
-		list-style-type: disc;
-		padding-left: 30px;
-	}
-
-	ol {
-		list-style-type: decimal;
+	a {
+		@extend %fancy_link;
 	}
 
 	table {
@@ -117,7 +43,7 @@
 		border-bottom: 3px solid #f5f5f5;
 		margin: 0 0 $content_block_margin;
 		padding: 0 0 6px;
-		
+
 		.page-title,
 		.page-description {
 			@include text-shadow(0 1px 1px rgba(0,0,0,.2));
@@ -127,13 +53,13 @@
 		.page-description {
 			margin: 0;
 		}
-		
+
 		h1.page-title {
 			font-weight: 300;
 			line-height: $site-title_font-size;
 			margin: 0 0 6px;
 		}
-		
+
 		.page-description {
 			color: lighten($color_foreground, 35%);
 			font-weight: 400;
@@ -150,20 +76,6 @@
 		}
 	}
 
-	.big {
-		font-size: 115%;
-	}
-
-	.big2 {
-		font-size: 130%;
-	}
-
-	.disclaimer {
-		color: lighten($color_foreground, 20%);
-		font-size: $font-size - 1;
-		margin-top: $content_block_margin * 2;
-	}
-
 	/** Image galleries */
 
 	.gallery {
@@ -178,6 +90,7 @@
 
 		img {
 			margin: 4px;
+			max-width: $width_center / 2 - 40;
 		}
 
 		&:hover {
@@ -189,17 +102,17 @@
 
 	.page-error {
 		text-align: center;
-		
+
 		header {
 			border: 0;
 		}
-		
+
 		h1.page-title {
 			@include text-shadow(none);
 			line-height: round($font-size * 6);
 			margin: 0;
 			padding: 20px 0 0;
-			
+
 			.page-title {
 				color: #555;
 				font-size: round($font-size * 6);

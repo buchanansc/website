@@ -41,7 +41,7 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 	}
 
 	.site-title {
-		@include text-shadow(0 1px 0 rgba(255,255,255,.4));
+		@include text-shadow(0 1px 0 #ddd);
 		background: {
 			image: image-url("site-title.png");
 			position: right bottom;
@@ -49,12 +49,13 @@ $navigation_box-shadow: -1px 0 0 rgba(255,255,255,.3) inset;
 		};
 		color: $color_foreground;
 		font: {
+			family: $site-title_font-family;
 			size: $site-title_font-size;
 			style: italic;
 			weight: bold;
 		};
-		height: 30px;
-		line-height: 30px;
+		height: $site-title_font-size;
+		line-height: $site-title_font-size;
 		margin: 0;
 		overflow: visible;
 		padding: 0;

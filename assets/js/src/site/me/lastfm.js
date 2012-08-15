@@ -21,23 +21,25 @@ Site.Me.Lastfm = (function () {
 		'</li>'
 		].join('\n');
 
-	function getArtwork(arr, size) {
+	var tpl_missing_artwork = '<div class="missing-artwork"><span>?</span></div>';
+
+	function getArtwork(track, size) {
 		if (typeof size === "string") {
 			size = [size];
 		}
-		if (arr && arr.image) {
-			var s, i, l = arr.image.length;
+		if (track && track.image) {
+			var s, i, l = track.image.length;
 
 			while (size.length > 0) {
 				s = size.shift();
 				for (i = 0; i < l; i++) {
-					if (arr.image[i].size == s && arr.image[i]['#text'] != "") {
-						return '<img src="' + arr.image[i]['#text'] + '">';
+					if (track.image[i].size == s && track.image[i]['#text'] != "") {
+						return '<img src="' + track.image[i]['#text'] + '">';
 					}
 				}
 			}
 		}
-		return '<div class="missing-artwork"><span>?</span></div>';
+		return tpl_missing_artwork._template();
 	}
 
 	function loadData(callback) {
@@ -53,11 +55,12 @@ Site.Me.Lastfm = (function () {
 			if (status != "success") {
 				return html = '';
 			}
-			var t, i, arr = data.recenttracks.track,
-				l = arr.length,
+			var t, i, tracks = data.recenttracks.track,
+				l = tracks.length,
 				items = '';
 			for (i = 0; i < l && i < limit; i++) {
-				t = arr[i];
+				t = tracks[i];
+				log(t.date, t.date.uts, $.date.relative(parseInt(t.date.uts) * 1000));
 				items += tpl_track._template({
 					'date': (t.date && t.date.uts) ? $.date.relative(parseInt(t.date.uts) * 1000) : '<span class="now-playing">Now playing</span>',
 					'artwork': getArtwork(t, ['medium', 'small']),

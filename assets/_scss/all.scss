@@ -1,3 +1,166 @@
 @import "_global";
+@import "compass/reset";
 @import "compass/css3";
+// @import "all/_fonts";
+
+body {
+	color: $color_foreground;
+	font: {
+		family: $font-family;
+		size: $font-size;
+	};
+	line-height: normal;
+}
+
+a {
+	color: $link_foreground;
+
+	img {
+		border: 0;
+		vertical-align: text-bottom;
+	}
+}
+
+b, strong {
+	&, & a {
+		font-weight: 700;
+	}
+}
+
+i, em {
+	font-style: italic;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: $heading_foreground;
+	font: {
+		family: inherit;
+		style: normal;
+		weight: 500;
+	}
+}
+
+h1 { font-size: round($font-size * 2); }
+h2 { font-size: round($font-size * 1.5); }
+h3 { font-size: round($font-size * 1.17); }
+h4 { font-size: round($font-size * 1); }
+h5 { font-size: round($font-size * 0.83); }
+h6 { font-size: round($font-size * 0.67); }
+
+hr {
+	@include box-shadow(0 -1px 0 rgba(0,0,0,.2));
+	background-color: rgba(255,255,255,.5);
+	border: 0;
+	height: 1px;
+	margin: 4px 0;
+}
+
+pre, code, kbd, samp {
+	font-family: $code_font-family;
+	font-size: $code_font-size;
+}
+
+#content {
+	font-size: $font-size;
+	line-height: $content_line-height;
+	text-align: left;
+	
+	h1, h2, h3, h4, h5, h6,
+	p, pre, blockquote, ul, ol {
+		margin: {
+			bottom: $content_block_margin;
+			top: $content_block_margin;
+		};
+	}
+
+	blockquote {
+		color: #444;
+		font-style: italic;
+		margin: {
+			left: round($content_block_margin * 2);
+			right: 0;
+		};
+	}
+
+	dl, dt, dd {
+		margin: {
+			left: 0;
+			right: 0;
+		};
+	}
+
+	dt {
+		font-weight: bold;
+	}
+
+	dd {
+		margin-left: round($content_block_margin * 2);;
+	}
+
+	abbr {
+		border-bottom: 1px dotted #bbb;
+	}
+
+	ul, ol {
+		list-style: disc outside;
+		padding-left: round($content_block_margin * 2);
+	}
+
+	ol {
+		list-style-type: decimal;
+	}
+
+	code, pre {
+		@include border-radius(3px);
+		background: $code_background;
+		border: 1px solid transparentize(darken($code_background, 20%), .8);
+		color: $code_foreground;
+		
+		& blockquote, & a {
+			color: $color_foreground;
+			font-style: normal;
+			font-style: initial;
+		}
+	}
+
+	code {
+		display: inline-block;
+		padding: 1px 4px;
+	}
+
+	pre {
+		@include box-sizing(border-box);
+		overflow: auto;
+		padding: .6em .8em;
+		position: relative;
+		white-space: pre;
+		word-wrap: normal;
+
+		code {
+			background: transparent;
+			border: 0;
+			padding: 0;
+			white-space: pre;
+		}
+	}
+
+	.light {
+		font-weight: 300;
+	}
+
+	.big {
+		font-size: 115%;
+	}
+
+	.big2 {
+		font-size: 130%;
+	}
+
+	.disclaimer {
+		color: lighten($color_foreground, 20%);
+		font-size: $font-size - 1;
+		margin-top: round($content_block_margin * 2);
+	}
+}
+
 @import "all/_syntax";

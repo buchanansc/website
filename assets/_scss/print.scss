@@ -1,5 +1,4 @@
 @import "_global";
-
 @import "compass/css3";
 
 $color_foreground: #000;
@@ -16,23 +15,11 @@ html, body {
 body {
 	background: $color_background;
 	color: $color_foreground;
-	font: {
-		family: $font-family;
-		size: $font-size;
-	};
-	line-height: normal;
 }
 
 a {
-	color: $link_foreground;
-	font-weight: 600;
+	font-weight: 500;
 	text-decoration: underline;
-
-	img {
-		border: 0;
-		vertical-align: text-bottom;
-	}
-
 }
 
 hr {
@@ -42,73 +29,28 @@ hr {
 	padding: 0;
 }
 
-pre, code, kbd, samp {
-	font-family: $font-family_code;
-	font-size: $font-size_code;
-}
-
 pre {
-	@include border-radius(3px);
-	background: none;
-	border: 2px solid #999;
-	color: $color_foreground;
-	padding: .6em .8em;
+	background: transparent;
+	border-width: 2px;
 	position: static;
 	white-space: pre-wrap;
 	word-wrap: break-word;
 }
 
-blockquote {
-	color: #444;
-	font-style: italic;
-	margin: {
-		left: 30px;
-		right: 0;
-	};
-}
-
 q {
-	quotes: none
+	quotes: none;
 }
 
 q:before, q:after {
-	content: ""
+	content: "";
 }
 
 q:after {
-	content: " (" attr(cite) ")"
+	content: " (" attr(cite) ")";
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font: {
-		family: inherit;
-		style: normal;
-	};
 	page-break-after: avoid;
-}
-
-h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol {
-	margin: {
-		bottom: $content_block_margin;
-		top: $content_block_margin;
-	};
-}
-
-h1, h2, h3, h4, h5, h6, b, strong {
-	&, & a {
-		font-weight: 700;
-	}
-}
-
-h1 { font-size: $font-size * 2; }
-h2 { font-size: $font-size * 1.5; }
-h3 { font-size: $font-size * 1.17; }
-h4 { font-size: $font-size * 1; }
-h5 { font-size: $font-size * 0.83; }
-h6 { font-size: $font-size * 0.67; }
-
-i, em {
-	font-style: italic;
 }
 
 #layout {
@@ -154,23 +96,10 @@ i, em {
 }
 
 #content {
-	font-size: $font-size;
-	
-	h1, h2, h3, h4, h5, h6 {
-		page-break-after: avoid;
-	}
-
-/*
-	p, pre, blockquote, ul, ol {
-		orphans: 3;
-		widows: 3;
-	}
-	
 	ul, ol {
 		page-break-before: avoid;
 		page-break-inside: avoid;
 	}
-*/
 
 	a:after {
 		color: $color_foreground + #555;
@@ -204,7 +133,7 @@ i, em {
 
 	.page-description {
 		font-size: $font-size + 1;
-		font-weight: 600;
+		font-weight: 500;
 		padding: 4px;
 	}
 }
