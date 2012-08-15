@@ -60,7 +60,6 @@ Site.Me.Lastfm = (function () {
 				items = '';
 			for (i = 0; i < l && i < limit; i++) {
 				t = tracks[i];
-				log(t.date, t.date.uts, $.date.relative(parseInt(t.date.uts) * 1000));
 				items += tpl_track._template({
 					'date': (t.date && t.date.uts) ? $.date.relative(parseInt(t.date.uts) * 1000) : '<span class="now-playing">Now playing</span>',
 					'artwork': getArtwork(t, ['medium', 'small']),
