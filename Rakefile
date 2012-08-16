@@ -1,10 +1,10 @@
 require "rake"
 require "jekyll"
+require 'compass'
 
 CONFIG = {
 	'root' => File.dirname(__FILE__),
-	'compass_project' => 'assets/_scss',
-	'images_dir' => 'assets/img',
+	'compass_project' => '_scss',
 }
 
 task :default do
@@ -24,7 +24,10 @@ task :grunt do
 	system("grunt")
 end
 task :optipng do
-	system("find '" + File.join(CONFIG['root'], CONFIG['images_dir']) + "' -type f -name '*.png' | xargs optipng -quiet -preserve")
+	if dir = compassConfig('images_dir') then
+		path = File.expand_path(dir, File.join(CONFIG['root'], CONFIG['compass_project']))
+		system("find '#{path}' -type f -name '*.png' | xargs optipng -quiet -preserve")
+	end
 end
 
 namespace :jekyll do
@@ -47,6 +50,10 @@ namespace :jekyll do
 		system("open 'http://#{`echo "$HOSTNAME"`.chomp}:" + Jekyll.configuration({})['server_port'].to_s + "'")
 		exec "jekyll", "--server", "--auto"
 	end
+end
+
+def compassConfig(param)
+	Compass.configuration_for(File.join(CONFIG['root'], CONFIG['compass_project'], 'config.rb')).instance_variable_get('@' + param)
 end
 
 namespace :compass do
