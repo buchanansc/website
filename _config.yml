@@ -8,14 +8,15 @@ me:
     name:
         given: Scott
         family: Buchanan
-    job_title: Software Engineer
     address:
         locality: San Francisco Bay Area
         region: CA
         country: United States
+    job_title: Software Engineer
+    resume: /about/resume/
     github: wafflesnatcha
-    twitter: wafflesnatcha
     lastfm: wafflesnatcha
+    twitter: wafflesnatcha
 
 lastfm_apikey: 1ad6bea80327069ed4ecccf76fe34175
 environment: production

@@ -62,7 +62,7 @@
 					<a href="/" class="site-icon" itemprop="url"><span class="spr-site-icon">{{ site.url | replace_first:'http://','' }}</span></a>
 					<nav class="me-links">
 						<ul>
-							{% comment %}<li class="left"><a href="/resume.html">R&eacute;sum&eacute;</a></li>{% endcomment %}
+							{% if site.me.resume %}<li class="left"><a href="{{ site.me.resume }}">R&eacute;sum&eacute;</a></li>{% endif %}
 							{% if site.me.twitter %}<li><a href="http://twitter.com/{{ site.me.twitter }}" id="me-link-twitter" title="twitter" rel="external" target="_blank"><span class="spr-twitter">twitter</span></a></li>{% endif %}
 							{% if site.me.lastfm %}<li><a href="http://www.last.fm/user/{{ site.me.lastfm }}" id="me-link-lastfm" title="last.fm" target="_blank"><span class="spr-lastfm">last.fm</span></a></li>{% endif %}
 							{% if site.me.github %}<li><a href="http://github.com/{{ site.me.github }}" id="me-link-github" title="github" target="_blank"><span class="spr-github">github</span></a></li>{% endif %}

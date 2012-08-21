@@ -1,3 +1,4 @@
+/*global $, Site, Modernizr*/
 Site.UI = (function () {
 	return {
 		init: function () {
@@ -37,4 +38,4 @@ Site.UI = (function () {
 
 		}
 	};
-})();
+}());

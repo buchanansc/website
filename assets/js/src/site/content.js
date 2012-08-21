@@ -1,3 +1,5 @@
+/*jshint browser:true jquery:true smarttabs:true*/
+/*global log, Site*/
 Site.Content = (function () {
 	var jqXHR;
 	var title_pattern = /<title>(.*)<\/title>/i;
@@ -8,7 +10,7 @@ Site.Content = (function () {
 		        '<h1 class="page-title">',
 		            '<span class="page-title"><%status%></span>',
 		        '</h1>',
-				'<p class="page-description"><%description%></p>',
+		        '<p class="page-description"><%description%></p>',
 		    '</header>',
 		'</article>'
 		].join('\n');
@@ -22,7 +24,7 @@ Site.Content = (function () {
 			// Home page
 			if (!url || url == "/" || url == "/" + Site._config.index_page) {
 				Site.Content.clear();
-				(callback || $.noop).apply(this)
+				(callback || $.noop).apply(this);
 				return;
 			}
 
@@ -42,13 +44,13 @@ Site.Content = (function () {
 				Site.Content.loadEnd();
 
 				// content is empty
-				if ($(this).text() == "") {
+				if ($(this).text() === "") {
 					Site.Content.clear();
 				} else {
 					Site.Links.init(this);
 				}
 
-				(callback || $.noop).apply(this)
+				(callback || $.noop).apply(this);
 			});
 		},
 
@@ -118,4 +120,4 @@ Site.Content = (function () {
 			});
 		}
 	};
-})();
+}());

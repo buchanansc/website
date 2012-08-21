@@ -30,7 +30,7 @@ $me-links_width: $me-links_height;
 
 $content_loading_foreground: #999;
 $content_block_margin: 15px;
-$content_line-height: 1.3em;
+$content_line-height: 1.35em;
 
 @mixin text-size-adjust($percentage: 100%) {
 	-moz-text-size-adjust: $percentage;

@@ -1,11 +1,10 @@
-/**
- * Manage all navigation within, and away from the page
- */
+/*global $, Site, _gaq*/
 Site.Navigation = (function () {
 	/** @private */
 	var support = {
 		'history': (window.history && window.history.pushState),
-		'hashchange': false //("onhashchange" in window && (document.documentMode === undefined || document.documentMode > 7))
+		'hashchange': false
+		// 'hashchange': ("onhashchange" in window && (document.documentMode === undefined || document.documentMode > 7))
 	};
 
 	/**
@@ -55,7 +54,7 @@ Site.Navigation = (function () {
 	 */
 	function outbound(url, change) {
 		// log("Site.Navigation.outbound", url, change);
-		var change = change || false;
+		change = change || false;
 		track('Outbound Link', url);
 		if (change) {
 			setTimeout(function () {
