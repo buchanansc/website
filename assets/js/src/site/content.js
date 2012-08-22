@@ -1,4 +1,4 @@
-/*jshint browser:true jquery:true smarttabs:true*/
+/*jshint browser:true jquery:true*/
 /*global log, Site*/
 Site.Content = (function () {
 	var jqXHR;

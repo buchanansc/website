@@ -1,3 +1,5 @@
+/*jshint browser:true jquery:true*/
+/*global log, Site*/
 Site.Me.Twitter = (function () {
 	var selector = '#me-link-twitter',
 		url = 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=<%user%>&count=<%limit%>&callback=?',
@@ -7,7 +9,7 @@ Site.Me.Twitter = (function () {
 		'<h3>Twitter <span>@<%user%></span></h3>',
 		'<ul>',
 		    '<%items%>',
-		'</ul>',
+		'</ul>'
 		].join('\n');
 
 	var tpl_tweet = [
@@ -26,7 +28,7 @@ Site.Me.Twitter = (function () {
 			'limit': limit
 		}), function (data, status) {
 			if (status != "success") {
-				return html = '';
+				return;
 			}
 			var i, l = data.length,
 				items = '';
@@ -42,7 +44,7 @@ Site.Me.Twitter = (function () {
 			});
 			(callback || $.noop).call(this, html);
 		});
-	};
+	}
 
 	return {
 		init: function () {
@@ -61,11 +63,11 @@ Site.Me.Twitter = (function () {
 				}
 			});
 			loadData(function (html) {
-				$(selector).data('tipsy').tip().find('.tipsy-inner')['html'](html);
+				$(selector).data('tipsy').tip().find('.tipsy-inner').html(html);
 				Site.Links.init($(selector).data('tipsy').tip());
 			});
 		}
 	};
-})();
+}());
 
 Site.Me.register(Site.Me.Twitter);

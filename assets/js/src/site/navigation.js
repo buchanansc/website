@@ -1,6 +1,6 @@
-/*global $, Site, _gaq*/
+/*jshint browser:true jquery:true*/
+/*global Site, Modernizr, _gaq*/
 Site.Navigation = (function () {
-	/** @private */
 	var support = {
 		'history': (window.history && window.history.pushState),
 		'hashchange': false
@@ -17,7 +17,7 @@ Site.Navigation = (function () {
 	 * @private
 	 */
 	function track(category, action) {
-		if (Site.config("tracking") && typeof _gaq !== "undefined") {
+		if (Site._config.tracking && typeof _gaq !== "undefined") {
 			if (category || action) {
 				_gaq.push(['_trackEvent', category || "", action || ""]);
 			} else {
@@ -119,10 +119,8 @@ Site.Navigation = (function () {
 		 * @returns {Boolean} True if navigation was successful, false otherwise
 		 */
 		go: function (url, reload) {
-			// log("Site.Navigation.go", url, reload);
-			var reload = reload || false,
-				target, linkElement;
-
+			reload = reload || false;
+			var target, linkElement;
 			if (typeof url === "object") {
 				linkElement = url;
 				url = $(linkElement).attr('href');
@@ -137,14 +135,14 @@ Site.Navigation = (function () {
 			}
 
 			// Strip the origin from URLs to the current domain
-			var origin = Site.config("origin");
+			var origin = Site._config.origin;
 			if (url.substr(0, origin.length) == origin) {
 				url = url.substr(origin.length);
 			}
 
 			// Check for hashed links
 			var parts = url.split("/#/");
-			if (parts.length == 2 && parts[0] == "") {
+			if (parts.length === 2 && parts[0] === "") {
 				url = "/" + parts[parts.length - 1];
 				reload = true;
 			}
@@ -170,4 +168,4 @@ Site.Navigation = (function () {
 			return true;
 		}
 	};
-})();
+}());

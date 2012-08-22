@@ -8,7 +8,7 @@ CONFIG = {
 }
 
 task :default do
-	system("rake -sT")
+	exec "rake -sT"
 end
 
 desc "Switch to the development environment"
@@ -20,12 +20,12 @@ task :production => ["clean", "compass:production", "optipng", "jekyll:productio
 desc "Clean all cache and generated files"
 task :clean => ["compass:clean", "jekyll:clean"]
 
-desc 'Run grunt'
+desc "Run grunt"
 task :grunt do
 	system "grunt"
 end
 
-desc 'Optimize PNG files with optipng'
+desc "Optimize PNG files with optipng"
 task :optipng do
 	if dir = compassConfig('images_dir') then
 		path = File.expand_path(dir, File.join(CONFIG['root'], CONFIG['compass_project']))
@@ -97,7 +97,7 @@ namespace :compass do
 		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass compile -e production --force")
 	end
 	
-	desc 'Watch the compass project for changes and recompile when they occur'
+	desc "Watch the compass project for changes and recompile when they occur"
 	task :watch do
 		Dir.chdir(File.join(CONFIG['root'], CONFIG['compass_project']))
 		exec "compass", "watch", "--environment", "development"

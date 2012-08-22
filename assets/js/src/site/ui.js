@@ -1,4 +1,5 @@
-/*global $, Site, Modernizr*/
+/*jshint browser:true jquery:true*/
+/*global log, Site, Modernizr*/
 Site.UI = (function () {
 	return {
 		init: function () {
@@ -35,7 +36,6 @@ Site.UI = (function () {
 					opacity: 1
 				});
 			}
-
 		}
 	};
 }());

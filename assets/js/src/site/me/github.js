@@ -1,3 +1,5 @@
+/*jshint browser:true jquery:true*/
+/*global log, Site*/
 Site.Me.Github = (function () {
 	var selector = '#me-link-github',
 		url = 'https://api.github.com/users/<%user%>/events/public?callback=?',
@@ -7,7 +9,7 @@ Site.Me.Github = (function () {
 		'<h3>GitHub <span>Recent Activity</span></h3>',
 		'<ul>',
 		    '<%items%>',
-		'</ul>',
+		'</ul>'
 		].join('\n');
 
 	var tpl_item = [
@@ -33,7 +35,7 @@ Site.Me.Github = (function () {
 			'count': limit
 		}), function (data, status) {
 			if (status != "success") {
-				return html = '';
+				return;
 			}
 			var i, n, arr = data.data,
 				l = arr.length,
@@ -66,7 +68,7 @@ Site.Me.Github = (function () {
 			});
 			(callback || $.noop).call(this, html);
 		});
-	};
+	}
 
 	return {
 		init: function () {
@@ -85,11 +87,11 @@ Site.Me.Github = (function () {
 				}
 			});
 			loadData(function (html) {
-				$(selector).data('tipsy').tip().find('.tipsy-inner')['html'](html);
+				$(selector).data('tipsy').tip().find('.tipsy-inner').html(html);
 				Site.Links.init($(selector).data('tipsy').tip());
 			});
 		}
 	};
-})();
+}());
 
 Site.Me.register(Site.Me.Github);

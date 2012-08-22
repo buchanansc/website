@@ -89,6 +89,7 @@
 		padding: 0;
 
 		img {
+			display: block;
 			margin: 4px;
 			max-width: $width_center / 2 - 40;
 		}
@@ -148,8 +149,6 @@
 
 		.gallery a {
 			background-color: $link_gallery_background;
-			margin: 2px;
-			max-width: 45%;
 		}
 
 		img {

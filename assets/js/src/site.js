@@ -1,3 +1,5 @@
+/*jshint browser:true jquery:true*/
+/*global log*/
 var Site = (function () {
 	var config = {
 		// Enable animation
@@ -33,24 +35,8 @@ var Site = (function () {
 			Site.Links.init();
 			Site.Navigation.init();
 
-			if (!Site.config['layout']) {
+			if (!Site._config.layout) {
 				Site.Me.init();
-			}
-		},
-
-		/**
-		 * Get or set values in the site configuration.
-		 *
-		 * @param {String} [property] Name of the config property.
-		 * @param {Mixed} [value] The new value of property.
-		 * @returns {Mixed} The value of property, or entire config object if no property is specified.
-		 */
-		config: function (property, value) {
-			if (property) {
-				if (arguments.length > 1) {
-					Site._config[property] = value;
-				}
-				return Site._config[property];
 			}
 		},
 

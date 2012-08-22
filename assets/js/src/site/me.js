@@ -1,12 +1,13 @@
+/*jshint browser:true jquery:true*/
+/*global log, Site*/
 Site.Me = (function () {
 	var initialized = false,
 		registered = [];
 	return {
 		init: function () {
 			if (registered.length > 0) {
-				var i;
-				while (i = registered.pop()) {
-					i.init.call(this);
+				while (registered.length > 0) {
+					registered.pop().init.call(this);
 				}
 			}
 			initialized = true;
@@ -20,4 +21,4 @@ Site.Me = (function () {
 			}
 		}
 	};
-})();
+}());
