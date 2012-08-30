@@ -115,6 +115,7 @@ pre, code, kbd, samp {
 		background: $code_background;
 		border: 1px solid transparentize(darken($code_background, 20%), .8);
 		color: $code_foreground;
+		line-height: normal;
 		
 		& blockquote, & a {
 			color: $color_foreground;
