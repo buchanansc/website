@@ -57,7 +57,7 @@ Site.Content = (function () {
 		error: function (code, description) {
 			$(selector).html(template_error_page._template({
 				'status': code,
-				'description': description
+				'description': description.replace(/([^\.])$/, '$1.')
 			}));
 		},
 
