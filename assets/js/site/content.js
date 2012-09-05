@@ -69,7 +69,7 @@ Site.Content = (function () {
 
 		loadEnd: function () {
 			$(selector).removeClass('loading');
-			Site.UI.refresh();
+			Site.refreshUI();
 		},
 
 		expand: function (callback) {
@@ -79,14 +79,14 @@ Site.Content = (function () {
 					return (callback || $.noop).apply(this);
 				};
 
-			if (!el.hasClass('collapsed') || el.hasClass('expanded') || !Site._config.animation) {
-				return done();
+			if (!Site._config.animation || !el.hasClass('collapsed') || el.hasClass('expanded')) {
+				return done.applt(el);
 			}
 
 			el.stop(true, true).width(Site._config.layout_width_collapsed).removeClass('collapsed').animate({
 				'width': Site._config.layout_width_expanded
 			}, {
-				'duration': Site._config.content_anim_duration,
+				'duration': Site._config.animation_duration,
 				'complete': done
 			});
 		},
@@ -98,14 +98,14 @@ Site.Content = (function () {
 					return (callback || $.noop).apply(this);
 				};
 
-			if (!el.hasClass('expanded') || el.hasClass('collapsed') || !Site._config.animation) {
-				return done();
+			if (!Site._config.animation || !el.hasClass('expanded') || el.hasClass('collapsed')) {
+				return done.apply(el);
 			}
 
 			el.stop(true, true).width(Site._config.layout_width_expanded).removeClass('expanded').animate({
 				'width': Site._config.layout_width_collapsed
 			}, {
-				'duration': Site._config.content_anim_duration,
+				'duration': Site._config.animation_duration,
 				'complete': done
 			});
 		},
