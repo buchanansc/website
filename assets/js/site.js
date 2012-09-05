@@ -63,7 +63,7 @@ var Site = (function () {
 			return Site.Navigation.go(url);
 		},
 		
-		refresh: function () {
+		refreshUI: function () {
 			// Scroll to top of page (hide URL bar on iOS)
 			if (Site._config.layout == "mobile") {
 				setTimeout(function () {

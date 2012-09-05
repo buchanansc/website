@@ -80,7 +80,7 @@ Site.Content = (function () {
 				};
 
 			if (!Site._config.animation || !el.hasClass('collapsed') || el.hasClass('expanded')) {
-				return done.applt(el);
+				return done.apply(el);
 			}
 
 			el.stop(true, true).width(Site._config.layout_width_collapsed).removeClass('collapsed').animate({
