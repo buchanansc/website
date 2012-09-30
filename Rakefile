@@ -29,7 +29,7 @@ desc "Optimize PNG files with optipng"
 task :optipng do
 	if dir = compassConfig('images_dir') then
 		path = File.expand_path(dir, File.join(CONFIG['root'], CONFIG['compass_project']))
-		system("find '#{path}' -type f -name '*.png' | xargs optipng -quiet -preserve")
+		system("find '#{path}' -type f -iname '*.png' | xargs optipng -quiet -preserve")
 	end
 end
 
@@ -43,7 +43,7 @@ end
 
 namespace :jekyll do
 	
-	desc "Clean generated site"
+	# desc "Clean generated site"
 	task :clean do
 		path = Jekyll.configuration({})['destination']
 		if (File.expand_path(CONFIG['root']) != path && File.directory?(path)) then
@@ -52,12 +52,12 @@ namespace :jekyll do
 		end
 	end
 
-	desc "Change the jekyll 'environment' config parameter to 'development'"
+	# desc "Change the jekyll 'environment' config parameter to 'development'"
 	task :development do
 		jekyllEnvironment('development')
 	end
 
-	desc "Change the jekyll 'environment' config parameter to 'production'"
+	# desc "Change the jekyll 'environment' config parameter to 'production'"
 	task :production do
 		jekyllEnvironment('production')
 	end
@@ -82,7 +82,7 @@ end
 
 namespace :compass do
 	
-	desc "Remove generated files and the sass cache"
+	# desc "Remove generated files and the sass cache"
 	task :clean do
 		system("cd '" + File.join(CONFIG['root'], CONFIG['compass_project']) + "' &>/dev/null && compass clean")
 	end
