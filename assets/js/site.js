@@ -12,7 +12,7 @@ var Site = (function () {
 		routing: true,
 		// Turn on Google Analytics tracking (requires that routing is also enabled).
 		tracking: true,
-
+		// Me links list length
 		tipsy_list_limit: 3,
 		layout: null,
 		origin: location.protocol + "//" + location.host
