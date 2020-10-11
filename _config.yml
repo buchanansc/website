@@ -1,9 +1,11 @@
 safe: true
-pygments: true
 permalink: /:categories/:year/:month/:day/:title
 url: http://buchanansc.com
 exclude: ["CNAME", "grunt.js", "Rakefile"]
-# markdown: kramdown
+markdown: kramdown
+
+kramdown:
+    use_coderay: true
 
 me:
     name:
