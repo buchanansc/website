@@ -9,14 +9,14 @@ me:
         given: Scott
         family: Buchanan
     address:
-        locality: San Francisco Bay Area
+        locality: Sacramento
         region: CA
         country: United States
     job_title: Software Engineer
-    resume: /about/resume/
+    # resume: /about/resume/
     github: wafflesnatcha
     lastfm: wafflesnatcha
-    twitter: wafflesnatcha
+    # twitter: wafflesnatcha
 
 lastfm_apikey: 1ad6bea80327069ed4ecccf76fe34175
 environment: production
