@@ -11,7 +11,7 @@
 {% capture site_title %}{{ site.me.name.given }} {{ site.me.name.family }}{% endcapture %}
 	<title>{{ page.title }}{% if page.title %} | {% endif %}{{ site_title }}</title>
 {% if page.description %}	<meta name="description" content="{{ page.description }}">{% endif %}
-	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:700i&amp;text={{ site_title | cgi_escape }}">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:700i&text={{ site_title | cgi_escape }}">
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,400i,500i,700i|Ubuntu+Mono:400">
 	<link rel="stylesheet" type="text/css" href="/assets/css/all.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/print.css" media="print">
