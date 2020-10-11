@@ -8,9 +8,46 @@ $disable-magic-sprite-selectors: true;
 @include all-spr-sprites;
 $MAP_spr: sprite-map("spr/*.png");
 
-// $MAP_spr-x2: sprite-map("x2/spr/*.png");
-// @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
-// 	.spr-github, .spr-lastfm, .spr-twitter, .spr-site-icon {
-// 		background: $MAP_spr-x2;
-// 	}
-// }
+
+// High-res sprite stuff
+// cant get it to FUCKIN WORK without manually changing the background size/position for each sprite
+
+//$MAP_spr-x2: sprite-map("x2/spr/*.png");
+
+//@mixin sprite-background($name) {
+//	background-image: sprite-url($MAP_spr);
+//	background-position: sprite-position($MAP_spr, $name);
+//	background-repeat: no-repeat;
+//	display: block;
+//	height: image-height(sprite-file($MAP_spr, $name));
+//	width: image-width(sprite-file($MAP_spr, $name));
+//	@media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 2) {
+//		// Workaround for https://gist.github.com/2140082
+//		@if (sprite-position($MAP_spr, $name) != sprite-position($MAP_spr-x2, $name)) {
+//			$ypos: round(nth(sprite-position($MAP_spr-x2, $name), 2) / 2);
+//			background-position: 0 $ypos;
+//		}
+//		// Hard coded width of the normal sprite image. There must be a smarter way to do this.
+////		@include background-size(50%);
+//		background-image: sprite-url($MAP_spr-x2);
+//	}
+//}
+
+//@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+//	.spr-site-icon {
+//		@include sprite-background(site-icon);
+//		@include background-size(76px);
+//	}
+
+//	.spr-github {
+//		@include sprite-background(github);
+//	}
+
+//	.spr-lastfm {
+//		@include sprite-background(lastfm);
+//	}
+
+//	.spr-twitter {
+//		@include sprite-background(twitter);
+//	}
+//}
