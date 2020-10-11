@@ -71,7 +71,7 @@ namespace :jekyll do
 	desc "Start web server and watch for changes"
 	task :server do
 		# system("open 'http://#{`echo "$HOSTNAME"`.chomp}:" + Jekyll.configuration({})['server_port'].to_s + "'")
-		exec "jekyll", "serve"
+		exec "jekyll", "serve", "--host", `echo "$HOSTNAME"`.chomp
 	end
 	
 end
