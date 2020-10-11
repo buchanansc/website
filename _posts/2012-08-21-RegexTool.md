@@ -23,8 +23,9 @@ test your regular expressions.
 * [HTML5 Storage](http://www.html5rocks.com/en/features/storage) to save your
   data in between sessions.
 
+<p class="disclaimer" markdown="1">
 *Dual licensed under the MIT and GPL licenses.*
-{.disclaimer}
+</p>
 
 [Demo]: http://wafflesnatcha.github.com/RegexTool
 [source]: http://github.com/wafflesnatcha/RegexTool

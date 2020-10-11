@@ -3,6 +3,7 @@ pygments: true
 permalink: /:categories/:year/:month/:day/:title
 url: http://buchanansc.com
 exclude: ["CNAME", "grunt.js", "Rakefile"]
+# markdown: kramdown
 
 me:
     name:
