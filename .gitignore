@@ -1,3 +1,4 @@
 /.git
 /_site
-/sandbox.md
+/node_modules
+/package-lock.json

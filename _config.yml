@@ -1,7 +1,7 @@
 safe: true
 permalink: /:categories/:year/:month/:day/:title
 url: http://buchanansc.com
-exclude: ["CNAME", "grunt.js", "Rakefile"]
+exclude: ["CNAME", "Gruntfile.js", "Rakefile", "package.json", "package_lock.json"]
 markdown: kramdown
 
 kramdown:
