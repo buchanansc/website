@@ -1,5 +1,3 @@
----
----
 jQuery(function () {
 	Site.init({
 		title: "{{ site.me.name.given }} {{ site.me.name.family }}",

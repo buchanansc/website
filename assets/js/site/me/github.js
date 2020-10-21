@@ -2,7 +2,7 @@
 /*global log, Site*/
 Site.Me.Github = (function () {
 	var selector = '#me-link-github',
-		url = 'https://api.github.com/users/<%user%>/events/public?callback=?',
+		url = '//api.github.com/users/<%user%>/events/public?callback=?',
 		html = '';
 
 	var tpl = [

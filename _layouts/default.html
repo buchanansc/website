@@ -24,7 +24,6 @@
 	<link rel="apple-touch-icon-precomposed" href="/assets/img/icon/apple-touch-icon-57x57.png">
 {% if site.environment == "production" %}
 	<script src="/assets/all.js" type="text/javascript"></script>
-{% include google-analytics.html %}
 {% else %}
 	<script src="/assets/js/log.js" type="text/javascript"></script>
 	<script src="/assets/js/modernizr-2.6.2.custom.js" type="text/javascript"></script>
@@ -40,7 +39,21 @@
 	<script src="/assets/js/site/me/github.js" type="text/javascript"></script>
 	<script src="/assets/js/site/me/lastfm.js" type="text/javascript"></script>
 	<script src="/assets/js/site/me/twitter.js" type="text/javascript"></script>
-	<script src="/assets/js/init.js" type="text/javascript"></script>
+{% endif %}
+	<script type="text/javascript">
+	jQuery(function () {
+		Site.init({
+			title: "{{ site.me.name.given }} {{ site.me.name.family }}",
+			url: "{{ site.url }}",
+			twitter: "{{ site.me.twitter }}",
+			github: "{{ site.me.github }}",
+			lastfm: "{{ site.me.lastfm }}",
+			lastfm_apikey: "{{ site.lastfm_apikey }}"
+		});
+	});
+	</script>
+{% if site.environment == "production" %}
+{% include google-analytics.html %}
 {% endif %}
 </head>
 <body>

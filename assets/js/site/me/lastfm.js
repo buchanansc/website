@@ -2,7 +2,7 @@
 /*global log, Site*/
 Site.Me.Lastfm = (function () {
 	var selector = '#me-link-lastfm',
-		url = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=<%user%>&api_key=<%api_key%>&limit=<%limit%>&format=json&callback=?',
+		url = '//ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=<%user%>&api_key=<%api_key%>&limit=<%limit%>&format=json&callback=?',
 		html = '';
 
 	var tpl = [
