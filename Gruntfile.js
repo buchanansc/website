@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 					"_site/assets/js/site/me.js",
 					"_site/assets/js/site/me/github.js",
 					"_site/assets/js/site/me/lastfm.js",
-					"_site/assets/js/site/me/twitter.js",
+					// "_site/assets/js/site/me/twitter.js",
 					"_site/assets/js/init.js"
 					],
 				dest: "assets/all.js"

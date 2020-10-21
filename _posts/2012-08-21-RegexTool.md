@@ -2,7 +2,7 @@
 layout: post
 title: RegexTool
 description: RegexTool is a browser-based regular expression tester.
-link: http://wafflesnatcha.github.com/RegexTool/
+link: http://wafflesnatcha.github.io/RegexTool/
 permalink: /projects/RegexTool/
 tags: project
 ---
