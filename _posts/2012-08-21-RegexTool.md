@@ -27,6 +27,6 @@ test your regular expressions.
 *Dual licensed under the MIT and GPL licenses.*
 </p>
 
-[Demo]: http://wafflesnatcha.github.com/RegexTool
-[source]: http://github.com/wafflesnatcha/RegexTool
-[XRegExp]: http://xregexp.com
+[Demo]: https://wafflesnatcha.github.io/RegexTool
+[source]: https://github.io/wafflesnatcha/RegexTool
+[XRegExp]: https://xregexp.com
