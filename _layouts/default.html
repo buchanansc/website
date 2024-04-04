@@ -52,7 +52,7 @@
 		});
 	});
 	</script>
-{% if site.environment == "production" and site.google_analytics %}
+{% if site.environment == "production" and site.google_analytics == true %}
 {% include google-analytics.html %}
 {% endif %}
 </head>
