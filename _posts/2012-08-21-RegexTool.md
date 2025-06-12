@@ -28,5 +28,5 @@ test your regular expressions.
 </p>
 
 [Demo]: https://wafflesnatcha.github.io/RegexTool
-[source]: https://github.io/wafflesnatcha/RegexTool
+[source]: https://github.com/wafflesnatcha/RegexTool
 [XRegExp]: https://xregexp.com
